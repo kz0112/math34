@@ -1,0 +1,2601 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <title>Математикалық статистика – 10-сынып интерактивті курс</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Font (қаласаң алып тастауға болады) -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-soft: #0b1020;
+      --card: #111827;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56,189,248,0.12);
+      --accent-2: #a855f7;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #1f2933;
+      --danger: #f97373;
+      --radius-lg: 18px;
+      --radius-xl: 26px;
+      --shadow-soft: 0 18px 45px rgba(15,23,42,0.8);
+      --shadow-card: 0 18px 35px rgba(15,23,42,0.9);
+      --transition-fast: 0.18s ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 55%, #020617 100%);
+      color: var(--text);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Layout */
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      background: radial-gradient(circle at 30% 0, #38bdf8, #a855f7 50%, #0ea5e9 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 25px rgba(59,130,246,0.4);
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .brand-text-title {
+      font-weight: 600;
+      font-size: 17px;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-text-sub {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .badge-compact {
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      padding: 2px 9px;
+      font-size: 11px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      backdrop-filter: blur(8px);
+      background: rgba(15,23,42,0.5);
+    }
+
+    .hero {
+      border-radius: var(--radius-xl);
+      padding: 24px 22px;
+      background:
+        radial-gradient(circle at top left, rgba(56,189,248,0.25) 0, transparent 60%),
+        radial-gradient(circle at top right, rgba(168,85,247,0.25) 0, transparent 60%),
+        linear-gradient(135deg, #020617 0, #020617 40%, #020617 100%);
+      border: 1px solid rgba(148,163,184,0.35);
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+      gap: 22px;
+      margin-bottom: 26px;
+    }
+
+    .hero-title {
+      font-size: clamp(22px, 3vw, 26px);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      margin-bottom: 10px;
+    }
+
+    .hero-title span {
+      background-image: linear-gradient(to right, #38bdf8, #a855f7);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 13px;
+      color: var(--muted);
+      max-width: 460px;
+      line-height: 1.55;
+      margin-bottom: 16px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .pill {
+      font-size: 11px;
+      border-radius: 999px;
+      padding: 4px 9px;
+      border: 1px solid rgba(148,163,184,0.5);
+      color: var(--muted);
+      background: rgba(15,23,42,0.7);
+    }
+
+    .pill-strong {
+      border-color: rgba(56,189,248,0.7);
+      color: var(--accent);
+      background: rgba(15,23,42,0.9);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      border-radius: 999px;
+      border: 1px solid transparent;
+      padding: 8px 15px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), opacity var(--transition-fast);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+      color: #0b1120;
+      box-shadow: 0 12px 30px rgba(59,130,246,0.6);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 40px rgba(59,130,246,0.75);
+    }
+
+    .btn-ghost {
+      background: rgba(15,23,42,0.65);
+      border-color: rgba(148,163,184,0.6);
+      color: var(--text);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15,23,42,0.9);
+      border-color: rgba(148,163,184,0.9);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost.small {
+      padding: 4px 10px;
+      font-size: 11px;
+    }
+
+    .hero-right {
+      position: relative;
+      min-height: 140px;
+      border-radius: 22px;
+      background: radial-gradient(circle at top, rgba(56,189,248,0.18) 0, transparent 55%), radial-gradient(circle at bottom, rgba(168,85,247,0.18) 0, transparent 55%), #020617;
+      border: 1px solid rgba(148,163,184,0.28);
+      overflow: hidden;
+      padding: 16px 14px;
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(to right, rgba(148,163,184,0.15) 1px, transparent 1px), linear-gradient(to bottom, rgba(148,163,184,0.15) 1px, transparent 1px);
+      background-size: 26px 26px;
+      opacity: 0.4;
+      mask-image: radial-gradient(circle at center, black 0, transparent 75%);
+      pointer-events: none;
+    }
+
+    .hero-stat-card {
+      position: relative;
+      z-index: 1;
+      border-radius: 18px;
+      background: rgba(15,23,42,0.92);
+      border: 1px solid rgba(148,163,184,0.4);
+      padding: 12px 13px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .hero-stat-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .hero-stat-title {
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .hero-chip {
+      font-size: 10px;
+      border-radius: 999px;
+      padding: 2px 8px;
+      background: rgba(56,189,248,0.12);
+      color: var(--accent);
+      border: 1px solid rgba(56,189,248,0.5);
+    }
+
+    .hero-stat-body {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .hero-stat-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .hero-stat-pill {
+      font-size: 10px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.95);
+      border: 1px solid rgba(148,163,184,0.6);
+      color: var(--muted);
+    }
+
+    .hero-progress {
+      margin-top: 4px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-progress-bar {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, #38bdf8, #a855f7);
+      width: 72%;
+    }
+
+    /* Controls */
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .controls-left,
+    .controls-right {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .controls-label {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .field {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .field input,
+    .field select {
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: rgba(15,23,42,0.9);
+      color: var(--text);
+      font-size: 11px;
+      padding: 7px 11px 7px 26px;
+      outline: none;
+      min-width: 170px;
+    }
+
+    .field select {
+      padding-left: 10px;
+      appearance: none;
+      background-image: linear-gradient(45deg, transparent 50%, #9ca3af 50%), linear-gradient(135deg, #9ca3af 50%, transparent 50%);
+      background-position: calc(100% - 12px) 9px, calc(100% - 8px) 9px;
+      background-size: 6px 6px;
+      background-repeat: no-repeat;
+    }
+
+    .field-icon {
+      position: absolute;
+      left: 9px;
+      font-size: 11px;
+      color: var(--muted);
+      pointer-events: none;
+    }
+
+    /* Cards */
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      margin-bottom: 26px;
+    }
+
+    .topic-card {
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at top left, rgba(56,189,248,0.08) 0, transparent 55%), radial-gradient(circle at bottom right, rgba(168,85,247,0.08) 0, transparent 55%), #020617;
+      border: 1px solid rgba(31,41,55,0.9);
+      padding: 13px 13px 12px;
+      box-shadow: 0 10px 28px rgba(15,23,42,0.9);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      cursor: default;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+    }
+
+    .topic-card::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      background: radial-gradient(circle at top, rgba(56,189,248,0.15) 0, transparent 55%);
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+      pointer-events: none;
+    }
+
+    .topic-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 40px rgba(15,23,42,0.95);
+      border-color: rgba(56,189,248,0.8);
+    }
+
+    .topic-card:hover::before {
+      opacity: 1;
+    }
+
+    .topic-badge {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      background: rgba(56,189,248,0.12);
+      border-radius: 999px;
+      padding: 3px 8px;
+      border: 1px solid rgba(56,189,248,0.6);
+      align-self: flex-start;
+    }
+
+    .topic-title {
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.4;
+      margin: 2px 0;
+    }
+
+    .topic-group {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .topic-short {
+      font-size: 11px;
+      color: #d1d5db;
+      line-height: 1.5;
+      flex: 1 1 auto;
+    }
+
+    .topic-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 4px;
+      gap: 6px;
+    }
+
+    .topic-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .chip {
+      font-size: 10px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      color: var(--muted);
+      background: rgba(15,23,42,0.9);
+    }
+
+    .chip-hours {
+      border-color: rgba(52,211,153,0.8);
+      color: #6ee7b7;
+      background: rgba(6,78,59,0.35);
+    }
+
+    .topic-card .btn-primary {
+      padding-inline: 10px;
+      font-size: 11px;
+      box-shadow: none;
+    }
+
+    .topic-card .btn-primary:hover {
+      box-shadow: 0 10px 25px rgba(59,130,246,0.7);
+    }
+
+    /* Videos */
+
+    .videos-section {
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(31,41,55,0.9);
+      padding: 16px 14px 18px;
+      background: radial-gradient(circle at top left, rgba(56,189,248,0.18) 0, transparent 55%), #020617;
+      box-shadow: 0 16px 45px rgba(15,23,42,0.95);
+      margin-bottom: 10px;
+    }
+
+    .videos-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .videos-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .videos-sub {
+      font-size: 11px;
+      color: var(--muted);
+      max-width: 420px;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+    }
+
+    .video-card {
+      border-radius: 14px;
+      border: 1px solid rgba(31,41,55,0.9);
+      background: #020617;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 12px 30px rgba(15,23,42,0.9);
+    }
+
+    .video-frame {
+      position: relative;
+      padding-bottom: 56.25%;
+      background: radial-gradient(circle at center, #0f172a 0, #020617 60%);
+      overflow: hidden;
+    }
+
+    .video-frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .video-body {
+      padding: 8px 10px 9px;
+      font-size: 11px;
+    }
+
+    .video-title {
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .video-tagline {
+      color: var(--muted);
+    }
+
+    /* Modal */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(15,23,42,0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+      padding: 14px;
+      backdrop-filter: blur(18px);
+    }
+
+    .modal.open {
+      display: flex;
+    }
+
+    .modal-content {
+      max-width: 880px;
+      width: 100%;
+      max-height: calc(100vh - 40px);
+      background: #020617;
+      border-radius: 22px;
+      border: 1px solid rgba(148,163,184,0.6);
+      box-shadow: 0 22px 60px rgba(15,23,42,0.95);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-header {
+      padding: 12px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+      border-bottom: 1px solid rgba(31,41,55,0.9);
+      background: radial-gradient(circle at top left, rgba(56,189,248,0.15) 0, transparent 55%), #020617;
+    }
+
+    .modal-kicker {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+
+    .modal-title {
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .modal-header-right {
+      text-align: right;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .modal-close-btn {
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.7);
+      background: rgba(15,23,42,0.95);
+      color: var(--muted);
+      width: 26px;
+      height: 26px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 0;
+      margin-left: 6px;
+      transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .modal-close-btn:hover {
+      background: rgba(239,68,68,0.12);
+      color: #fecaca;
+      border-color: rgba(248,113,113,0.8);
+      transform: translateY(-1px);
+    }
+
+    .modal-body {
+      padding: 12px 18px 16px;
+      overflow-y: auto;
+      scrollbar-color: rgba(148,163,184,0.8) transparent;
+      scrollbar-width: thin;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .modal-body::-webkit-scrollbar {
+      width: 7px;
+    }
+
+    .modal-body::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .modal-body::-webkit-scrollbar-thumb {
+      background: rgba(148,163,184,0.8);
+      border-radius: 999px;
+    }
+
+    .modal-section-title {
+      font-size: 12px;
+      font-weight: 600;
+      margin: 6px 0 4px;
+    }
+
+    .modal-section-title span {
+      color: var(--accent);
+    }
+
+    .modal-description p {
+      margin: 0 0 6px;
+      color: #e5e7eb;
+    }
+
+    .modal-description ul {
+      padding-left: 18px;
+      margin: 0 0 6px;
+    }
+
+    .modal-description li {
+      margin-bottom: 3px;
+    }
+
+    .tasks-list {
+      list-style: none;
+      padding: 0;
+      margin: 6px 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .task-item {
+      border-radius: 14px;
+      border: 1px solid rgba(31,41,55,0.9);
+      background: rgba(15,23,42,0.9);
+      padding: 7px 9px 7px;
+    }
+
+    .task-question {
+      margin-bottom: 5px;
+    }
+
+    .task-answer {
+      margin-top: 4px;
+      font-size: 11px;
+      color: var(--muted);
+      display: none;
+      border-top: 1px dashed rgba(55,65,81,0.9);
+      padding-top: 4px;
+    }
+
+    .task-answer.visible {
+      display: block;
+    }
+
+    .modal-video {
+      margin-top: 10px;
+      border-radius: 16px;
+      border: 1px solid rgba(31,41,55,0.9);
+      overflow: hidden;
+      background: #020617;
+    }
+
+    .modal-video-header {
+      padding: 6px 9px;
+      font-size: 11px;
+      color: var(--muted);
+      border-bottom: 1px solid rgba(31,41,55,0.9);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .modal-video-body {
+      position: relative;
+      padding-bottom: 52%;
+      background: radial-gradient(circle at center, #020617 0, #000 70%);
+    }
+
+    .modal-video-body iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Small footer */
+
+    .footer {
+      font-size: 10px;
+      color: var(--muted);
+      text-align: center;
+      opacity: 0.7;
+    }
+
+    @media (max-width: 840px) {
+      .hero {
+        grid-template-columns: minmax(0,1fr);
+      }
+      .hero-right {
+        order: -1;
+      }
+    }
+
+    @media (max-width: 640px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .controls {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .controls-right {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .hero {
+        padding: 18px 16px;
+      }
+      .modal-content {
+        max-height: calc(100vh - 20px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="brand">
+        <div class="brand-logo">Σ</div>
+        <div>
+          <div class="brand-text-title">Математикалық статистика</div>
+          <div class="brand-text-sub">10-сыныпқа арналған интерактивті курс</div>
+        </div>
+      </div>
+      <div class="header-right">
+        <span class="badge-compact">10-сынып • 34 сағат</span>
+        <span>Статистика • Комбинаторика • Ықтималдық</span>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div>
+        <div class="hero-title">
+          10-сыныпқа арналған <span>«Математикалық статистикаға берілген есептер»</span> курсы
+        </div>
+        <div class="hero-subtitle">
+          Әр сабаққа арналған жеке карточка, түсіндірме, есептер және видео-сабақтар. Статистикалық ойлау, комбинаторика және ықтималдықтарды өмірмен байланыстыра үйрену.
+        </div>
+        <div class="hero-tags">
+          <span class="pill pill-strong">34 сағаттық авторлық бағдарлама</span>
+          <span class="pill">Жеке / жұптық / топтық жұмыс</span>
+          <span class="pill">ҰБТ форматына бейімделген есептер</span>
+        </div>
+        <div class="hero-actions">
+          <button class="btn-primary" id="scrollTopicsBtn">Барлық тақырыптарды көру</button>
+          <button class="btn-ghost" id="scrollVideosBtn">Видео-сабақтар</button>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-grid"></div>
+        <div class="hero-stat-card">
+          <div class="hero-stat-header">
+            <div>
+              <div class="hero-stat-title">Сыныптың статистикалық профилі</div>
+              <div class="hero-stat-body">
+                Тақырыптық карточкалар арқылы оқушы прогресін бақылап,
+                есеп шығару дағдысын жүйелі түрде дамытуға болады.
+              </div>
+            </div>
+            <div class="hero-chip">Live • интерактив</div>
+          </div>
+          <div class="hero-stat-pill-row">
+            <span class="hero-stat-pill">I. Статистика – 3 сағ</span>
+            <span class="hero-stat-pill">II. Диаграмма – 9 сағ</span>
+            <span class="hero-stat-pill">III. Комбинаторика – 17 сағ</span>
+            <span class="hero-stat-pill">IV. Ықтималдықтар – 5 сағ</span>
+          </div>
+          <div class="hero-stat-body" style="margin-top:4px;">
+            Бүгінгі сабақ: <strong>«Диаграмма. Статистикалық мәліметтерді диаграммада кескіндеу»</strong>
+          </div>
+          <div class="hero-progress">
+            <div class="hero-progress-bar"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Бақылау элементтері -->
+    <section class="controls" id="topics">
+      <div class="controls-left">
+        <span class="controls-label">Тақырыптарды сүзгіден өткізу:</span>
+        <div class="field">
+          <span class="field-icon">🔍</span>
+          <input id="searchInput" type="text" placeholder="Тақырып атауы бойынша іздеу...">
+        </div>
+        <div class="field">
+          <select id="sectionFilter">
+            <option value="all">Барлық бөлімдер</option>
+            <option value="I. Математикалық статистика">I. Математикалық статистика</option>
+            <option value="II. Диаграмма және кестелер">II. Диаграмма және кестелер</option>
+            <option value="III. Комбинаторика">III. Комбинаторика</option>
+            <option value="IV. Ықтималдықтар">IV. Ықтималдықтар</option>
+          </select>
+        </div>
+      </div>
+      <div class="controls-right">
+        <span class="controls-label" id="topicCountLabel">18 тақырып табылды</span>
+      </div>
+    </section>
+
+    <!-- Карточкалар -->
+    <section class="card-grid" id="topicCards">
+      <!-- JS толтырады -->
+    </section>
+
+    <!-- Видео-сабақтар -->
+    <section class="videos-section" id="videos">
+      <div class="videos-header">
+        <div>
+          <div class="videos-title">Видео-сабақтар</div>
+          <div class="videos-sub">
+            Мында кей бөлімдердің қысқа видео-сабақтары.
+          </div>
+        </div>
+        <span class="badge-compact">YouTube iframe</span>
+      </div>
+      <div class="video-grid">
+        <article class="video-card">
+          <div class="video-frame">
+            <iframe src="https://www.youtube.com/embed/F_73fJ-EX9A" allowfullscreen></iframe>
+          </div>
+          <div class="video-body">
+            <div class="video-title">Қайталанбайтын терулер.</div>
+            <div class="video-tagline">III. Комбинаторика</div>
+          </div>
+        </article>
+        <article class="video-card">
+          <div class="video-frame">
+            <iframe src="https://www.youtube.com/embed/zjChjteSeQ4" allowfullscreen></iframe>
+          </div>
+          <div class="video-body">
+            <div class="video-title">Вариациялық қатар. Абсолюттік және салыстырмалы жиілік.</div>
+            <div class="video-tagline">II. Диаграмма және кестелер</div>
+          </div>
+        </article>
+        <article class="video-card">
+          <div class="video-frame">
+            <iframe src="https://www.youtube.com/embed/5AQ548rRhls" allowfullscreen></iframe>
+          </div>
+          <div class="video-body">
+            <div class="video-title">Кездейсоқ шаманың сандық сипаттамаларын таңдамалар бойынша бағалау</div>
+            <div class="video-tagline">III бөлім: Комбинаторика</div>
+          </div>
+        </article>
+        <article class="video-card">
+          <div class="video-frame">
+            <iframe src="https://www.youtube.com/embed/jr3K7oz97eQ" allowfullscreen></iframe>
+          </div>
+          <div class="video-body">
+            <div class="video-title">Оқиғаның ықтималдығы, шартты ықтималдық. Ықтималдықты қосу және көбейту ережелері</div>
+            <div class="video-tagline">IV бөлім: Ықтималдықтар</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="footer">
+        <p>© 2025 Барлық құқықтар қорғалған.</p>
+        <p>
+          Бұл сайттағы барлық материалдар (мәтіндер, есептер, дизайн, кодтар) авторлық құқықпен қорғалған.  
+          Рұқсатсыз көшіруге, таратуға және басқа ресурстарда жариялауға
+          <strong>ҚАТАҢ ТЫЙЫМ САЛЫНАДЫ</strong>.
+        </p>
+        <p class="order-text">
+          Сайт жасауға тапсырыс беру үшін Instagram:
+          <a href="https://www.instagram.com/website_helpp" target="_blank">@website_helpp</a>
+        </p>
+     </div>
+  </div>
+
+  <!-- Модаль -->
+  <div class="modal" id="topicModal" aria-hidden="true">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <div class="modal-kicker" id="modalKicker"></div>
+          <div class="modal-title" id="modalTitle"></div>
+        </div>
+        <div class="modal-header-right">
+          <div id="modalMeta"></div>
+          <button class="modal-close-btn" id="modalCloseBtn" aria-label="Жабу">×</button>
+        </div>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- JS толтырады -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // -------- ДЕРЕКТЕР: ТАҚЫРЫПТАР ТІЗІМІ --------
+    const topics = [
+      {
+        id: 1,
+        code: "Сабақ 1",
+        hours: 1,
+        section: "I. Математикалық статистика",
+        title: "Кіріспе. Математикалық статистика туралы түсінік",
+        short: "Статистика – деректерді жинап, өңдеп, сол бойынша қорытынды жасайтын математика бөлімі.",
+        explanation: `
+<p><strong>Математикалық статистика</strong> – деректерді (сандық мәліметтерді) жинау, жүйелеу, өңдеу және сол деректер негізінде қорытынды жасау тәсілдерін зерттейтін математика бөлімі.</p>
+
+<p>Күнделікті өмірде біз үнемі деректермен жұмыс жасаймыз: сыныптағы бағалар, сұранысқа ие тауарлар, ҰБТ нәтижелері, ауа райы, халық саны, сайлау қорытындылары және т.б. Осы деректердің «орташа жағдайын» түсіну, салыстыру, болашақты болжау үшін статистикалық әдістер қолданылады.</p>
+
+<p><strong>Статистиканың негізгі мақсаты</strong> – деректердің көмегімен шындыққа барынша жақын қорытынды жасау. Ол үшін деректер дұрыс жиналып, өңделіп, талдануы тиіс. Бұл жерде бірнеше басты ұғым бар:</p>
+
+<ul>
+  <li><em>Бас жиынтық</em> – зерттелетін барлық объектілер жиыны (мысалы, мектептегі барлық 10-сынып оқушылары).</li>
+  <li><em>Таңдама</em> – бас жиынтықтан арнайы ереже бойынша алынған шағын бөлік (мысалы, әр 10-сыныптан 5–6 оқушы).</li>
+  <li><em>Көрсеткіш</em> – әр объектінің сандық сипаттамасы (баға, бой, салмақ, жасы, табысы және т.б.).</li>
+  <li><em>Статистикалық бақылау</em> – деректерді жинау процесі (өлшеу, сұрақ қою, тест алу, сауалнама жүргізу).</li>
+</ul>
+
+<p>Математикалық статистика экономикада, медицинада, экологияда, спортта, білім сапасын бағалауда, социологиялық сауалнамаларда кең қолданылады. Мысалы, дәрінің тиімділігін тексеру, жаңа білім беру бағдарламасының нәтижесін бағалау, спортшылардың дайындық деңгейін талдау осы статистика арқылы жүзеге асады.</p>
+
+<p>Бұл сабақта статистика не үшін қажет, деректерді дұрыс түсінудің маңызы және статистикалық ойлау дағдысы туралы жалпы түсінік қалыптастырылады. Оқушылар бас жиынтық пен таңдама айырмашылығын, деректерді кесте мен диаграмма түрінде көрсету идеясын, сондай-ақ «орташа» деген сөздің түрлі мағынада қолданылатынын сезінуі тиіс.</p>
+`,
+tasks: [
+  {
+    question: "Интернеттен немесе газеттен бір диаграмма/кесте тауып, ол қандай деректерді сипаттайтынын және қандай 3 сұраққа жауап беруге болатынын жазыңыз.",
+    answer: "Мысалы, «Пәндер бойынша үлгерім» диаграммасы: 1) Қай пәннен орташа баға жоғары? 2) Қай пәннен үлгерім төмен? 3) Қай сыныптың нәтижесі жақсы?"
+  },
+  {
+    question: "Статистика қолданылатын 5 өмірлік жағдайға мысал жазыңыз.",
+    answer: "Мысалдар: халық санағы; сайлау нәтижелері; дүкендегі сату статистикасы; жол-көлік оқиғалары; ҰБТ нәтижелерін талдау."
+  },
+  {
+    question: "«Бас жиынтық», «таңдама», «көрсеткіш» ұғымдарына қысқаша өз сөзіңізбен анықтама жазыңыз.",
+    answer: "Бас жиынтық – зерттелетін барлық объектілер жиыны; таңдама – бас жиынтықтан алынған шағын бөлік; көрсеткіш – әр объектінің сандық сипаттамасы (баға, бой, салмақ, жасы және т.б.)."
+  },
+  {
+    question: "10-сыныптағы 30 оқушының математикадан тоқсандық бағалары зерттеледі. 1) Бас жиынтыққа не жатады? 2) Егер сіз тек 8 оқушыдан дерек алсаңыз, бұл не болады? 3) Қандай көрсеткіштерді өлшеуге болады?",
+    answer: "1) Бас жиынтық – 30 оқушының барлығы. 2) 8 оқушыдан алынған деректер – таңдама. 3) Көрсеткіштер: тоқсандық баға, жылдық баға, бақылау жұмысынан алған ұпайы, т.б."
+  },
+  {
+    question: "Мектеп әкімшілігі «оқушылардың күнделікті мектепке жаяу келу уақыты» туралы зерттеу жүргізгісі келеді. 1) Бас жиынтықты сипаттаңыз. 2) Қандай таңдама алуға болады? 3) Қандай сұрақтар қоюға болады?",
+    answer: "1) Бас жиынтық – мектептегі барлық оқушылар. 2) Әр сыныптан кездейсоқ 3–5 оқушы таңдап, жалпы 40–50 оқушыдан тұратын таңдама жасауға болады. 3) Мысалы: «Күнде мектепке қанша минутта келесіз?», «Қандай көлік түрін пайдаланасыз?», «Жолда қандай қиындықтар кездеседі?»."
+  },
+  {
+    question: "Сынып оқушыларының бойы туралы дерек жинайық: 5 оқушының бойы (см) – 160, 162, 170, 168, 165. 1) Осы 5 оқушы бас жиынтық па, әлде таңдама ма? 2) Бой қандай көрсеткіш? 3) Осы деректер бойынша қандай қарапайым қорытынды айтуға болады?",
+    answer: "1) Егер тек осы 5 оқушыны ғана қарастырсақ – бас жиынтық болады; ал егер толық сыныпта 25 оқушы болса, онда бұл 5 оқушы – таңдама. 2) Бой – сандық көрсеткіш (үздіксіз шама). 3) Мысалы: «Бұл топта оқушылардың бойы шамамен 160–170 см аралығында, орташа бой 165 см шамасында» деген қорытынды айтуға болады."
+  }
+],
+
+        videoId: "FDZgumxEclk"
+      },
+      {
+        id: 2,
+        code: "Сабақ 2",
+        hours: 1,
+        section: "I. Математикалық статистика",
+        title: "Арифметикалық орта",
+        short: "Бірнеше санның «орташа мәнін» табу формуласы және оны өмірде қолдану.",
+        explanation: `
+<p><strong>Арифметикалық орта</strong> – бірнеше санның «орташа мәнін» көрсететін статистикалық сипаттама. Ол барлық сандардың қосындысын олардың санына бөлу арқылы табылады.</p>
+
+<p>Яғни, егер бізде бірнеше сан берілсе, олардың барлығын қосып, нешеу екенін санап, соған бөлеміз. Бұл – күнделікті өмірде ең жиі қолданылатын статистикалық көрсеткіштердің бірі.</p>
+
+<p><strong>Формуласы:</strong></p>
+
+<p style="text-align:center;"><strong>Орташа = (барлық сандардың қосындысы) / (сандар саны)</strong></p>
+
+<p>Арифметикалық орта:</p>
+<ul>
+  <li>оқушылардың орташа бағасын табуда;</li>
+  <li>сыныптың орташа бойын анықтауда;</li>
+  <li>спортшылардың орташа нәтижесін есептеуде;</li>
+  <li>дүкендегі орташа бағаны табуда;</li>
+  <li>жалақының орташа мөлшерін есептеуде қолданылады.</li>
+</ul>
+
+<p>Маңызды ескерту: арифметикалық орта барлық сандарға тәуелді. Егер бір сан өте үлкен немесе өте кіші болса, орташа мән де соған қарай қатты өзгереді.</p>
+`,
+tasks: [
+  {
+    question: "20, 25, 30, 35, 40 сандарының арифметикалық ортасын табыңыз.",
+    answer: "Қосынды: 20 + 25 + 30 + 35 + 40 = 150. Сандар саны 5. Орташа = 150 / 5 = 30."
+  },
+  {
+    question: "Өнімдердің салмағы: 120 г, 130 г, 140 г, 150 г, 160 г. Орташа салмағын табыңыз.",
+    answer: "Қосынды: 120 + 130 + 140 + 150 + 160 = 700 г. Саны 5. Орташа салмақ = 700 / 5 = 140 г."
+  },
+  {
+    question: "Сыныптағы 5 оқушының бойы: 160, 155, 165, 170, 175 см. Орташа бойды есептеңіз.",
+    answer: "Қосынды: 160 + 155 + 165 + 170 + 175 = 825. Орташа бой = 825 / 5 = 165 см."
+  },
+  {
+    question: "Оқушының бақылау жұмыстарынан алған бағалары: 4, 3, 5, 4, 5. Орташа бағасын табыңыз.",
+    answer: "Қосынды: 4 + 3 + 5 + 4 + 5 = 21. Саны 5. Орташа баға = 21 / 5 = 4.2."
+  },
+  {
+    question: "Бір аптадағы ауа температурасы: 2°, 4°, 3°, 5°, 6°, 4°, 1°. Аптаның орташа температурасын табыңыз.",
+    answer: "Қосынды: 2 + 4 + 3 + 5 + 6 + 4 + 1 = 25. Күн саны 7. Орташа температура = 25 / 7 ≈ 3.57°."
+  },
+  {
+    question: "Автобус жол жүру уақыттары (минут): 18, 20, 22, 25, 15. Орташа жүру уақытын табыңыз.",
+    answer: "Қосынды: 18 + 20 + 22 + 25 + 15 = 100. Саны 5. Орташа уақыт = 100 / 5 = 20 минут."
+  },
+  {
+    question: "Спортшының 5 күндік жүгіріс қашықтығы (км): 3, 4, 5, 6, 2. Орташа жүгіру қашықтығын табыңыз.",
+    answer: "Қосынды: 3 + 4 + 5 + 6 + 2 = 20. Саны 5. Орташа қашықтық = 20 / 5 = 4 км."
+  },
+  {
+    question: "Егер бір сыныпта 10 оқушының орташа бағасы 4.2 болса, бұл нені білдіреді?",
+    answer: "Бұл барлық 10 оқушының бағаларын қосқанда шыққан қосындыны 10-ға бөлгенде 4.2 шығатынын білдіреді. Яғни сыныптың жалпы үлгерімі жақсы деңгейде."
+  }
+],
+
+        videoId: "aRMhT30T6sQ"
+      },
+      {
+        id: 3,
+        code: "Сабақ 3",
+        hours: 1,
+        section: "I. Математикалық статистика",
+        title: "Сандық деректердің құлашы, медианасы, модасы",
+        short: "Құлаш – диапазон, медиана – ортасындағы мән, мода – жиі қайталанатын мән.",
+        explanation: `
+<p><strong>Құлаш (размах)</strong> – ең үлкен сан мен ең кіші санның айырмасы. Ол деректердің қаншалықты кең таралғанын көрсетеді.</p>
+
+<p><strong>Мысал 1:</strong> 5, 8, 12, 20, 22</p>
+<p>Ең үлкен сан = 22, ең кіші сан = 5</p>
+<p>Құлаш = 22 - 5 = <strong>17</strong></p>
+
+<p><strong>Мысал 2:</strong> 10, 14, 18, 25, 40</p>
+<p>Құлаш = 40 - 10 = <strong>30</strong></p>
+
+<hr>
+
+<p><strong>Медиана</strong> – реттелген сандардың дәл ортасында тұрған сан. Егер сандар саны жұп болса – ортасындағы екі санның орташа мәні алынады.</p>
+
+<p><strong>Мысал 3 (тақ сан):</strong> 3, 7, 9, 11, 15</p>
+<p>Ортадағы сан = <strong>9</strong>. Демек, медиана = <strong>9</strong></p>
+
+<p><strong>Мысал 4 (жұп сан):</strong> 14, 17, 18, 20, 22, 25</p>
+<p>Ортадағы екі сан: 18 және 20</p>
+<p>Медиана = (18 + 20) / 2 = <strong>19</strong></p>
+
+<hr>
+
+<p><strong>Мода</strong> – ең көп қайталанатын сан.</p>
+
+<p><strong>Мысал 5:</strong> 3, 3, 6, 8, 8, 8, 10</p>
+<p>3 – 2 рет, 8 – 3 рет қайталанған</p>
+<p>Мода = <strong>8</strong></p>
+
+<p><strong>Мысал 6 (екі мода):</strong> 5, 5, 7, 7, 9</p>
+<p>Мода = <strong>5 және 7</strong></p>
+
+<p><strong>Мысал 7 (мода жоқ):</strong> 2, 4, 6, 8, 10</p>
+<p>Барлығы 1 рет қайталанған → <strong>мода жоқ</strong></p>
+
+<hr>
+
+<p><strong>Толық біріккен мысал:</strong></p>
+<p>Берілген: 4, 6, 6, 8, 10, 12</p>
+
+<p>Құлаш: 12 - 4 = <strong>8</strong></p>
+
+<p>Медиана: (6 + 8) / 2 = <strong>7</strong></p>
+
+<p>Мода: 6 екі рет қайталанған → <strong>мода = 6</strong></p>
+
+<p><strong>Қорытынды:</strong> Құлаш – таралуын, медиана – ортасын, мода – ең жиі мәнді көрсетеді.</p>
+`,
+
+tasks: [
+  {
+    question: "Сандар жиыны: 5, 8, 12, 20, 22. Құлашын табыңыз.",
+    answer: "Ең үлкені 22, ең кішісі 5. Құлаш = 22 − 5 = 17."
+  },
+  {
+    question: "Сандар: 14, 18, 22, 20, 17, 25. Медианасын табыңыз.",
+    answer: "Реттейміз: 14, 17, 18, 20, 22, 25. Ортаңғы екі сан: 18 және 20. Медиана = (18 + 20) / 2 = 19."
+  },
+  {
+    question: "Сандар жиыны: 3, 3, 6, 8, 8, 8, 10, 15. Модасын табыңыз.",
+    answer: "3 – 2 рет, 8 – 3 рет қайталанады. Ең жиі – 8. Мода = 8."
+  },
+  {
+    question: "10, 12, 15, 18, 25 сандары үшін құлашты табыңыз.",
+    answer: "Ең үлкені 25, ең кішісі 10. Құлаш = 25 − 10 = 15."
+  },
+  {
+    question: "7, 9, 11, 13, 15, 17 сандарының медианасын табыңыз.",
+    answer: "Сандар реттелген. Ортаңғы екі сан: 11 және 13. Медиана = (11 + 13) / 2 = 12."
+  },
+  {
+    question: "Бағалар: 2, 3, 4, 4, 4, 5, 5. Модасын табыңыз.",
+    answer: "4 үш рет, 5 екі рет. Ең жиі – 4. Мода = 4."
+  },
+  {
+    question: "5 оқушының жасасы: 14, 15, 14, 16, 15. Модасын табыңыз.",
+    answer: "14 – 2 рет, 15 – 2 рет, 16 – 1 рет. Бұл жиында екі мода бар: 14 және 15."
+  },
+  {
+    question: "Оқушылардың бойы (см): 150, 160, 165, 170, 180. Құлаш, медиана және мода табыңыз.",
+    answer: "Құлаш: 180 − 150 = 30. Медиана: 165. Мода жоқ (барлығы бір рет кездеседі)."
+  },
+  {
+    question: "Егер деректер жиынында барлық сандар бірдей болса, мода, медиана және құлаш қандай болады?",
+    answer: "Мода – сол санның өзі, медиана – сол сан, ал құлаш = 0 болады."
+  }
+],
+
+        videoId: "B1e4k2Fa980"
+      },
+      {
+        id: 4,
+        code: "Сабақ 4",
+        hours: 1,
+        section: "II. Диаграмма және кестелер",
+        title: "Диаграмма. Статистикалық мәліметтерді диаграммада кескіндеу",
+        short: "Бағанды, дөңгелек және сызықтық диаграммалармен жұмыс.",
+        explanation: `
+<p><strong>Диаграмма</strong> – статистикалық мәліметтерді көру және салыстыру үшін қолданылатын графикалық тәсіл. Бірдей кестедегі сандарды жай ғана оқығаннан гөрі, диаграмма арқылы үлкен/кіші мәндерді, үлестерді, өсуді немесе төмендеуді тез байқауға болады.</p>
+
+<p><strong>1) Бағанды диаграмма (баған графигі)</strong></p>
+<p>Бағанды диаграммада әр сан жеке тік төртбұрыш (баған) түрінде көрсетіледі. Бағанның биіктігі – сол санның мәніне пропорционал.</p>
+<p><em>Мысал:</em> Сыныптың пәндер бойынша олимпиададан алған жүлделері:</p>
+<ul>
+  <li>Математика – 6 жүлде</li>
+  <li>Физика – 4 жүлде</li>
+  <li>Информатика – 5 жүлде</li>
+  <li>Химия – 3 жүлде</li>
+</ul>
+<p>Бағанды диаграмма салу үшін X осіне пән атауларын, Y осіне жүлде санын түсіреміз. Әр пәнге сәйкес биіктігі 6, 4, 5, 3 болатын бағандар салынады.</p>
+
+<hr>
+
+<p><strong>2) Дөңгелек диаграмма (шеңбер диаграммасы)</strong></p>
+<p>Дөңгелек диаграмма жалпы бір бүтінді (100%) бөліктерге бөлу үшін қолданылады. Шеңбердің толық бұрышы – 360°. Әр бөлікке сәйкес бұрыш мына формуламен табылады:</p>
+<p><strong>Бұрыш (°) = пайыз · 360° / 100</strong></p>
+
+<p><em>Мысал:</em> Отбасы бюджеті:</p>
+<ul>
+  <li>Тамақ – 40%</li>
+  <li>Коммуналдық қызмет – 20%</li>
+  <li>Киім – 15%</li>
+  <li>Жолақы – 10%</li>
+  <li>Басқа шығыстар – 15%</li>
+</ul>
+<p>Әр сектор бұрышы:</p>
+<ul>
+  <li>Тамақ: 40 · 360° / 100 = 144°</li>
+  <li>Коммуналдық қызмет: 20 · 360° / 100 = 72°</li>
+  <li>Киім: 15 · 360° / 100 = 54°</li>
+  <li>Жолақы: 10 · 360° / 100 = 36°</li>
+  <li>Басқа: 15 · 360° / 100 = 54°</li>
+</ul>
+<p>Осы бұрыштар бойынша шеңберді бөлік-бөлікке бөліп, әр секторға атауын жазамыз.</p>
+
+<hr>
+
+<p><strong>3) Сызықтық диаграмма (сызық графигі)</strong></p>
+<p>Сызықтық диаграмма көбіне уақыт бойынша өзгеретін шаманы көрсету үшін қолданылады (температура, қашықтық, жылдамдық, баға, т.б.).</p>
+
+<p><em>Мысал:</em> Қаңтар айының бірінші аптасындағы ауа температурасы (°C):</p>
+<ul>
+  <li>Дүйсенбі – -2</li>
+  <li>Сейсенбі – 0</li>
+  <li>Сәрсенбі – 3</li>
+  <li>Бейсенбі – 1</li>
+  <li>Жұма – -1</li>
+</ul>
+<p>X осіне – күндер (Дс, Сс, Ср, Бс, Жм), Y осіне – температура мәндері түсіріледі. Әр күнге сәйкес нүкте қойып, оларды сызықпен жалғасақ, сызықтық диаграмма шығады. Осы арқылы температураның қалай өсіп, қалай төмендегенін бірден көреміз.</p>
+
+<p><strong>Қорытынды:</strong> Бағанды диаграмма – топтарды салыстыруға, дөңгелек диаграмма – үлесті (пайызды) көрсетуге, сызықтық диаграмма – уақыт бойынша өзгерісті бақылауға ең қолайлы.</p>
+`,
+tasks: [
+  {
+    question: "1) Сыныптағы спорт түрлеріне қатысатын оқушылар саны: футбол – 15, баскетбол – 9, волейбол – 6, жүгіру – 10. Осы мәліметтер бойынша бағанды диаграмма салу қадамдарын сипаттаңыз.",
+    answer: "X осіне спорт түрлерін (футбол, баскетбол, волейбол, жүгіру), Y осіне оқушылар санын түсіреміз. Әр спорт түріне сәйкес баған биіктіктері: футбол – 15, баскетбол – 9, волейбол – 6, жүгіру – 10. Бағандар бірдей енде, аралары бірдей, астына атаулары жазылады."
+  },
+  {
+    question: "2) Мектеп асханасындағы таңғы ас таңдауы: самса – 24 оқушы, бәліш – 16 оқушы, тоқаш – 20 оқушы. Бағанды диаграмма бойынша қай тағам ең танымал, қайсысы ең аз таңдалғанын көрсету керек. Қандай қорытынды жасайсыз?",
+    answer: "Баған биіктіктері: самса – 24, бәліш – 16, тоқаш – 20. Ең биік баған – самса (ең танымал), ең аласа баған – бәліш (ең аз таңдалған). Тоқаш орташа деңгейде."
+  },
+  {
+    question: "3) Сыныптағы оқушылардың сүйікті пәндері пайызбен берілген: математика – 30%, физика – 25%, информатика – 20%, қазақ тілі – 15%, басқа пәндер – 10%. Дөңгелек диаграмма үшін әр пәнге сәйкес сектор бұрышын (градуспен) есептеңіз.",
+    answer: "Формула: бұрыш = пайыз · 360° / 100. Математика: 30 · 360° / 100 = 108°. Физика: 25 · 360° / 100 = 90°. Информатика: 20 · 360° / 100 = 72°. Қазақ тілі: 15 · 360° / 100 = 54°. Басқа пәндер: 10 · 360° / 100 = 36°. Барлығы: 108° + 90° + 72° + 54° + 36° = 360°."
+  },
+  {
+    question: "4) Отбасы шығыстары: тамақ – 40%, коммуналдық төлем – 25%, көлік – 20%, басқа – 15%. Дөңгелек диаграммада әр сектордың бұрышын есептеңіз.",
+    answer: "Тамақ: 40 · 360° / 100 = 144°. Коммуналдық төлем: 25 · 360° / 100 = 90°. Көлік: 20 · 360° / 100 = 72°. Басқа: 15 · 360° / 100 = 54°. Барлығы: 144° + 90° + 72° + 54° = 360°."
+  },
+  {
+    question: "5) Бір аптадағы орташа ауа температурасы (°C): дүйсенбі – -1, сейсенбі – 2, сәрсенбі – 4, бейсенбі – 3, жұма – 0, сенбі – -2, жексенбі – 1. Осы деректер бойынша сызықтық диаграмма салу қадамдарын жазып шығыңыз.",
+    answer: "1) X осіне аптаның күндерін ретімен жазамыз (Дс, Сс, Ср, Бс, Жм, Сб, Жк). 2) Y осіне температура мәндерін (мысалы, -2°-ден 4°-ке дейін) шкалалаймыз. 3) Әр күнге сәйкес нүктелер қоямыз: (Дс,-1), (Сс,2), (Ср,4), (Бс,3), (Жм,0), (Сб,-2), (Жк,1). 4) Нүктелерді сызықпен жалғаймыз. Сол арқылы температураның қалай көтеріліп, қалай төмендегенін көреміз."
+  },
+  {
+    question: "6) Жүгіру қашықтығы (км) бір аптада: дүйсенбі – 2, сейсенбі – 3, сәрсенбі – 0, бейсенбі – 4, жұма – 5. Сызықтық диаграмма бойынша қай күні ең көп жүгіргенін, қай күні мүлде жүгірмегенін анықтаңыз.",
+    answer: "Қашықтықтар: 2, 3, 0, 4, 5. Ең үлкен мән – 5 км (жұма күні). 0 км – сәрсенбі күні, яғни ол күні мүлде жүгірмеген. Сызықтық диаграммада бұл ən жоғары және нөлдік нүктелер ретінде көрінеді."
+  },
+  {
+    question: "7) Дөңгелек диаграммада бір сектор бұрышы 180°-қа тең. Бұл сектор жалпының қанша пайызын көрсетеді?",
+    answer: "Пайыз = бұрыш · 100 / 360°. 180° · 100 / 360° = 50%. Демек, бұл сектор жалпының 50%-ын білдіреді."
+  },
+  {
+    question: "8) Дөңгелек диаграммада үш сектор бар: 90°, 120° және 150°. Әр сектордың пайыздық үлесін есептеңіз.",
+    answer: "Пайыз = бұрыш · 100 / 360°. 90°: 90 · 100 / 360 = 25%. 120°: 120 · 100 / 360 ≈ 33.3%. 150°: 150 · 100 / 360 ≈ 41.7%. Барлығы шамамен 25% + 33.3% + 41.7% = 100%."
+  }
+],
+
+
+        videoId: "AEkdqJn2Izc"
+      },
+      {
+        id: 5,
+        code: "Сабақ 5",
+        hours: 1,
+        section: "II. Диаграмма және кестелер",
+        title: "Вариациялық қатар. Абсолюттік және салыстырмалы жиілік. Жиіліктер кестесі",
+        short: "Деректерді кесте түріне келтіру, жиіліктерді есептеу.",
+        explanation: `
+<p><strong>Вариациялық қатар</strong> – деректерді ең кішісінен ең үлкеніне дейін реттеп жазу арқылы алынатын тізім. Яғни, біз алдымен барлық сандарды өсу ретімен орналастырамыз.</p>
+
+<p><strong>Мысал:</strong> 5, 2, 4, 3, 5, 3 → вариациялық қатар: 2, 3, 3, 4, 5, 5</p>
+
+<p><strong>Абсолюттік жиілік</strong> – белгілі бір санның деректер ішінде неше рет қайталанғанын көрсетеді.</p>
+
+<p><strong>Мысал:</strong> Жоғарыдағы қатарда 2 – 1 рет, 3 – 2 рет, 4 – 1 рет, 5 – 2 рет кездеседі.</p>
+
+<p><strong>Салыстырмалы жиілік</strong> – абсолюттік жиіліктің барлық деректер санына қатынасы. Ол бөлшек, ондық сан немесе пайыз түрінде жазылады.</p>
+
+<p><strong>Формуласы (сөзбен):</strong><br>
+Салыстырмалы жиілік = абсолюттік жиілік / барлық деректер саны</p>
+
+<p><strong>Мысал:</strong> Егер 5 саны 2 рет кездессе, ал барлық дерек саны 6 болса, онда салыстырмалы жиілік = 2 / 6 = 0.33 ≈ 33%</p>
+
+<p><strong>Жиіліктер кестесі</strong> – вариациялық қатар, абсолюттік және салыстырмалы жиіліктерді бір кестеге жинақтап көрсету тәсілі. Бұл кесте диаграмма мен гистограмма салуға негіз болады.</p>
+`,
+tasks: [
+  {
+    question: "Бағалар жиыны: 3, 4, 5, 3, 2, 5, 4, 3, 5, 5. Вариациялық қатар құрып, әр бағаның абсолюттік жиілігін табыңыз.",
+    answer: "Реттелген қатар: 2, 3, 3, 3, 4, 4, 5, 5, 5, 5. Абсолюттік жиілік: 2 – 1 рет, 3 – 3 рет, 4 – 2 рет, 5 – 4 рет. Барлығы N = 10."
+  },
+  {
+    question: "Алдыңғы тапсырмадағы деректер үшін салыстырмалы жиіліктерді табыңыз.",
+    answer: "2: 1/10 = 0.1 = 10%. 3: 3/10 = 0.3 = 30%. 4: 2/10 = 0.2 = 20%. 5: 4/10 = 0.4 = 40%."
+  },
+  {
+    question: "Кейбір тест нәтижелері: 6, 7, 8, 6, 9, 7, 8, 8, 6, 10. Вариациялық қатарды және абсолюттік жиіліктерді табыңыз.",
+    answer: "Вариациялық қатар: 6, 6, 6, 7, 7, 8, 8, 8, 9, 10. Абсолюттік жиілік: 6 – 3 рет, 7 – 2 рет, 8 – 3 рет, 9 – 1 рет, 10 – 1 рет. Барлығы N = 10."
+  },
+  {
+    question: "Алдыңғы тапсырмадағы деректер үшін салыстырмалы жиіліктерді пайызбен есептеңіз.",
+    answer: "6: 3/10 = 30%. 7: 2/10 = 20%. 8: 3/10 = 30%. 9: 1/10 = 10%. 10: 1/10 = 10%."
+  },
+  {
+    question: "Оқушылардың бойы (см): 150, 160, 155, 170, 165, 160, 155, 170. Вариациялық қатар мен абсолюттік жиіліктерді табыңыз.",
+    answer: "Вариациялық қатар: 150, 155, 155, 160, 160, 165, 170, 170. Абсолюттік жиілік: 150 – 1 рет, 155 – 2 рет, 160 – 2 рет, 165 – 1 рет, 170 – 2 рет. Нәтиже N = 8."
+  },
+  {
+    question: "Алдыңғы тапсырмадағы бой деректері үшін салыстырмалы жиіліктерді табыңыз.",
+    answer: "150: 1/8 = 0.125 = 12.5%. 155: 2/8 = 0.25 = 25%. 160: 2/8 = 0.25 = 25%. 165: 1/8 = 0.125 = 12.5%. 170: 2/8 = 0.25 = 25%."
+  },
+  {
+    question: "Бір аптадағы қадам саны: 4000, 5000, 6000, 4000, 7000, 5000, 4000. Вариациялық қатар мен абсолюттік жиілікті табыңыз.",
+    answer: "Вариациялық қатар: 4000, 4000, 4000, 5000, 5000, 6000, 7000. Абсолюттік жиілік: 4000 – 3 рет, 5000 – 2 рет, 6000 – 1 рет, 7000 – 1 рет."
+  },
+  {
+    question: "Салыстырмалы жиілік не үшін керек? Оны бір сөйлеммен түсіндіріңіз.",
+    answer: "Салыстырмалы жиілік белгілі бір мәннің бүкіл деректер ішіндегі үлесін пайызбен немесе бөлшекпен көрсету үшін қажет."
+  }
+],
+
+        videoId: "zjChjteSeQ4"
+      },
+      {
+        id: 6,
+        code: "Сабақ 6",
+        hours: 1,
+        section: "II. Диаграмма және кестелер",
+        title: "Жиілік алқабы және гистограмма",
+        short: "Интервалдарға бөлу, жиілік полигоны және гистограмма салу.",
+        explanation: `
+<p><strong>Жиілік алқабы</strong> – дискретті деректер үшін салынатын график. Мұнда:</p>
+<ul>
+  <li>көлденең осьте (X) – деректердің мәндері,</li>
+  <li>тік осьте (Y) – сол мәндердің абсолюттік жиілігі көрсетіледі.</li>
+</ul>
+
+<p>Алдымен әр мәннің неше рет қайталанғанын табамыз. Содан кейін осы нүктелерді координаталық жазықтықта белгілеп, түзу сызықтармен қосамыз. Сонда <strong>жиілік алқабы (жиілік полигоны)</strong> шығады.</p>
+
+<p><strong>Мысал:</strong> Бағалар: 2, 3, 3, 4, 4, 4, 5</p>
+<p>Абсолюттік жиіліктер:</p>
+<ul>
+  <li>2 – 1 рет</li>
+  <li>3 – 2 рет</li>
+  <li>4 – 3 рет</li>
+  <li>5 – 1 рет</li>
+</ul>
+<p>Нүктелер: (2;1), (3;2), (4;3), (5;1). Осы нүктелерді қосу арқылы жиілік алқабы салынады.</p>
+
+<hr>
+
+<p><strong>Гистограмма</strong> – үздіксіз немесе интервалдарға бөлінген деректер үшін салынатын диаграмма. Мұнда:</p>
+<ul>
+  <li>X осінде – интервалдар,</li>
+  <li>Y осінде – жиілік,</li>
+  <li>әр интервалға сәйкес тіктөртбұрыш салынады.</li>
+</ul>
+
+<p><strong>Гистограмманың басты айырмашылығы:</strong> ол жеке сандарға емес, <strong>аралықтарға (интервалдарға)</strong> құрылады.</p>
+
+<p><strong>Мысал:</strong> Оқушылар бойы (см): 160, 162, 163, 165, 168, 170, 172, 172, 174, 175</p>
+
+<p>Интервалдарға бөлеміз:</p>
+<ul>
+  <li>160–165 → 4 мән (160, 162, 163, 165)</li>
+  <li>166–170 → 2 мән (168, 170)</li>
+  <li>171–175 → 4 мән (172, 172, 174, 175)</li>
+</ul>
+
+<p>Осы интервалдар бойынша X осінде үш аралық, Y осінде жиіліктер 4, 2, 4 болып белгіленеді. Әр интервалға сәйкес биіктігі осы сандарға тең тіктөртбұрыштар салынады. Бұл – гистограмма.</p>
+
+<p><strong>Қорытынды:</strong> Жиілік алқабы – жеке мәндер үшін, ал гистограмма – интервалдарға бөлінген деректер үшін қолданылады. Екеуі де деректердің қалай таралғанын көрнекі түрде көрсетеді.</p>
+`,
+tasks: [
+  {
+    question: "Бағалар: 2, 3, 3, 4, 4, 4, 5. Осы деректер үшін жиілік алқабын салуға қажетті нүктелерді жазыңыз.",
+    answer: "Жиіліктер: 2 – 1 рет, 3 – 2 рет, 4 – 3 рет, 5 – 1 рет. Нүктелер: (2;1), (3;2), (4;3), (5;1). Осы нүктелерді қосып, жиілік алқабын саламыз."
+  },
+  {
+    question: "Оқушылардың жасы: 14, 14, 15, 15, 15, 16, 17, 17. Жиілік алқабы үшін нүктелерді жазыңыз.",
+    answer: "Жиіліктер: 14 – 2 рет, 15 – 3 рет, 16 – 1 рет, 17 – 2 рет. Нүктелер: (14;2), (15;3), (16;1), (17;2)."
+  },
+  {
+    question: "Оқушылар бойы (см): 150, 152, 155, 158, 160, 162, 165, 168, 170. Интервалдарды 150–155, 156–160, 161–165, 166–170 деп алып, жиіліктерді табыңыз.",
+    answer: "150–155: 150,152,155 → 3. 156–160: 158,160 → 2. 161–165: 162,165 → 2. 166–170: 168,170 → 2."
+  },
+  {
+    question: "Алдыңғы интервалдар бойынша гистограмманы қалай салатынын қадамдап жазыңыз.",
+    answer: "X осіне интервалдарды жазамыз: 150–155, 156–160, 161–165, 166–170. Y осіне жиіліктерді белгілейміз. Әр интервалға сәйкес биіктігі 3, 2, 2, 2 болатын тіктөртбұрыштар саламыз."
+  },
+  {
+    question: "Бір аптадағы қадам саны: 4000, 5000, 5200, 6000, 6500, 7000, 7500. Интервалдарды 4000–5000, 5001–6000, 6001–7000, 7001–8000 деп алып, жиілікті табыңыз.",
+    answer: "4000–5000: 4000,5000 → 2. 5001–6000: 5200,6000 → 2. 6001–7000: 6500,7000 → 2. 7001–8000: 7500 → 1."
+  },
+  {
+    question: "Жиілік алқабы мен гистограмманың негізгі айырмашылығын бір сөйлеммен жазыңыз.",
+    answer: "Жиілік алқабы жеке мәндер үшін нүктелер мен сызық арқылы салынады, ал гистограмма интервалдар үшін тіктөртбұрыштар арқылы салынады."
+  }
+],
+
+        videoId: "_tqYMGgqaNQ"
+      },
+      {
+        id: 7,
+        code: "Сабақ 7–8",
+        hours: 2,
+        section: "II. Диаграмма және кестелер",
+        title: "Жалпы жиынтық және таңдалым",
+        short: "Бас жиынтық, кездейсоқ таңдаманы ұйымдастыру және кесте түрінде көрсету.",
+        explanation: `
+<p><strong>Жалпы жиынтық (бас жиынтық)</strong> – зерттелетін барлық объектілердің толық жиыны. Статистикада біз қандай құбылысты толық сипаттағымыз келсе, сол барлық объектілер бірігіп жалпы жиынтықты құрайды.</p>
+
+<p><strong>Мысалдар:</strong></p>
+<ul>
+  <li>Мектептегі барлық 10-сынып оқушылары – жалпы жиынтық.</li>
+  <li>Қаладағы барлық тұрғындар – жалпы жиынтық.</li>
+  <li>Зауыттағы барлық шығарылған өнім – жалпы жиынтық.</li>
+</ul>
+
+<hr>
+
+<p><strong>Таңдалым (таңдама)</strong> – жалпы жиынтықтан арнайы ереже бойынша алынған шағын бөлік. Таңдама арқылы біз бүкіл жалпы жиынтық туралы қорытынды жасаймыз.</p>
+
+<p>Таңдамамен жұмыс істеудің себебі – жалпы жиынтықты түгел зерттеу көбіне:</p>
+<ul>
+  <li>уақытты көп алады,</li>
+  <li>қаражатты талап етеді,</li>
+  <li>кейде мүмкін емес болады.</li>
+</ul>
+
+<p><strong>Таңдама дұрыс болуы үшін екі негізгі шарт орындалуы керек:</strong></p>
+<ul>
+  <li><strong>Кездейсоқтық</strong> – әрбір объект таңдалып қалу мүмкіндігіне ие болуы керек.</li>
+  <li><strong>Өкілділік</strong> – таңдама жалпы жиынтықтың негізгі қасиеттерін дәл көрсетуі керек.</li>
+</ul>
+
+<hr>
+
+<p><strong>Белгілеулер:</strong></p>
+<ul>
+  <li>N – жалпы жиынтық көлемі</li>
+  <li>n – таңдама көлемі</li>
+</ul>
+
+<p>Әдетте n << N болады, яғни таңдама көлемі жалпы жиынтықтан әлдеқайда кіші.</p>
+
+<p><strong>Мысал:</strong> Егер мектепте N = 120 оқушы болса, ал біз n = 36 оқушыны таңдасақ, онда:</p>
+<p>Бұл таңдама бүкіл 120 оқушының үлгерімі туралы қорытынды жасауға пайдаланылады.</p>
+
+<hr>
+
+<p><strong>Маңызды ескерту:</strong> Егер таңдама дұрыс алынбаса, онда:</p>
+<ul>
+  <li>орташа мән де,</li>
+  <li>жиілік те,</li>
+  <li>диаграмма да</li>
+</ul>
+<p>бәрі қате қорытынды береді. Сондықтан статистикадағы ең маңызды қадам – таңдаманы дұрыс ұйымдастыру.</p>
+`,
+tasks: [
+  {
+    question: "Мектепте 10-сыныптарда барлығы 150 оқушы бар. Зерттеуші олардың орташа бойын анықтамақ. N және n арқылы жалпы жиынтық пен таңдаманы көрсетіңіз.",
+    answer: "Жалпы жиынтық: N = 150 оқушы. Таңдама ретінде әр сыныптан 5 оқушыдан алсақ, n = 30 болады."
+  },
+  {
+    question: "Қалада 12 000 тұрғын бар. Соның 240-ы зерттеуге алынған. Жалпы жиынтық пен таңдаманы атаңыз.",
+    answer: "Жалпы жиынтық: N = 12 000 тұрғын. Таңдама: n = 240 тұрғын."
+  },
+  {
+    question: "36 оқушыдан тұратын таңдаманың математика бағалары төмендегідей: 2 – 6 рет, 3 – 10 рет, 4 – 12 рет, 5 – 8 рет. Бұл таңдама жиіліктері бойынша N туралы не айтуға болады?",
+    answer: "Бұл жиілік тек n = 36 оқушыға қатысты. Осы дерек арқылы бүкіл N туралы болжам ғана жасалады, нақты N туралы дәл ақпарат болмайды."
+  },
+  {
+    question: "Зерттеуші тек үздік оқушыларды таңдап таңдама құрды. Бұл таңдама дұрыс па?",
+    answer: "Дұрыс емес, себебі ол кездейсоқ емес және өкілділік шартын бұзады. Мұндай таңдама бүкіл сыныптың нақты деңгейін көрсетпейді."
+  },
+  {
+    question: "n тым аз болса (мысалы, N = 150, n = 4), қандай қауіп туындайды?",
+    answer: "Таңдама жеткіліксіз болады, статистикалық қателік артады, алынған нәтиже шынайы болмайды."
+  },
+  {
+    question: "Неліктен статистикада көп жағдайда жалпы жиынтық емес, таңдалым зерттеледі?",
+    answer: "Себебі таңдама арқылы аз уақыт ішінде, аз шығынмен және жеткілікті дәлдікпен жалпы жиынтық туралы қорытынды жасауға болады."
+  },
+  {
+    question: "Таңдама негізінде қандай статистикалық шамаларды есептеуге болады?",
+    answer: "Орташа мән, медиана, мода, жиілік, салыстырмалы жиілік, диаграмма, гистограмма."
+  }
+],
+
+
+        videoId: "vCErYqGkuCU"
+      },
+      {
+        id: 8,
+        code: "Сабақ 9–10",
+        hours: 2,
+        section: "II. Диаграмма және кестелер",
+            title: "Дисперсия және орташа квадраттық ауытқу",
+            short: "Деректердің ортадан қаншалықты «шашырағанын» сипаттайтын өлшемдер.",
+            explanation: `
+<p><strong>Дисперсия (D)</strong> – деректердің орташа мәннен қаншалықты ауытқығанын көрсететін негізгі статистикалық өлшем. Ол барлық ауытқулардың квадраттарының орташа мәні арқылы есептеледі.</p>
+
+<p><strong>Белгілеулер:</strong></p>
+<ul>
+  <li>x₁, x₂, …, xₙ – деректер мәндері</li>
+  <li>x̄ – арифметикалық орта</li>
+  <li>n – деректер саны</li>
+</ul>
+
+<p><strong>Формула (мектеп стандарты):</strong></p>
+<p style="text-align:center;"><strong>D = (1 / n) · Σ (xᵢ − x̄)²</strong></p>
+
+<hr>
+
+<p><strong>Орташа квадраттық ауытқу (σ)</strong> – дисперсияның квадрат түбірі:</p>
+<p style="text-align:center;"><strong>σ = √D</strong></p>
+
+<p>Енді дисперсия мен σ-ны <strong>КЕСТЕ АРҚЫЛЫ</strong> қалай есептейтінімізді қарайық.</p>
+
+<hr>
+
+<p><strong>Мысал:</strong> x = {4, 6, 8, 10}</p>
+<p><strong>1-қадам:</strong> Арифметикалық ортаны табамыз:</p>
+<p>x̄ = (4 + 6 + 8 + 10) / 4 = 28 / 4 = <strong>7</strong></p>
+
+<p><strong>2-қадам:</strong> Кесте құрамыз:</p>
+
+<table border="1" cellpadding="8" style="border-collapse:collapse; text-align:center; margin:auto;">
+  <tr>
+    <th>xᵢ</th>
+    <th>xᵢ − x̄</th>
+    <th>(xᵢ − x̄)²</th>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>-3</td>
+    <td>9</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>-1</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td>1</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td>3</td>
+    <td>9</td>
+  </tr>
+</table>
+
+<p><strong>3-қадам:</strong> Квадраттардың қосындысын табамыз:</p>
+<p>9 + 1 + 1 + 9 = <strong>20</strong></p>
+
+<p><strong>4-қадам:</strong> Дисперсия:</p>
+<p>D = 20 / 4 = <strong>5</strong></p>
+
+<p><strong>5-қадам:</strong> Орташа квадраттық ауытқу:</p>
+<p>σ = √5 ≈ <strong>2.24</strong></p>
+
+<p><strong>Қорытынды:</strong> Бұл деректерде шашырау бар, бірақ ол үлкен емес.</p>
+`,
+tasks: [
+  {
+    question: "x = {2, 4, 6, 8, 10} деректері үшін дисперсия мен σ-ны КЕСТЕ арқылы есептеңіз.",
+    answer: "x̄ = (2+4+6+8+10)/5 = 6. Кесте бойынша (xᵢ − x̄)² мәндері: 16, 4, 0, 4, 16. Қосындысы 40. D = 40/5 = 8. σ = √8 ≈ 2.83."
+  },
+  {
+    question: "x = {5, 5, 5, 5, 5} деректері үшін кесте арқылы D және σ табыңыз.",
+    answer: "x̄ = 5. Барлық xᵢ − x̄ = 0. Сондықтан барлық квадраттар да 0. Қосынды = 0. D = 0, σ = 0."
+  },
+  {
+    question: "x = {6, 7, 8, 9} деректері үшін σ-ны кесте арқылы есептеңіз.",
+    answer: "x̄ = (6+7+8+9)/4 = 7.5. (xᵢ − x̄)²: 2.25, 0.25, 0.25, 2.25. Қосынды = 5. D = 5/4 = 1.25. σ = √1.25 ≈ 1.12."
+  },
+  {
+    question: "Екі сынып үшін орташа m бірдей. Бірақ біріншісінде σ = 0.7, екіншісінде σ = 1.9. Қайсысында бағалар тұрақты?",
+    answer: "σ аз болған жерде тұрақтылық жоғары болады. Сондықтан бірінші сыныпта бағалар тұрақты."
+  },
+  {
+    question: "Неліктен дисперсияны есептегенде (xᵢ − x̄)² қолданылады?",
+    answer: "Өйткені жай айырмалар қосылса, оң және теріс мәндер жойылып кетеді. Ал квадрат барлық ауытқуды оң етеді және үлкен ауытқулардың әсерін анық көрсетеді."
+  }
+],
+
+        videoId: "EIARGeinR88"
+      },
+      {
+        id: 9,
+        code: "Сабақ 11–12",
+        hours: 2,
+        section: "III. Комбинаторика",
+        title: "Комбинаториканың негізгі ұғымдары мен ережелері (қосынды, көбейтінді ережелері)",
+        short: "Қосынды және көбейтінді ережелері арқылы элементтер санын есептеу.",
+        explanation: `
+<p><strong>Комбинаторика</strong> – элементтерді әртүрлі тәсілмен орналастыру, таңдау және топтастыру тәсілдерін зерттейтін математика бөлімі. Ол «неше түрлі жолмен?» деген сұрақтарға жауап береді.</p>
+
+<hr>
+
+<p><strong>1) Қосынды ережесі</strong></p>
+<p>Егер тәжірибе <strong>бір-біріне сәйкес келмейтін бірнеше жағдайдың біреуімен ғана</strong> орындалса, онда барлық мүмкін тәсілдердің саны олардың қосындысына тең болады.</p>
+
+<p><strong>Формуласы (мектеп стандарты):</strong></p>
+<p style="text-align:center;"><strong>N = n₁ + n₂ + n₃ + ...</strong></p>
+
+<p>Мұнда n₁, n₂, n₃ – әр бөлек жағдайдың тәсіл саны, ал N – барлық мүмкін тәсіл саны.</p>
+
+<p><strong>Қолданылатын жағдай:</strong> «не бірін, не екіншісін таңдау» кезінде қолданылады.</p>
+
+<hr>
+
+<p><strong>2) Көбейтінді ережесі</strong></p>
+<p>Егер тәжірибе <strong>бірінен кейін бірі орындалатын бірнеше қадамдардан</strong> тұрса, онда барлық тәсілдер саны осы қадамдардың тәсіл сандарының көбейтіндісіне тең болады.</p>
+
+<p><strong>Формуласы (мектеп стандарты):</strong></p>
+<p style="text-align:center;"><strong>N = n₁ · n₂ · n₃ · ...</strong></p>
+
+<p><strong>Қолданылатын жағдай:</strong> «алдымен бірін таңдадық, содан кейін екіншісін таңдадық» деген тізбекті әрекеттерде қолданылады.</p>
+
+<hr>
+
+<p><strong>Қорытынды ереже:</strong></p>
+<ul>
+  <li>Егер таңдау «НЕ – НЕ» түрінде болса → <strong>ҚОСЫНДЫ ережесі</strong></li>
+  <li>Егер таңдау «ЖӘНЕ – ЖӘНЕ» түрінде болса → <strong>КӨБЕЙТІНДІ ережесі</strong></li>
+</ul>
+`,
+tasks: [
+  {
+    question: "Дүкенде 3 түрлі дәптер және 4 түрлі қалам бар. Бір дәптер және бір қалам сатып алудың неше түрлі тәсілі бар?",
+    answer: "Бұл – қатарынан орындалатын екі таңдау (дәптер ЖӘНЕ қалам). Сондықтан көбейтінді ережесі қолданылады. Формула: N = 3 · 4 = 12. Жауабы: 12 тәсіл."
+  },
+  {
+    question: "Оқушы бір ғана үйірмеге қатыса алады. Таңдау: математика, физика, информатика (3 нұсқа). Немесе домбыра, немесе би (2 нұсқа). Барлығы неше түрлі таңдау бар?",
+    answer: "Бұл – бір-біріне сәйкес келмейтін таңдау («не пәндік, не өнер»). Сондықтан қосынды ережесі қолданылады. Формула: N = 3 + 2 = 5. Жауабы: 5 түрлі таңдау."
+  },
+  {
+    question: "Оқушыға 2 түрлі көйлек және 3 түрлі шалбар бар. Бір көйлек және бір шалбар таңдау неше тәсілмен орындалады?",
+    answer: "Екі әрекет бірінен кейін бірі орындалады (көйлек ЖӘНЕ шалбар). Көбейтінді ережесі: N = 2 · 3 = 6 тәсіл."
+  },
+  {
+    question: "Ас мәзірінде 4 түрлі сорпа және 3 түрлі сусын бар. Оқушы тек бір ғана тағам түрін (не сорпа, не сусын) таңдайды. Неше түрлі таңдау бар?",
+    answer: "Бұл «не сорпа, не сусын» түріндегі таңдау. Қосынды ережесі: N = 4 + 3 = 7."
+  },
+  {
+    question: "Телефон нөмірінің соңғы екі цифрын (әр цифр 0-ден 9-ға дейін) кездейсоқ таңдаудың неше тәсілі бар?",
+    answer: "Бірінші цифр – 10 тәсіл, екінші цифр – 10 тәсіл. Көбейтінді ережесі: N = 10 · 10 = 100."
+  },
+  {
+    question: "Қосынды ережесі мен көбейтінді ережесінің негізгі айырмашылығын өз сөзіңізбен түсіндіріңіз.",
+    answer: "Қосынды ережесі «біреуін ғана таңдау» кезінде, ал көбейтінді ережесі «бірнеше әрекет қатар орындалғанда» қолданылады."
+  }
+],
+
+
+        videoId: "VCAY31D9J_Y"
+      },
+      {
+        id: 10,
+        code: "Сабақ 13–14",
+        hours: 2,
+        section: "III. Комбинаторика",
+        title: "Санның факториалы. Орналастырулар мен алмастырулар",
+        short: "n! ұғымы және қайталанбайтын орналастырулар, алмастырулар формулалары.",
+        title: "Санның факториалы. Орналастырулар мен алмастырулар",
+short: "n! ұғымы, алмастыру (Pn) және орналастыру (Aₙᵏ) формулалары.",
+explanation: `
+<p><strong>Оқу мақсаты:</strong> Оқушылар санның факториалын түсінеді, орналастыру және алмастыруды есептеу барысында комбинаторикалық формулаларды қолданып, есептерді топпен және жұппен шешеді.</p>
+
+<hr>
+
+<p><strong>1) Санның факториалы (n!)</strong> – 1-ден n-ге дейінгі барлық натурал сандардың көбейтіндісі:</p>
+
+<p style="text-align:center;"><strong>n! = 1 · 2 · 3 · ... · n</strong></p>
+
+<p><strong>Мысалдар:</strong></p>
+<ul>
+  <li>3! = 1·2·3 = 6</li>
+  <li>4! = 1·2·3·4 = 24</li>
+  <li>5! = 120</li>
+</ul>
+
+<p>Факториал көбіне элементтерді <strong>ретімен орналастыру</strong> есептерінде қолданылады.</p>
+
+<hr>
+
+<p><strong>2) Алмастыру (пермутация)</strong></p>
+<p>n элементтің <strong>барлығын түгел алып</strong>, орын тәртібін ескере отырып орналастыру – <strong>алмастыру</strong> деп аталады.</p>
+
+<p style="text-align:center;"><strong>Pₙ = n!</strong></p>
+
+<p><strong>Мағынасы:</strong> Барлық элементтер қатысады және реттік маңызды.</p>
+
+<p><strong>Мысал:</strong> 5 оқушыны бір қатарға тұрғызу:</p>
+<p>P₅ = 5! = 120 тәсіл</p>
+
+<hr>
+
+<p><strong>3) Орналастыру (Aₙᵏ)</strong></p>
+<p>n элементтің ішінен <strong>k элементті таңдап</strong>, оларды <strong>ретімен орналастыру</strong> – орналастыру деп аталады.</p>
+
+<p style="text-align:center;"><strong>Aₙᵏ = n! / (n − k)!</strong></p>
+
+<p><strong>Мағынасы:</strong> Барлығы алынбайды, тек k элемент алынады, бірақ <strong>реті маңызды</strong>.</p>
+
+<p><strong>Мысал:</strong> 10 спортшының ішінен 1-орын, 2-орын, 3-орынды бөлу:</p>
+<p>A₁₀³ = 10! / 7! = 10 · 9 · 8 = 720 тәсіл</p>
+
+<hr>
+
+<p><strong>ҰБТ-дағы негізгі айырмашылық:</strong></p>
+<ul>
+  <li><strong>Pₙ</strong> – барлығы алынады, рет бар</li>
+  <li><strong>Aₙᵏ</strong> – бір бөлігі алынады, рет бар</li>
+</ul>
+
+<p>Бұл формулалар <strong>орын, код, лауазым, кезек, номер</strong> сияқты есептерде міндетті түрде қолданылады.</p>
+`,
+tasks: [
+  {
+    question: "6! мәнін есептеңіз.",
+    answer: "6! = 1·2·3·4·5·6 = 720."
+  },
+  {
+    question: "5 түрлі адамды бір қатарға неше тәсілмен тұрғызуға болады?",
+    answer: "Бұл – алмастыру. P₅ = 5! = 120."
+  },
+  {
+    question: "9 цифрдың (1–9) ішінен 4 цифрдан тұратын реттік код құрылады (қайталанбайды). Неше түрлі код бар?",
+    answer: "Бұл – орналастыру. A₉⁴ = 9! / 5! = 9·8·7·6 = 3024."
+  },
+  {
+    question: "8 оқушының ішінен төраға, орынбасар, хатшы тағайындалады. Неше тәсіл?",
+    answer: "Лауазым бар, рет маңызды → орналастыру. A₈³ = 8·7·6 = 336."
+  },
+  {
+    question: "7 түрлі кітапты сөреге неше түрлі ретпен орналастыруға болады?",
+    answer: "Бұл – алмастыру. P₇ = 7! = 5040."
+  },
+  {
+    question: "12 спортшының ішінен 1-орын мен 2-орынды бөлу неше тәсілмен орындалады?",
+    answer: "Бұл да орналастыру. A₁₂² = 12·11 = 132."
+  }
+],
+
+        videoId: "jZAqm7xwWFk"
+      },
+      {
+        id: 11,
+        code: "Сабақ 15–16",
+        hours: 2,
+        section: "III. Комбинаторика",
+        title: "Қайталанбайтын терулер. Комбинаториканың негізгі формулалары",
+        short: "Рет маңызды емес болған жағдайдағы терулер формуласы.",
+        explanation: `
+<p><strong>Теру (комбинация)</strong> – n элементтің ішінен <strong>реті маңызды емес</strong> k элементті таңдау. Яғни қандай элементтер алынғаны маңызды, бірақ олардың орналасу тәртібі есепке алынбайды.</p>
+
+<p><strong>Қайталанбайтын терулер санының формуласы:</strong></p>
+<p style="text-align:center;"><strong>Cₙᵏ = n! / (k! · (n − k)!)</strong></p>
+
+<p><strong>Мұндағы:</strong></p>
+<ul>
+  <li>n – барлық элементтер саны</li>
+  <li>k – таңдалып алынатын элементтер саны</li>
+</ul>
+
+<p><strong>Теру қолданылатын жағдайлар:</strong></p>
+<ul>
+  <li>комитет, команда, топ құру;</li>
+  <li>билет, нөмір, вариант таңдау;</li>
+  <li>лауазымсыз адамдарды іріктеу.</li>
+</ul>
+
+<p><strong>Ең басты белгі:</strong> Егер есепте <strong>рет маңызды ЕМЕС</strong> болса – міндетті түрде <strong>Cₙᵏ</strong> қолданылады.</p>
+
+<hr>
+
+<p><strong>ҰБТ-дағы негізгі қателік:</strong> Оқушылар теру мен орналастыруды шатастырады. Егер:</p>
+<ul>
+  <li>рет ЖОҚ → <strong>Cₙᵏ</strong></li>
+  <li>рет БАР → <strong>Aₙᵏ</strong></li>
+</ul>
+
+<p>Бұл айырмашылықты ажырата алу – ҰБТ-дағы жоғары балдың басты шарты.</p>
+`,
+tasks: [
+  {
+    question: "5 оқушының ішінен 2 оқушыдан тұратын топ таңдаудың неше тәсілі бар?",
+    answer: "Бұл – теру, себебі тек кімдер алынғаны маңызды, рет маңызды емес. C₅² = 5! / (2!·3!) = (5·4)/(2·1) = 10 тәсіл."
+  },
+  {
+    question: "10 оқушыдан 3 адамнан тұратын команда жасалады. Неше түрлі команда құруға болады?",
+    answer: "Теру қолданылады: C₁₀³ = 10! / (3!·7!) = (10·9·8)/(3·2·1) = 120 команда."
+  },
+  {
+    question: "Сыныпта 15 оқушы бар. Олардың ішінен 1 капитан және 2 мүшеден тұратын 3 адамдық топ (капитан бөлек рөл) неше тәсілмен құрылады?",
+    answer: "Бұл – аралас есеп. 1) Капитанды таңдау: C₁₅¹ = 15. 2) Қалған 14 ішінен 2 мүшені таңдау: C₁₄² = 91. 3) Көбейтінді ережесі: 15 · 91 = 1365 тәсіл."
+  },
+  {
+    question: "12 оқушының ішінен 4 оқушыдан тұратын кезекші топ таңдалады. Неше тәсіл бар?",
+    answer: "Рет маңызды емес → C₁₂⁴ = 12! / (4!·8!) = 495 тәсіл."
+  },
+  {
+    question: "8 адамнан тұратын топтан 3 адамды конференцияға жіберу керек. Таңдау неше тәсілмен орындалады?",
+    answer: "Бұл да теру: C₈³ = 8! / (3!·5!) = 56 тәсіл."
+  },
+  {
+    question: "Бір сыныпта 20 оқушы бар. Олардың ішінен 2 адамды ғана олимпиадаға жібереді. Неше түрлі таңдау бар?",
+    answer: "C₂₀² = 20! / (2!·18!) = (20·19)/2 = 190 тәсіл."
+  },
+  {
+    question: "Теру формуласы қай жағдайда қолданылады?",
+    answer: "Егер есепте адамдардың немесе заттардың реттік орналасуы маңызды емес болса, яғни тек таңдалған жиын ғана маңызды болса, теру – Cₙᵏ қолданылады."
+  }
+],
+
+        videoId: "F_73fJ-EX9A"
+      },
+      {
+        id: 12,
+        code: "Сабақ 17–18",
+        hours: 2,
+        section: "III. Комбинаторика",
+        title: "Комбинаториканың негізгі формулаларын қолданып есептер шығару",
+        short: "Факториал, алмастыру, орналастыру, теру формулаларын таңдап қолдану.",
+        explanation: `
+<p><strong>Бұл сабақтың негізгі мақсаты</strong> – есептің мәтінін дұрыс талдап, қай жағдайда <strong>алмастыру (Pₙ)</strong>, <strong>орналастыру (Aₙᵏ)</strong> немесе <strong>теру (Cₙᵏ)</strong> қолданылатынын нақты ажырата білу.</p>
+
+<p><strong>Комбинаторикалық есепті шешудің негізгі алгоритмі:</strong></p>
+<ol>
+  <li>Есепте <strong>барлық элементтер қатыса ма, әлде тек бір бөлігі ме?</strong></li>
+  <li><strong>Рет (орын, кезек, лауазым, код)</strong> маңызды ма?</li>
+  <li>Осы екі сұраққа жауап бере отырып, дұрыс формула таңдалады.</li>
+</ol>
+
+<hr>
+
+<p><strong>ФОРМУЛА ТАҢДАУДЫҢ НЕГІЗГІ ЕРЕЖЕСІ:</strong></p>
+<ul>
+  <li><strong>Рет маңызды + барлық элементтер қатысады</strong> → <strong>АЛМАСТЫРУ (Pₙ = n!)</strong></li>
+  <li><strong>Рет маңызды + тек бір бөлігі алынады</strong> → <strong>ОРНАЛАСТЫРУ (Aₙᵏ = n! / (n−k)!)</strong></li>
+  <li><strong>Рет маңызды ЕМЕС + тек бір бөлігі алынады</strong> → <strong>ТЕРУ (Cₙᵏ = n! / (k!·(n−k)!))</strong></li>
+</ul>
+
+<p><strong>ҰБТ-дағы басты қателік:</strong> Көп оқушы есептің ішіндегі «орын», «код», «лауазым», «ретпен» деген сөздерді байқамай, теру мен орналастыруды шатастырады.</p>
+
+<p><strong>Есте сақтайтын «фишка»:</strong></p>
+<ul>
+  <li>Егер «орын», «номер», «код», «1-орын, 2-орын» болса → <strong>A немесе P</strong></li>
+  <li>Егер «топ», «команда», «комитет», «таңдап алу» болса → <strong>C</strong></li>
+</ul>
+`,
+tasks: [
+  {
+    question: "Сыныпта 6 оқушыдан тұратын қатар бар. Оларды бір сызық бойымен неше түрлі ретпен тұрғызуға болады?",
+    answer: "Барлық 6 оқушы қатысады және рет маңызды → алмастыру. P₆ = 6! = 720 тәсіл."
+  },
+  {
+    question: "Қалтада 8 түрлі кәмпит бар. Оқушы 3 кәмпитті бір-бірінен айырмайтын түрде таңдайды. Неше түрлі таңдау бар?",
+    answer: "Тек бір бөлігі алынады және рет маңызды емес → теру. C₈³ = 8! / (3!·5!) = 56."
+  },
+  {
+    question: "Флешканың паролі – 4 цифрдан тұрады, цифрлар қайталанбайды. 0–9 аралығындағы цифрлардан неше түрлі пароль жасауға болады?",
+    answer: "Рет маңызды және тек 4 цифр алынады → орналастыру. A₁₀⁴ = 10·9·8·7 = 5040."
+  },
+  {
+    question: "7 адамнан тұратын топтан төраға, орынбасар және хатшы сайланады. Неше түрлі таңдау бар?",
+    answer: "Лауазым бар → рет маңызды, 3 адам алынады → орналастыру. A₇³ = 7·6·5 = 210."
+  },
+  {
+    question: "9 оқушының ішінен 4 адамнан тұратын команда құрылады. Неше түрлі команда жасауға болады?",
+    answer: "Рет маңызды емес, тек адамдар маңызды → теру. C₉⁴ = 9! / (4!·5!) = 126."
+  },
+  {
+    question: "8 түрлі кітапты бір сөреге орналастыру неше түрлі тәсілмен орындалады?",
+    answer: "Барлығы алынады, рет маңызды → алмастыру. P₈ = 8! = 40320."
+  },
+  {
+    question: "10 спортшының ішінен 1-орын, 2-орын, 3-орынды бөлу неше тәсіл?",
+    answer: "Рет маңызды, тек 3 адам алынады → орналастыру. A₁₀³ = 10·9·8 = 720."
+  },
+  {
+    question: "12 оқушының ішінен 5 адамнан тұратын олимпиадалық топ таңдалады. Неше түрлі таңдау бар?",
+    answer: "Рет маңызды емес → теру. C₁₂⁵ = 12! / (5!·7!) = 792."
+  },
+  {
+    question: "Қай кезде теру емес, орналастыру қолданылатынын бір сөйлеммен түсіндіріңіз.",
+    answer: "Егер таңдалған элементтердің орналасу реті немесе атқаратын орны маңызды болса, онда міндетті түрде орналастыру қолданылады."
+  }
+],
+
+        videoId: "hfZH-PzE_Wk"
+      },
+      {
+        id: 13,
+        code: "Сабақ 19–20",
+        hours: 2,
+        section: "III. Комбинаторика",
+        title: "Ньютон биномы және қасиеттері",
+        short: "(a+b)^n өрнектерін қысқаша жазу және биномиал коэффициенттерді қолдану.",
+        title: "Ньютон биномы және қасиеттері",
+short: "(a+b)^n өрнектерін қысқаша жазу және биномиал коэффициенттерді қолдану.",
+explanation: `
+<p><strong>Ньютон биномы</strong> – (a + b)^n түріндегі өрнектерді толық көбейтпей-ақ, жүйелі түрде жазуға мүмкіндік беретін формула.</p>
+
+<p><strong>Жалпы түрі:</strong></p>
+<p style="text-align:center;">
+(a + b)^n = C_n^0 a^n + C_n^1 a^{n-1}b + C_n^2 a^{n-2}b^2 + ... + C_n^n b^n
+</p>
+
+<p>Мұндағы C_n^k – <strong>биномиал коэффициенттер</strong>, олар формула бойынша есептеледі:</p>
+<p style="text-align:center;">
+C_n^k = n! / (k! · (n − k)!)
+</p>
+
+<p><strong>Жалпы (k+1)-ші мүше:</strong></p>
+<p style="text-align:center;">
+C_n^k · a^{n−k} · b^k
+</p>
+
+<p>k = 0, 1, 2, ..., n.</p>
+
+<p><strong>Маңызды қасиеттері:</strong></p>
+<ul>
+  <li>Бірінші мүше: C_n^0 a^n = a^n;</li>
+  <li>Соңғы мүше: C_n^n b^n;</li>
+  <li>Коэффициенттер C_n^k Паскаль үшбұрышынан да алынады;</li>
+  <li>(a − b)^n үшін мүшелер сол үлгіде, бірақ b орнына (−b) қойылады, яғни таңбалар кезектесіп өзгереді.</li>
+</ul>
+
+<p><strong>Ньютон биномының негізгі «фишкасы»:</strong> бүкіл көпмүшені ашпай-ақ, керекті мүшені (мысалы, x³-тің коэффициентін) жалпы мүше формуласы арқылы тез табуға болады.</p>
+`,
+tasks: [
+  {
+    question: "(a + b)³ өрнегін Ньютон биномы бойынша ашыңыз.",
+    answer: "(a + b)³ = C₃⁰a³ + C₃¹a²b + C₃²ab² + C₃³b³ = 1·a³ + 3a²b + 3ab² + 1·b³ = a³ + 3a²b + 3ab² + b³."
+  },
+  {
+    question: "(2x − 1)⁴ өрнегінің екінші және үшінші мүшелерін Ньютон биномы арқылы табыңыз.",
+    answer: "Мұнда n = 4, a = 2x, b = −1. Жалпы мүше: C₄^k a^{4−k} b^k.\nЕкінші мүше k = 1 үшін: C₄¹ (2x)³ (−1)¹ = 4 · 8x³ · (−1) = −32x³.\nҮшінші мүше k = 2 үшін: C₄² (2x)² (−1)² = 6 · 4x² · 1 = 24x².\nЖауабы: екінші мүше −32x³, үшінші мүше 24x²."
+  },
+  {
+    question: "(3x + 2)⁵ өрнегіндегі x³ мүшесінің коэффициентін табыңыз.",
+    answer: "Жалпы мүше: C₅^k (3x)^{5−k} · 2^k. x дәрежесі 5−k болады.\nx³ болуы үшін 5 − k = 3 ⇒ k = 2.\nСонда қажетті мүше: C₅² (3x)³ · 2² = 10 · 27x³ · 4 = 1080x³.\nОлай болса, x³ мүшесінің коэффициенті 1080."
+  },
+  {
+    question: "(a − 2b)⁵ өрнегіндегі a³b² мүшесін табыңыз.",
+    answer: "Жалпы мүше: C₅^k a^{5−k} (−2b)^k.\na дәрежесі 3 болу үшін 5 − k = 3 ⇒ k = 2.\nСонда мүше: C₅² a³ (−2b)² = 10 · a³ · 4b² = 40a³b².\nЖауабы: a³b² мүшесі 40a³b²."
+  },
+  {
+    question: "(1 + x)⁸ өрнегіндегі x⁵ мүшесінің коэффициентін табыңыз.",
+    answer: "Мұнда a = 1, b = x, n = 8. Жалпы мүше: C₈^k · 1^{8−k} · x^k = C₈^k x^k.\nКерек мүше – x⁵, демек k = 5. Коэффициент: C₈⁵ = C₈³ = 56.\nЖауабы: x⁵ мүшесінің коэффициенті 56."
+  }
+],
+
+        videoId: "Hg6U_vJZ3ME"
+      },
+      {
+        id: 14,
+        code: "Сабақ 21–22",
+        hours: 2,
+        section: "III. Комбинаторика",
+        title: "Бас жиынтық және таңдама (тереңдету)",
+short: "Таңдама көмегімен бас жиынтық параметрлерін бағалау идеясы.",
+explanation: `
+<p><strong>Бас жиынтық</strong> – зерттелетін барлық объектілердің толық жиыны. Ал <strong>таңдама</strong> – сол бас жиынтықтың ішінен арнайы ереже бойынша алынған шағын бөлігі.</p>
+
+<p>Статистикада бас жиынтықтың нақты параметрлерін (орташа мән, үлес, дисперсия) көбіне <strong>таңдама арқылы бағалайды</strong>, себебі барлық объектіні түгел өлшеу көп жағдайда мүмкін емес.</p>
+
+<p><strong>Бағалау идеясының негізгі принципі:</strong></p>
+<ul>
+  <li>таңдама <strong>кездейсоқ</strong> алынуы керек;</li>
+  <li>таңдама <strong>өкілді</strong> болуы керек (бас жиынтықтың құрылымын көрсетуі тиіс);</li>
+  <li>таңдама <strong>көлемі</strong> неғұрлым үлкен болса, бағалау соғұрлым дәл болады.</li>
+</ul>
+
+<hr>
+
+<p><strong>1) Таңдамалық орташа арқылы бағалау</strong></p>
+<p>Егер x₁, x₂, ..., xₙ – таңдама мәндері болса, таңдама орташа:</p>
+<p style="text-align:center;"><strong>x̄ = (x₁ + x₂ + ... + xₙ) / n</strong></p>
+
+<p>Осы x̄ шамасы бас жиынтықтың нақты орташа мәнін <strong>жуықтап бағалайды</strong>.</p>
+
+<hr>
+
+<p><strong>2) Таңдамалық үлес арқылы бағалау</strong></p>
+<p>Егер таңдамада зерттелетін қасиеті бар объектілер саны m болса, онда таңдамалық үлес:</p>
+<p style="text-align:center;"><strong>p̂ = m / n</strong></p>
+
+<p>Бұл p̂ – бас жиынтықтағы нақты үлестің жуық мәні ретінде қабылданады.</p>
+
+<hr>
+
+<p><strong>3) Таңдамалық дисперсия арқылы бағалау</strong></p>
+<p>Таңдама арқылы есептелген дисперсия деректердің шашырауын сипаттайды және бас жиынтықтағы өзгергіштік туралы <strong>жуық ұғым береді</strong>.</p>
+
+<hr>
+
+<p><strong>Маңызды ескерту:</strong></p>
+<ul>
+  <li>таңдама <strong>дұрыс алынбаса</strong>, барлық орташа, үлес, дисперсия да <strong>қате бағаланады</strong>;</li>
+  <li>сондықтан статистикадағы <strong>ең жауапты қадам – таңдаманы дұрыс ұйымдастыру</strong>.</li>
+</ul>
+
+<p>Бұл бөлімде формулалардың толық дәлелдеуі қарастырылмайды, басты мақсат – <strong>бағалау логикасын түсіну</strong>.</p>
+`,
+tasks: [
+  {
+    question: "Мектептегі барлық 10-сынып оқушыларының 30%-ы спорт үйірмесіне қатысады деп болжануда. 50 оқушыдан тұратын таңдамада 18 оқушы қатысатыны анықталды. Таңдамалық үлесті есептеп, қорытынды жасаңыз.",
+    answer: "Таңдамалық үлес: p̂ = 18/50 = 0.36 = 36%. Бұл бастапқы 30%-дан жоғары. Айырмашылық таңдама қателігімен және таңдаманың кездейсоқтығымен түсіндіріледі."
+  },
+  {
+    question: "40 оқушыдан тұратын таңдамада 14 оқушы қосымша математика курсына барады. Бас жиынтықтағы үлесті жуықтаңыз.",
+    answer: "p̂ = 14/40 = 0.35 = 35%. Демек, жуық шамамен оқушылардың 35%-ы курсқа қатысады деп бағалауға болады."
+  },
+  {
+    question: "Бір сыныптағы 10 оқушының орташа бойы 168 см болды. Осы дерекпен барлық 10-сыныптардың орташа бойын бағалау қаншалықты дұрыс?",
+    answer: "Тек бір сыныптың дерегі барлық 10-сыныптарды толық сипаттай алмайды. Ұл-қыз арақатынасы, басқа сыныптар, қала/ауыл айырмашылығы сияқты факторлар ескерілуі керек."
+  },
+  {
+    question: "Әрқайсысы 25 оқушыдан тұратын 4 сыныптан кездейсоқ 5 оқушыдан таңдалып, барлығы 20 оқушы өлшенді. Мұндай таңдама неге бір сыныптан 20 оқушы алғаннан сенімдірек?",
+    answer: "Себебі бірнеше сыныпты қамтыған таңдама өкілдірек болады және бас жиынтықты жақсырақ сипаттайды."
+  },
+  {
+    question: "Таңдамалық орташа арқылы бас жиынтықтың орташа мәні қалай бағаланады?",
+    answer: "Таңдама бойынша есептелген x̄ бас жиынтықтың орташа мәнінің жуық шамасы ретінде алынады."
+  },
+  {
+    question: "Өзің таңдама ұйымдастыр: параллель 4 сыныптан бой өлшеу үшін қадамдап жоспар құрастыр.",
+    answer: "1) Мақсатты анықтау; 2) Барлық 4 сыныптың тізімін алу; 3) Әр сыныптан 5 оқушыны кездейсоқ таңдау; 4) Өлшеу жүргізу; 5) Деректерді кестеге енгізу; 6) Орташа, құлаш, дисперсия есептеу."
+  },
+  {
+    question: "Қай жағдайда таңдамалық бағалау сенімсіз болады?",
+    answer: "Таңдама тым аз болса, кездейсоқ алынбаса немесе бір ғана топты қамтыса, бағалау сенімсіз болады."
+  }
+],
+
+        videoId: "fABlrQzjLxo"
+      },
+      {
+        id: 15,
+        code: "Сабақ 23–24",
+        hours: 2,
+        section: "III. Комбинаторика",
+        title: "Дискретті және интервалды вариациялық қатарлар",
+short: "Дискретті (жеке мәндер) және интервалдық (аралықтар) вариациялық қатарларды құру және талдау.",
+explanation: `
+<p><strong>Вариациялық қатар</strong> – кездейсоқ шаманың барлық мүмкін мәндері мен олардың жиіліктерінің реттелген түрде берілуі. Вариациялық қатар деректерді <strong>талдау, салыстыру және қорытынды жасау</strong> үшін қолданылады.</p>
+
+<hr>
+
+<p><strong>1) Дискретті вариациялық қатар</strong></p>
+<p>Егер шама <strong>жеке-жеке нақты мәндер</strong> қабылдаса (мысалы: баға, оқушы саны, баға қою нәтижесі), онда мұндай қатар <strong>дискретті вариациялық қатар</strong> деп аталады.</p>
+
+<p><strong>Дискретті қатардың құрылымы:</strong></p>
+<ul>
+  <li>x – шаманың мәндері (2, 3, 4, 5);</li>
+  <li>n – абсолюттік жиілік (неше рет қайталанды);</li>
+  <li>w = n / N – салыстырмалы жиілік.</li>
+</ul>
+
+<p><strong>Қолданылатын жағдайлар:</strong> баға, оқушылар саны, қатесі бар жауаптар саны, тест балдары (аз мән).</p>
+
+<hr>
+
+<p><strong>2) Интервалдық вариациялық қатар</strong></p>
+<p>Егер деректер <strong>өте көп</strong> болса немесе шама <strong>үздіксіз</strong> мәндер қабылдаса (бой, салмақ, уақыт, жылдамдық), онда деректер <strong>аралықтарға (интервалдарға)</strong> біріктіріледі. Мұндай қатар <strong>интервалдық вариациялық қатар</strong> деп аталады.</p>
+
+<p><strong>Интервалдық қатардың ерекшеліктері:</strong></p>
+<ul>
+  <li>мәндер белгілі аралықтарға бөлінеді (мысалы: 150–159, 160–169);</li>
+  <li>әр интервалға сәйкес жиілік есептеледі;</li>
+  <li>гистограмма мен жиілік полигоны осы қатар негізінде салынады.</li>
+</ul>
+
+<hr>
+
+<p><strong>Негізгі айырмашылық:</strong></p>
+<ul>
+  <li><strong>Дискретті қатар</strong> – нақты жеке сандармен жұмыс;</li>
+  <li><strong>Интервалдық қатар</strong> – үлкен және үздіксіз деректер үшін.</li>
+</ul>
+
+<p><strong>Нәтижесінде:</strong> вариациялық қатарлар арқылы деректердің таралуы, орташа деңгейді, шашырауды және басым топты анықтауға болады.</p>
+`,
+tasks: [
+  {
+    question: "20 оқушының қазақ тілінен алған бағалары берілген: 2, 3, 4, 5. Осы деректер үшін дискретті вариациялық қатарды кесте түрінде құрудың толық алгоритмін жазыңыз.",
+    answer: "1) Барлық мүмкін мәндерді анықтаймыз: 2, 3, 4, 5; 2) Әр бағаның неше рет кездескенін санаймыз (абсолюттік жиілік n); 3) Барлық бақылаулар санын табамыз (N = 20); 4) Әр баға үшін салыстырмалы жиілікті есептейміз: w = n / N; 5) Кестеге x, n, w бағандарын енгіземіз."
+  },
+  {
+    question: "Оқушылар бойы: 150, 152, 155, 158, 160, 163, 165, 168, 170, 172, 175, 178. Аралықтарды 150–159, 160–169, 170–179 деп алып, интервалдық вариациялық қатар құрыңыз.",
+    answer: "150–159: 150, 152, 155, 158 → 4 оқушы; 160–169: 160, 163, 165, 168 → 4 оқушы; 170–179: 170, 172, 175, 178 → 4 оқушы. Барлығы N = 12."
+  },
+  {
+    question: "Интервалдық вариациялық қатарды құрғаннан кейін гистограмма салу үшін қандай қадамдар орындалады?",
+    answer: "1) Горизонталь оське интервалдар белгіленеді; 2) Вертикаль оське жиілік мәндері қойылады; 3) Әр интервалға сәйкес тіктөртбұрыш салынады; 4) Тіктөртбұрыштардың биіктігі жиілікке пропорционал болады."
+  },
+  {
+    question: "30 оқушының тест балдары 0–40 аралығында берілген. Бұл деректерді дискретті ме, әлде интервалдық қатар арқылы өңдеу ыңғайлы ма? Неліктен?",
+    answer: "Егер әр баллдың жиілігін жеке көрсету қиын болса, интервалдық қатар ыңғайлы. Себебі мәндер өте көп және барлығы жеке-жеке талдауға ауыр."
+  },
+  {
+    question: "Қай жағдайда дискретті вариациялық қатарды қолдану тиімді? Екі нақты мысал келтіріңіз.",
+    answer: "Баға қою нәтижелері (2,3,4,5); отбасыдағы балалар саны (1,2,3,4). Себебі мәндер аз және жеке-жеке беріледі."
+  },
+  {
+    question: "Қай жағдайда интервалдық вариациялық қатар міндетті түрде қолданылады?",
+    answer: "Егер деректер үздіксіз болса және бақылаулар саны өте көп болса (бой, салмақ, уақыт, жылдамдық), міндетті түрде интервалдық қатар қолданылады."
+  }
+],
+
+        videoId: "jNEj51h7E_k"
+      },
+      {
+        id: 16,
+        code: "Сабақ 25–26",
+        hours: 2,
+        section: "III. Комбинаторика",
+        title: "Кездейсоқ шаманың сандық сипаттамаларын таңдамалар бойынша бағалау",
+short: "Орташа, дисперсия, мода, медиана сияқты сипаттамаларды таңдама арқылы табу.",
+explanation: `
+<p><strong>Кездейсоқ шама</strong> – тәжірибе нәтижесінде әртүрлі мән қабылдай алатын шама. Оны сипаттау үшін бірнеше <strong>сандық сипаттамалар</strong> қолданылады.</p>
+
+<p><strong>Негізгі сандық сипаттамалар:</strong></p>
+<ul>
+  <li><strong>Таңдамалық орташа</strong> – деректердің орта деңгейін көрсетеді;</li>
+  <li><strong>Медиана</strong> – реттелген қатардың орталық мәні;</li>
+  <li><strong>Мода</strong> – ең жиі кездесетін мән;</li>
+  <li><strong>Құлаш</strong> – ең үлкен және ең кіші мәннің айырмасы;</li>
+  <li><strong>Дисперсия және орташа квадраттық ауытқу</strong> – деректердің ортадан қаншалықты шашырағанын көрсетеді.</li>
+</ul>
+
+<hr>
+
+<p><strong>1) Таңдамалық орташа:</strong></p>
+<p style="text-align:center;"><strong>x̄ = (x₁ + x₂ + ... + xₙ) / n</strong></p>
+
+<p>Бұл формула бас жиынтықтың нақты орташа мәнін <strong>жуықтап бағалайды</strong>.</p>
+
+<hr>
+
+<p><strong>2) Медиана:</strong></p>
+<ul>
+  <li>деректер саны тақ болса – ортадағы мән;</li>
+  <li>деректер саны жұп болса – екі ортаның арифметикалық ортасы.</li>
+</ul>
+
+<hr>
+
+<p><strong>3) Мода:</strong></p>
+<p>Ең көп қайталанатын мән. Кейбір жағдайда мода <strong>бірнешеу</strong> немесе <strong>мүлде болмауы</strong> да мүмкін.</p>
+
+<hr>
+
+<p><strong>4) Құлаш:</strong></p>
+<p style="text-align:center;"><strong>R = x_{max} − x_{min}</strong></p>
+
+<hr>
+
+<p><strong>5) Таңдамалық дисперсия:</strong></p>
+<p style="text-align:center;"><strong>D = (1/n) · Σ (xᵢ − x̄)²</strong></p>
+
+<p><strong>Орташа квадраттық ауытқу:</strong></p>
+<p style="text-align:center;"><strong>σ = √D</strong></p>
+
+<hr>
+
+<p><strong>Маңызды идея:</strong> Практикада бас жиынтықты түгел өлшеу мүмкін емес, сондықтан барлық осы сипаттамалар <strong>таңдама арқылы бағаланады</strong>. Таңдама неғұрлым дұрыс әрі өкілді болса, алынған орташа, медиана, дисперсия да соғұрлым шынайы болады.</p>
+`,
+tasks: [
+  {
+    question: "Таңдама деректері: 10, 12, 13, 15, 20. Орташа, құлаш, медиана, моданы толық табыңыз.",
+    answer: "Орташа: x̄ = (10+12+13+15+20)/5 = 70/5 = 14. Құлаш: R = 20 − 10 = 10. Медиана: реттелген қатар (10,12,13,15,20), ортадағы 13. Мода: жоқ (бәрі бір рет кездескен)."
+  },
+  {
+    question: "Сол деректер үшін дисперсия мен орташа квадраттық ауытқуды толық есептеңіз.",
+    answer: "x̄ = 14. Ауытқулар: −4, −2, −1, 1, 6. Квадраттары: 16, 4, 1, 1, 36. Қосындысы: 58. D = 58/5 = 11.6. Орташа квадраттық ауытқу: σ = √11.6 ≈ 3.4."
+  },
+  {
+    question: "Деректер: 5, 7, 7, 9, 12, 20. Орташа, медиана, мода табыңыз.",
+    answer: "Орташа: (5+7+7+9+12+20)/6 = 60/6 = 10. Медиана: (7+9)/2 = 8. Мода: 7."
+  },
+  {
+    question: "10 оқушының тест балдары: 8, 9, 10, 10, 11, 12, 12, 12, 13, 20. Бұл деректер үшін орташа мен медиананы салыстырыңыз.",
+    answer: "Орташа: (барлығы 117)/10 = 11.7. Медиана: (11+12)/2 = 11.5. Орташа медианадан үлкен, себебі 20 деген үлкен шеткі мән орташаға қатты әсер етті."
+  },
+  {
+    question: "Қай жағдайда медиана орташаға қарағанда сенімді көрсеткіш болады? Өмірден мысал келтіріңіз.",
+    answer: "Егер деректерде өте үлкен немесе өте кіші шеткі мәндер болса, медиана сенімді болады. Мысалы, жалақыны сипаттағанда бір адамның аса жоғары табысы орташаға қатты әсер етеді, ал медиана шынайы жағдайды жақсы көрсетеді."
+  },
+  {
+    question: "Екі таңдамада орташа бірдей, бірақ біреуінде σ = 1.2, екіншісінде σ = 4.5. Қай таңдамада деректер тұрақтырақ?",
+    answer: "σ неғұрлым кіші болса, деректер соғұрлым тұрақты болады. Сондықтан σ = 1.2 болған таңдама тұрақтырақ."
+  },
+  {
+    question: "Кездейсоқ шаманың сандық сипаттамаларын қандай мақсатта қолданамыз?",
+    answer: "Деректерді жалпылау, салыстыру, тұрақтылықты бағалау, өзгергіштікті анықтау және бас жиынтық туралы қорытынды жасау үшін қолданамыз."
+  }
+],
+
+        videoId: "5AQ548rRhls"
+      },
+      {
+        id: 17,
+        code: "Сабақ 27–29",
+        hours: 3,
+        section: "III. Комбинаторика",
+        title: "Қайталанатын және қайталанбайтын орналастырулар, алмастырулар мен терулер",
+        short: "Қайталанатын жағдайлар үшін формулаларды қолдану және салыстыру.",
+explanation: `
+<p>Комбинаторикалық есептер екі негізгі түрге бөлінеді: <strong>қайталанбайтын</strong> және <strong>қайталанатын</strong> жағдайлар.</p>
+
+<p><strong>Негізгі сұрақ:</strong> бір элементті бірнеше рет қолдануға <u>рұқсат етіле ме, жоқ па</u>? Осы сұраққа дұрыс жауап беру – формуланы дұрыс таңдаудың кілті.</p>
+
+<hr>
+
+<p><strong>1) Қайталанбайтын жағдайлар (қайта қолдануға болмайды):</strong></p>
+<ul>
+  <li><strong>Алмастыру:</strong> Pₙ = n!</li>
+  <li><strong>Орналастыру:</strong> Aₙᵏ = n! / (n−k)!</li>
+  <li><strong>Теру:</strong> Cₙᵏ = n! / (k!·(n−k)!)</li>
+</ul>
+
+<p>Бұл формулалар адам, билет, орын, лауазым сияқты бір элемент <strong>бір рет қана қолданылатын</strong> есептерде қолданылады.</p>
+
+<hr>
+
+<p><strong>2) Қайталанатын орналастыру (немесе қайталанатын код құру):</strong></p>
+<p>Егер әр орынды толтыру үшін n түрлі элемент бар және олар <strong>қайта-қайта қолданылуы мүмкін болса</strong>, онда барлық мүмкін тізбектер саны:</p>
+
+<p style="text-align:center;"><strong>nᵏ</strong></p>
+
+<p>Бұл формула көбінесе:</p>
+<ul>
+  <li>пароль;</li>
+  <li>код;</li>
+  <li>телефон нөмірі;</li>
+  <li>шрифт комбинациялары</li>
+</ul>
+<p>сияқты есептерде қолданылады.</p>
+
+<hr>
+
+<p><strong>3) Қайталанатын теру идеясы (тереңдету):</strong></p>
+<p>Егер бірдей элементті бірнеше рет таңдауға рұқсат етілсе (мысалы, 5 түрлі оқу құралынан 3 зат алу – бірдей кітап бірнеше рет алынуы мүмкін), онда бұл <strong>қайталанатын теру</strong> болады.</p>
+
+<p>Бұл тақырып мектеп курсында формулаға дейін емес, көбіне <strong>түсінік деңгейінде</strong> қарастырылады.</p>
+
+<hr>
+
+<p><strong>Қайталанатын және қайталанбайтынды ажыратудың «алтын ережесі»:</strong></p>
+<ul>
+  <li>Егер «қайта қолдануға болады», «бірнеше рет алады», «цифр қайталануы мүмкін» десе → <strong>қайталанатын</strong></li>
+  <li>Егер «әрқайсысы бір рет қана», «қайталанбайды», «қайта алынбайды» десе → <strong>қайталанбайтын</strong></li>
+</ul>
+
+<p><strong>ҰБТ-дағы басты тұзақ:</strong> Оқушылар көбіне «пароль» сөзін көргенде автоматты түрде Aₙᵏ қолданады, бірақ егер қайталану рұқсат етілсе – міндетті түрде nᵏ болады.  Қайталанатын және қайталанбайтын терулерді мына ссылкамен көріңіз: https://www.youtube.com/watch?v=BqgyHHkM0gM</p>
+`,
+tasks: [
+  {
+    question: "0–9 цифрларынан ұзындығы 3 болатын код құрылады, цифрлардың қайталануына рұқсат етіледі. Неше түрлі код жасауға болады?",
+    answer: "Әр орынға 10 цифрдан таңдау бар, 3 орын: 10³ = 1000 код."
+  },
+  {
+    question: "0–9 цифрларынан ұзындығы 3 болатын код құрылады, бірақ цифрлар қайталанбайды. Неше түрлі код бар?",
+    answer: "Бұл жағдайда қайталанбайды, әрі реттік маңызды → орналастыру: A₁₀³ = 10·9·8 = 720."
+  },
+  {
+    question: "A, B, C әріптерінен ұзындығы 4 болатын сөз тіркестері құрылады, әріптердің қайталануына рұқсат етіледі. Қанша тіркес бар?",
+    answer: "Әр орынға 3 әріп, 4 орын: 3⁴ = 81."
+  },
+  {
+    question: "A, B, C, D, E әріптерінен 3 әріптен тұратын сөз құрылады, әріптер қайталанбайды. Неше түрлі сөз бар?",
+    answer: "Қайталанбайды және рет маңызды → A₅³ = 5·4·3 = 60."
+  },
+  {
+    question: "4 түрлі түстен ұзындығы 5 болатын тізбек құрылады, түстер қайталануы мүмкін. Неше түрлі тізбек бар?",
+    answer: "Қайталану бар → 4⁵ = 1024."
+  },
+  {
+    question: "6 адамды бір қатарға отырғызу және ол адамдардың орындары ауыстырылуы. Бұл қай формула?",
+    answer: "Барлығы қатысады, қайталанбайды, рет маңызды → алмастыру: P₆ = 6! = 720."
+  },
+  {
+    question: "Пароль есептерінде неге көбінесе nᵏ формуласы қолданылады?",
+    answer: "Себебі пароль символдары көбіне бірнеше рет қайталануы мүмкін және әр орын тәуелсіз түрде толтырылады."
+  },
+  {
+    question: "Қай кезде қайталанбайтын орналастыру, қай кезде қайталанатын орналастыру қолданылатынын бір сөйлеммен қорытындылаңыз.",
+    answer: "Егер бір элементті бірнеше рет қолдануға рұқсат етілмесе – Aₙᵏ, ал рұқсат етілсе – nᵏ қолданылады."
+  }
+],
+
+        videoId: "6KLH7aSBbDs"
+      },
+      {
+        id: 18,
+        code: "Сабақ 30–34",
+        hours: 5,
+        section: "IV. Ықтималдықтар",
+        title: "Оқиғаның ықтималдығы, шартты ықтималдық. Ықтималдықты қосу және көбейту ережелері",
+short: "Кездейсоқ оқиғалар, олардың ықтималдығы және негізгі формулалар.",
+explanation: `
+<p><strong>Кездейсоқ оқиға</strong> – тәжірибе нәтижесінде болуы да, болмауы да мүмкін оқиға. Мысалы: монетаны лақтырғанда «гербтің түсуі», кубик лақтырғанда 6 түсуі.</p>
+
+<p><strong>Ықтималдықтың негізгі қасиеттері:</strong></p>
+<ul>
+  <li>0 ≤ P(A) ≤ 1;</li>
+  <li>P(A) = 0 → оқиға мүмкін емес;</li>
+  <li>P(A) = 1 → оқиға міндетті түрде болады.</li>
+</ul>
+
+<hr>
+
+<p><strong>1) Классикалық ықтималдық формуласы:</strong></p>
+<p style="text-align:center;"><strong>P(A) = n / m</strong></p>
+<ul>
+  <li>m – барлық мүмкін нәтижелер саны;</li>
+  <li>n – A оқиғасына қолайлы нәтижелер саны.</li>
+</ul>
+
+<hr>
+
+<p><strong>2) Ықтималдықты қосу ережесі:</strong></p>
+<p>Егер A және B оқиғалары <strong>үйлесімсіз</strong> (бір уақытта бола алмайтын) болса:</p>
+<p style="text-align:center;"><strong>P(A ∪ B) = P(A) + P(B)</strong></p>
+
+<p>Мысалы: бір рет кубик лақтырғанда 2 немесе 5 түсу.</p>
+
+<hr>
+
+<p><strong>3) Ықтималдықты көбейту ережесі:</strong></p>
+<p>Егер A және B оқиғалары <strong>тәуелсіз</strong> болса:</p>
+<p style="text-align:center;"><strong>P(A ∩ B) = P(A) · P(B)</strong></p>
+
+<p>Мысалы: екі рет монета лақтырғанда екі рет те «герб» түсу.</p>
+
+<hr>
+
+<p><strong>4) Шартты ықтималдық:</strong></p>
+<p>Егер B оқиғасы болғаны белгілі болса, онда A оқиғасының ықтималдығы:</p>
+<p style="text-align:center;"><strong>P(A | B) = P(A ∩ B) / P(B)</strong></p>
+
+<p>Шартты ықтималдық бір оқиғаның екіншісіне әсерін сипаттайды.</p>
+
+<hr>
+
+<p><strong>Маңызды айырмашылық:</strong></p>
+<ul>
+  <li><strong>Тәуелсіз оқиғалар</strong> – біреуінің болуы екіншісіне әсер етпейді (монета, кубик);</li>
+  <li><strong>Тәуелді оқиғалар</strong> – бірінші оқиға екіншісінің ықтималдығын өзгертеді (қораптан шар алу, картаны орнына салмай алу).</li>
+</ul>
+
+<p><strong>ҰБТ-дағы басты тұзақ:</strong> Оқушылар шартты ықтималдық пен тәуелсіз оқиғаларды жиі шатастырады.</p>
+`,
+tasks: [
+  {
+    question: "Қарапайым ойын тасы (1–6) лақтырылады. Жұп сан түсу ықтималдығын табыңыз.",
+    answer: "Жұп сандар: 2, 4, 6 → 3 нәтиже. Барлық нәтиже: 6. P = 3/6 = 1/2."
+  },
+  {
+    question: "52 карталық колодадан бір карта алынады. Қызыл масть (червa немесе бубна) түсу ықтималдығын табыңыз.",
+    answer: "Қызыл карталар – 26. Барлығы – 52. P = 26/52 = 1/2."
+  },
+  {
+    question: "Екі рет әділ монета лақтырылады. 1) Екі рет те герб түсу ықтималдығы. 2) Кемінде бір рет герб түсу ықтималдығы.",
+    answer: "Барлық нәтижелер: {ГГ, ГЖ, ЖГ, ЖЖ}. 1) P(ГГ) = 1/4. 2) Кемінде бір Г: 3 нәтиже ⇒ P = 3/4."
+  },
+  {
+    question: "Қорапта 5 ақ және 3 қара шар бар. Бір шар алынды. Оның ақ болуының ықтималдығын табыңыз.",
+    answer: "Барлығы 8 шар. Ақтың саны 5. P = 5/8."
+  },
+  {
+    question: "Сол қораптан шар орнына салынбай тағы бір шар алынады. Екі рет те ақ шар түсу ықтималдығын табыңыз.",
+    answer: "1-рет: 5/8. 2-рет: 4/7. Тәуелді оқиғалар → көбейту: P = (5/8)·(4/7) = 20/56 = 5/14."
+  },
+  {
+    question: "Қорапта 4 қызыл, 6 көк шар бар. Бір шар кездейсоқ алынды. Ол қызыл екені белгілі. Екінші рет алынған шардың көк болуының шартты ықтималдығын табыңыз.",
+    answer: "1-қадам: 1-қызыл алынды → қорапта 3 қызыл, 6 көк қалды. Барлығы 9. P(көк | қызыл алынған) = 6/9 = 2/3."
+  },
+  {
+    question: "Екі тәуелсіз оқиға деп нені айтамыз?",
+    answer: "Бір оқиғаның болуы екінші оқиғаның ықтималдығына әсер етпесе, олар тәуелсіз оқиғалар деп аталады."
+  },
+  {
+    question: "Қай кезде шартты ықтималдық қолданылады?",
+    answer: "Егер бір оқиғаның болғаны белгілі болып, екіншісінің ықтималдығы соған байланысты өзгерсе, шартты ықтималдық қолданылады."
+  }
+],
+        videoId: "jr3K7oz97eQ"
+      }
+    ];
+
+    // --------- UI ЛОГИКА ---------
+    const cardsContainer = document.getElementById("topicCards");
+    const searchInput = document.getElementById("searchInput");
+    const sectionFilter = document.getElementById("sectionFilter");
+    const topicCountLabel = document.getElementById("topicCountLabel");
+
+    const modalEl = document.getElementById("topicModal");
+    const modalTitleEl = document.getElementById("modalTitle");
+    const modalKickerEl = document.getElementById("modalKicker");
+    const modalMetaEl = document.getElementById("modalMeta");
+    const modalBodyEl = document.getElementById("modalBody");
+    const modalCloseBtn = document.getElementById("modalCloseBtn");
+
+    const scrollTopicsBtn = document.getElementById("scrollTopicsBtn");
+    const scrollVideosBtn = document.getElementById("scrollVideosBtn");
+    const videosSection = document.getElementById("videos");
+
+    function renderCards() {
+      const term = (searchInput.value || "").toLowerCase().trim();
+      const sec = sectionFilter.value;
+
+      cardsContainer.innerHTML = "";
+
+      const filtered = topics.filter(t => {
+        const inSection = sec === "all" || t.section === sec;
+        const inText =
+          !term ||
+          t.title.toLowerCase().includes(term) ||
+          t.short.toLowerCase().includes(term);
+        return inSection && inText;
+      });
+
+      filtered.forEach(topic => {
+        const card = document.createElement("article");
+        card.className = "topic-card";
+        card.innerHTML = `
+          <div class="topic-badge">${topic.code}</div>
+          <div class="topic-title">${topic.title}</div>
+          <div class="topic-group">${topic.section}</div>
+          <p class="topic-short">${topic.short}</p>
+          <div class="topic-meta-row">
+            <div class="topic-chips">
+              <span class="chip chip-hours">${topic.hours} сағ</span>
+            </div>
+            <button class="btn-primary" data-topic-id="${topic.id}">
+              Қарау
+            </button>
+          </div>
+        `;
+        cardsContainer.appendChild(card);
+      });
+
+      topicCountLabel.textContent = `${filtered.length} тақырып табылды`;
+    }
+
+    function openModal(id) {
+      const topic = topics.find(t => t.id === id);
+      if (!topic) return;
+
+      modalTitleEl.textContent = topic.title;
+      modalKickerEl.textContent = topic.section;
+      modalMetaEl.textContent = `${topic.code} • ${topic.hours} сағ`;
+
+      // Түсіндірме + тапсырмалар HTML
+      let tasksHtml = "";
+      if (topic.tasks && topic.tasks.length) {
+        tasksHtml = `
+          <div class="modal-section-title"><span>Тапсырмалар</span> (жауабын «Жауабын көру» арқылы ашуға болады)</div>
+          <ul class="tasks-list">
+            ${topic.tasks
+              .map((task, idx) => {
+                const key = `${topic.id}-${idx}`;
+                return `
+                  <li class="task-item">
+                    <div class="task-question"><strong>Тапсырма ${idx + 1}.</strong> ${task.question}</div>
+                    <button class="btn-ghost small" data-answer="${key}">Жауабын көру</button>
+                    <div class="task-answer" data-answer-box="${key}">${task.answer}</div>
+                  </li>
+                `;
+              })
+              .join("")}
+          </ul>
+        `;
+      }
+
+      let videoHtml = "";
+      if (topic.videoId) {
+        videoHtml = `
+          <div class="modal-video">
+            <div class="modal-video-header">
+              <span>Қосымша видео-сабақ (YouTube)</span>
+              <span>Видео ID: ${topic.videoId}</span>
+            </div>
+            <div class="modal-video-body">
+              <iframe src="https://www.youtube.com/embed/${topic.videoId}" allowfullscreen></iframe>
+            </div>
+          </div>
+        `;
+      }
+
+      modalBodyEl.innerHTML = `
+        <div class="modal-section-title"><span>Түсіндірме</span></div>
+        <div class="modal-description">
+          ${topic.explanation}
+        </div>
+        ${tasksHtml}
+        ${videoHtml}
+      `;
+
+      modalEl.classList.add("open");
+      modalEl.setAttribute("aria-hidden", "false");
+    }
+
+    function closeModal() {
+      modalEl.classList.remove("open");
+      modalEl.setAttribute("aria-hidden", "true");
+    }
+
+    // Event listeners
+    cardsContainer.addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-topic-id]");
+      if (!btn) return;
+      const id = Number(btn.getAttribute("data-topic-id"));
+      openModal(id);
+    });
+
+    modalCloseBtn.addEventListener("click", closeModal);
+
+    modalEl.addEventListener("click", (e) => {
+      if (e.target === modalEl) {
+        closeModal();
+      }
+    });
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modalEl.classList.contains("open")) {
+        closeModal();
+      }
+    });
+
+    // Жауаптарды ашу/жасыру
+    modalBodyEl.addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-answer]");
+      if (!btn) return;
+      const key = btn.getAttribute("data-answer");
+      const box = modalBodyEl.querySelector(`[data-answer-box="${key}"]`);
+      if (!box) return;
+      const visible = box.classList.toggle("visible");
+      btn.textContent = visible ? "Жауабын жасыру" : "Жауабын көру";
+    });
+
+    // Іздеу және фильтр
+    searchInput.addEventListener("input", () => {
+      renderCards();
+    });
+    sectionFilter.addEventListener("change", () => {
+      renderCards();
+    });
+
+    // Скролл батырмалары
+    if (scrollTopicsBtn) {
+      scrollTopicsBtn.addEventListener("click", () => {
+        document.getElementById("topics").scrollIntoView({ behavior: "smooth" });
+      });
+    }
+    if (scrollVideosBtn) {
+      scrollVideosBtn.addEventListener("click", () => {
+        videosSection.scrollIntoView({ behavior: "smooth" });
+      });
+    }
+
+    // Бастапқы рендер
+    renderCards();
+  </script>
+</body>
+</html>
