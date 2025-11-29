@@ -481,6 +481,239 @@
 
     /* Videos */
 
+    .mathquiz-wrapper {
+    border-radius: 24px;
+    padding: 32px 24px 40px;
+    margin: 32px auto;
+    max-width: 1200px;
+    background: radial-gradient(circle at top left, #1d293b 0, #020617 55%);
+    box-shadow: var(--mq-shadow-soft);
+    color: var(--mq-text-main);
+  }
+
+  .mathquiz-title {
+    font-size: 28px;
+    margin-bottom: 4px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+  }
+
+  .mathquiz-subtitle {
+    font-size: 14px;
+    color: var(--mq-text-soft);
+    margin-bottom: 24px;
+  }
+
+  .mathquiz-section {
+    margin-top: 24px;
+    padding: 20px 18px 24px;
+    border-radius: var(--mq-radius-xl);
+    background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.08) 0, transparent 55%), radial-gradient(circle at bottom right, rgba(168, 85, 247, 0.08) 0, transparent 55%), #020617;
+    
+  }
+
+  .mathquiz-section + .mathquiz-section {
+    margin-top: 28px;
+  }
+
+  .mathquiz-section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .mathquiz-section-header h3 {
+    font-size: 20px;
+    margin: 0;
+  }
+
+  .mathquiz-section-tag {
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(148, 163, 184, 0.6);
+    background: rgba(15, 23, 42, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--mq-text-soft);
+  }
+
+  .mathquiz-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+  }
+
+  .mathquiz-card {
+    position: relative;
+    border-radius: var(--mq-radius-lg);
+    padding: 14px 13px 14px 40px;
+    background: var(--mq-card-bg);
+    border: 1px solid rgba(30, 64, 175, 0.45);
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.65);
+    transition:
+      transform var(--mq-transition-fast),
+      box-shadow var(--mq-transition-fast),
+      border-color var(--mq-transition-fast),
+      background var(--mq-transition-fast);
+  }
+
+  .mathquiz-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.9);
+    border-color: rgba(56, 189, 248, 0.8);
+  }
+
+  .mathquiz-q-number {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 22px;
+    height: 22px;
+    border-radius: 999px;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid rgba(148, 163, 184, 0.7);
+    color: var(--mq-text-soft);
+    font-weight: 600;
+  }
+
+  .mathquiz-question {
+    font-size: 13px;
+    line-height: 1.45;
+    margin-bottom: 8px;
+  }
+
+  .mathquiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 13px;
+  }
+
+  .mathquiz-options label {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 5px 8px;
+    border-radius: 999px;
+    cursor: pointer;
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid rgba(51, 65, 85, 0.7);
+    transition:
+      background var(--mq-transition-fast),
+      border-color var(--mq-transition-fast),
+      transform 0.12s ease-out;
+  }
+
+  .mathquiz-options label:hover {
+    background: rgba(30, 64, 175, 0.55);
+    border-color: rgba(129, 140, 248, 0.8);
+    transform: translateY(-1px);
+  }
+
+  .mathquiz-options input[type="radio"] {
+    margin-top: 2px;
+    accent-color: var(--mq-accent);
+  }
+
+  .mathquiz-btn {
+    margin-top: 16px;
+    padding: 9px 18px;
+    border-radius: 999px;
+    border: 0;
+    background: radial-gradient(circle at top left, #4ade80, #22c55e);
+    color: #022c22;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 14px 35px rgba(34, 197, 94, 0.6);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition:
+      transform var(--mq-transition-fast),
+      box-shadow var(--mq-transition-fast),
+      filter 0.1s ease-out;
+  }
+
+  .mathquiz-btn:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.05);
+    box-shadow: 0 18px 45px rgba(34, 197, 94, 0.85);
+  }
+
+  .mathquiz-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 8px 25px rgba(34, 197, 94, 0.7);
+  }
+
+  .mathquiz-btn::after {
+    content: "✓";
+    font-size: 14px;
+  }
+
+  .mathquiz-result {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--mq-text-soft);
+  }
+
+  /* Correct / wrong highlighting */
+  .mathquiz-card.is-correct {
+    border-color: rgba(34, 197, 94, 0.9);
+    background: radial-gradient(circle at top left, rgba(34, 197, 94, 0.18), #020617);
+  }
+
+  .mathquiz-card.is-correct .mathquiz-q-number {
+    background: var(--mq-accent-soft);
+    border-color: rgba(34, 197, 94, 0.9);
+    color: #bbf7d0;
+  }
+
+  .mathquiz-card.is-wrong {
+    border-color: rgba(248, 113, 113, 0.9);
+    background: radial-gradient(circle at top left, var(--mq-error-soft), #020617);
+  }
+
+  .mathquiz-card.is-wrong .mathquiz-q-number {
+    background: rgba(127, 29, 29, 0.95);
+    border-color: rgba(248, 113, 113, 0.9);
+    color: #fecaca;
+  }
+
+  .mathquiz-card.is-unanswered {
+    border-style: dashed;
+    border-color: rgba(148, 163, 184, 0.9);
+  }
+
+  .mathquiz-card .mathquiz-correct-answer {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #a5b4fc;
+  }
+
+  @media (max-width: 768px) {
+    .mathquiz-wrapper {
+      margin: 20px 12px;
+      padding: 20px 14px 24px;
+    }
+
+    .mathquiz-section {
+      padding: 16px 12px 20px;
+    }
+
+    .mathquiz-card {
+      padding: 13px 11px 13px 38px;
+    }
+  }
+
     .videos-section {
       border-radius: var(--radius-xl);
       border: 1px solid rgba(31,41,55,0.9);
@@ -882,6 +1115,688 @@
       <!-- JS толтырады -->
     </section>
 
+    <section class="mathquiz-section" data-section="I">
+      <header class="mathquiz-section-header">
+        <div class="mathquiz-section-tag">I бөлім</div>
+        <h3>«Математикалық статистика»</h3>
+      </header>
+  
+      <div class="mathquiz-grid">
+        <!-- Q1 -->
+        <article class="mathquiz-card" data-correct="C">
+          <div class="mathquiz-q-number">1</div>
+          <div class="mathquiz-question">
+            Шахмат ойыны жарысында оқушылар төмендегідей ұпай жинады:
+            13,1; 13,9; 14; 14,2; 15; 15,6; 12,7; 12,9; 13,8; 13,9; 13,7; 13,5; 14,2.
+            Осы ұпайлардың арифметикалық ортасын табыңыздар.
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="I-1" value="A">A) 13,5</label>
+            <label><input type="radio" name="I-1" value="B">B) 12,9</label>
+            <label><input type="radio" name="I-1" value="C">C) 13,88</label>
+            <label><input type="radio" name="I-1" value="D">D) 14,1</label>
+          </div>
+        </article>
+  
+        <!-- Q2 -->
+        <article class="mathquiz-card" data-correct="A">
+          <div class="mathquiz-q-number">2</div>
+          <div class="mathquiz-question">
+            Автомобиль 61,3 км/сағ жылдамдықпен 2 сағат, келесі 3 сағатта 73,4 км/сағ жылдамдықпен,
+            65,8 км/сағ жылдамдықпен 1 сағат жүрді. Автомобильдің орташа жылдамдығын табыңыз.
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="I-2" value="A">A) 68,1</label>
+            <label><input type="radio" name="I-2" value="B">B) 72,9</label>
+            <label><input type="radio" name="I-2" value="C">C) 73,5</label>
+            <label><input type="radio" name="I-2" value="D">D) 64,1</label>
+          </div>
+        </article>
+  
+        <!-- Q3 -->
+        <article class="mathquiz-card" data-correct="D">
+          <div class="mathquiz-q-number">3</div>
+          <div class="mathquiz-question">
+            Математикалық сайыстан оқушылардың алған ұпайлары:
+            12; 14; 11; 16; 15; 13; 20. Ұпайлар қатарының медианасын табыңыздар.
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="I-3" value="A">A) 17</label>
+            <label><input type="radio" name="I-3" value="B">B) 16</label>
+            <label><input type="radio" name="I-3" value="C">C) 15</label>
+            <label><input type="radio" name="I-3" value="D">D) 14</label>
+          </div>
+        </article>
+  
+        <!-- Q4 -->
+        <article class="mathquiz-card" data-correct="B">
+          <div class="mathquiz-q-number">4</div>
+          <div class="mathquiz-question">
+            7; 6; 10; 5; 9; 8; 11; 3 сандар қатарының медианасын табыңыз.
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="I-4" value="A">A) 8</label>
+            <label><input type="radio" name="I-4" value="B">B) 7,5</label>
+            <label><input type="radio" name="I-4" value="C">C) 8,5</label>
+            <label><input type="radio" name="I-4" value="D">D) 5</label>
+          </div>
+        </article>
+  
+        <!-- Q5 -->
+        <article class="mathquiz-card" data-correct="A">
+          <div class="mathquiz-q-number">5</div>
+          <div class="mathquiz-question">
+            Сандардың модасын табыңыз: 0,5; 0,3; 0,1; 0,5; 1,3; 0,5; 1,1; 1,2; 0,4; 0,4; 0,5.
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="I-5" value="A">A) 0,5</label>
+            <label><input type="radio" name="I-5" value="B">B) 0,3</label>
+            <label><input type="radio" name="I-5" value="C">C) 0,4</label>
+            <label><input type="radio" name="I-5" value="D">D) 1,1</label>
+          </div>
+        </article>
+  
+        <!-- Q6 -->
+        <article class="mathquiz-card" data-correct="D">
+          <div class="mathquiz-q-number">6</div>
+          <div class="mathquiz-question">
+            Күндізгі ауа температурасы төмендегідей болса, ауа температурасының өзгеріс ауқымын табыңыздар:
+            −5; −6; −11; −7; −1; −5; −7; −9.
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="I-6" value="A">A) −11</label>
+            <label><input type="radio" name="I-6" value="B">B) −3</label>
+            <label><input type="radio" name="I-6" value="C">C) −4</label>
+            <label><input type="radio" name="I-6" value="D">D) −10</label>
+          </div>
+        </article>
+  
+        <!-- Q7 -->
+        <article class="mathquiz-card" data-correct="C">
+          <div class="mathquiz-q-number">7</div>
+          <div class="mathquiz-question">
+            Мұрат бес балық аулады. Балықтардың салмақтары әртүрлі:
+            0,725; 0,6; 0,825; 1,2; 0,9. Балықтардың орташа салмағын табыңыз.
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="I-7" value="A">A) 0,91</label>
+            <label><input type="radio" name="I-7" value="B">B) 0,8</label>
+            <label><input type="radio" name="I-7" value="C">C) 0,85</label>
+            <label><input type="radio" name="I-7" value="D">D) 0,11</label>
+          </div>
+        </article>
+  
+        <!-- Q8 -->
+        <article class="mathquiz-card" data-correct="B">
+          <div class="mathquiz-q-number">8</div>
+          <div class="mathquiz-question">
+            7-сынып оқушыларының бойларының ұзындықтары:
+            1,48; 1,36; 1,5; 1,63; 1,58; 1,59; 1,63; 1,38; 1,63; 1,72.
+            Оқушылар бойының өзгеріс ауқымын табыңыздар.
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="I-8" value="A">A) 0,8</label>
+            <label><input type="radio" name="I-8" value="B">B) 0,36</label>
+            <label><input type="radio" name="I-8" value="C">C) 0,64</label>
+            <label><input type="radio" name="I-8" value="D">D) 0,39</label>
+          </div>
+        </article>
+  
+        <!-- Q9 -->
+        <article class="mathquiz-card" data-correct="A">
+          <div class="mathquiz-q-number">9</div>
+          <div class="mathquiz-question">
+            Сол биіктік деректерінің модасын табыңыздар:
+            1,48; 1,36; 1,5; 1,63; 1,58; 1,59; 1,63; 1,38; 1,63; 1,72.
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="I-9" value="A">A) 1,63</label>
+            <label><input type="radio" name="I-9" value="B">B) 1,36</label>
+            <label><input type="radio" name="I-9" value="C">C) 1,64</label>
+            <label><input type="radio" name="I-9" value="D">D) 1,38</label>
+          </div>
+        </article>
+  
+        <!-- Q10 -->
+        <article class="mathquiz-card" data-correct="D">
+          <div class="mathquiz-q-number">10</div>
+          <div class="mathquiz-question">
+            Сол биіктік деректерінің медианасын табыңыздар:
+            1,48; 1,36; 1,5; 1,63; 1,58; 1,59; 1,63; 1,38; 1,63; 1,72.
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="I-10" value="A">A) 1,39</label>
+            <label><input type="radio" name="I-10" value="B">B) 1,85</label>
+            <label><input type="radio" name="I-10" value="C">C) 1,64</label>
+            <label><input type="radio" name="I-10" value="D">D) 1,585</label>
+          </div>
+        </article>
+      </div>
+  
+      <button class="mathquiz-btn" data-check-quiz>Жауаптарды тексеру (I бөлім)</button>
+      <div class="mathquiz-result" aria-live="polite"></div>
+    </section>
+  
+    <!-- II. Статистикалық кесте, алқап, гистограмма -->
+    <section class="mathquiz-section" data-section="II">
+      <header class="mathquiz-section-header">
+        <div class="mathquiz-section-tag">II бөлім</div>
+        <h3>«Статистикалық кесте, алқап, гистограмма»</h3>
+      </header>
+  
+      <div class="mathquiz-grid">
+        <!-- Q1 -->
+        <article class="mathquiz-card" data-correct="D">
+          <div class="mathquiz-q-number">1</div>
+          <div class="mathquiz-question">
+            Кестеде x және y айнымалылардың арасындағы тәуелділік көрсетілген.
+            Қай теңдеу осы тәуелділікті сипаттайды?
+            <br><br>
+            x: 1, 2, 3, 4 <br>
+            y: 2, 4, 6, 8
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="II-1" value="A">A) y = 2x + 1</label>
+            <label><input type="radio" name="II-1" value="B">B) y = 3x − 1</label>
+            <label><input type="radio" name="II-1" value="C">C) y = 2x − 1</label>
+            <label><input type="radio" name="II-1" value="D">D) y = 2x</label>
+            <label><input type="radio" name="II-1" value="E">E) y = 3x</label>
+          </div>
+        </article>
+  
+        <!-- Q2 -->
+        <article class="mathquiz-card" data-correct="A">
+          <div class="mathquiz-q-number">2</div>
+          <div class="mathquiz-question">
+            Қабырғасы 8-ге тең шаршы мен қабырғалары 9 және 7-ге тең тіктөртбұрыш берілген.
+            А және В бағандарын салыстырыңыз:
+            <br><br>
+            A бағаны: шаршының периметрі<br>
+            B бағаны: тіктөртбұрыштың периметрі
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="II-2" value="A">A) A = B</label>
+            <label><input type="radio" name="II-2" value="B">B) 3A = 2B</label>
+            <label><input type="radio" name="II-2" value="C">C) 2A = 3B</label>
+            <label><input type="radio" name="II-2" value="D">D) A &gt; B</label>
+            <label><input type="radio" name="II-2" value="E">E) A &lt; B</label>
+          </div>
+        </article>
+  
+        <!-- Q3 -->
+        <article class="mathquiz-card" data-correct="B">
+          <div class="mathquiz-q-number">3</div>
+          <div class="mathquiz-question">
+            Кестенің құрылу ережесін анықтап, сұрақ белгісінің орнындағы санды табыңыз.
+            <br><br>
+            7 &nbsp;&nbsp; 16 &nbsp;&nbsp; 6 &nbsp;&nbsp; 11 &nbsp;&nbsp; 5 &nbsp;&nbsp; 2 <br>
+            2 &nbsp;&nbsp; 2 &nbsp;&nbsp; 3 &nbsp;&nbsp; 2 &nbsp;&nbsp; 3 &nbsp;&nbsp; 4 <br>
+            49 &nbsp; 256 &nbsp; 216 &nbsp; 121 &nbsp; ? &nbsp; 16
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="II-3" value="A">A) 140</label>
+            <label><input type="radio" name="II-3" value="B">B) 125</label>
+            <label><input type="radio" name="II-3" value="C">C) 128</label>
+            <label><input type="radio" name="II-3" value="D">D) 250</label>
+            <label><input type="radio" name="II-3" value="E">E) 135</label>
+          </div>
+        </article>
+  
+        <!-- Q4  (дұрыс жауабын өзіңіз тексеріп, қажет болса data-correct-ті өзгерте аласыз) -->
+        <article class="mathquiz-card" data-correct="E">
+          <div class="mathquiz-q-number">4</div>
+          <div class="mathquiz-question">
+            (a − c) + (b − d) өрнегінің мәнін тап.
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="II-4" value="A">A) 4</label>
+            <label><input type="radio" name="II-4" value="B">B) 1</label>
+            <label><input type="radio" name="II-4" value="C">C) 3</label>
+            <label><input type="radio" name="II-4" value="D">D) 2,5</label>
+            <label><input type="radio" name="II-4" value="E">E) 2</label>
+          </div>
+        </article>
+  
+        <!-- Q5 -->
+        <article class="mathquiz-card" data-correct="C">
+          <div class="mathquiz-q-number">5</div>
+          <div class="mathquiz-question">
+            Төмендегі кестеде жұмысшылардың жалақысының бөлінуі көрсетілген (мың теңге).
+            Жұмысшылардың орташа жалақысын бағалаңыз.
+            <br><br>
+            50–70: 10 адам<br>
+            70–90: 20 адам<br>
+            90–110: 30 адам<br>
+            110–130: 20 адам<br>
+            130–150: 10 адам
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="II-5" value="A">A) 150000 тг</label>
+            <label><input type="radio" name="II-5" value="B">B) 200000 тг</label>
+            <label><input type="radio" name="II-5" value="C">C) 100000 тг</label>
+            <label><input type="radio" name="II-5" value="D">D) 180000 тг</label>
+          </div>
+        </article>
+  
+        <!-- Q6 -->
+        <article class="mathquiz-card" data-correct="A">
+          <div class="mathquiz-q-number">6</div>
+          <div class="mathquiz-question">
+            Кестедегі мәліметтер бойынша дисперсияны бағалаңыз:
+            <br><br>
+            0–10: 5<br>
+            10–20: 10<br>
+            20–30: 15
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="II-6" value="A">A) 40,7</label>
+            <label><input type="radio" name="II-6" value="B">B) 31,8</label>
+            <label><input type="radio" name="II-6" value="C">C) 16,4</label>
+            <label><input type="radio" name="II-6" value="D">D) 53,9</label>
+          </div>
+        </article>
+  
+        <!-- Q7 -->
+        <article class="mathquiz-card" data-correct="D">
+          <div class="mathquiz-q-number">7</div>
+          <div class="mathquiz-question">
+            Кестедегі мәліметтер негізінде моданы табыңыз:
+            <br><br>
+            1–5: 8<br>
+            6–10: 12<br>
+            11–15: 5
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="II-7" value="A">A) Басқа жауап</label>
+            <label><input type="radio" name="II-7" value="B">B) 11–15</label>
+            <label><input type="radio" name="II-7" value="C">C) 1–5</label>
+            <label><input type="radio" name="II-7" value="D">D) 6–10</label>
+          </div>
+        </article>
+  
+        <!-- Q8 -->
+        <article class="mathquiz-card" data-correct="A">
+          <div class="mathquiz-q-number">8</div>
+          <div class="mathquiz-question">
+            Жиілік алқабы берілген, онда жарнама науқанынан кейінгі сатылымдар көрсетілген.
+            Егер алқаптың орташа мәні 150 бірлік болса, жарнамадан кейін сатылымдар қалай өзгерді?
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="II-8" value="A">A) 150 бірлікке жетті</label>
+            <label><input type="radio" name="II-8" value="B">B) 150 бірліктен асты</label>
+            <label><input type="radio" name="II-8" value="C">C) 50 бірлік болды</label>
+            <label><input type="radio" name="II-8" value="D">D) 250 бірліктен асты</label>
+          </div>
+        </article>
+  
+        <!-- Q9 (гистограмма/диаграммаға байланысты – дұрыс жауапты өзіңізге қарай тексеріп өзгертуге болады) -->
+        <article class="mathquiz-card" data-correct="A">
+          <div class="mathquiz-q-number">9</div>
+          <div class="mathquiz-question">
+            Ұжымдық шаруашылықта 60 га жерге егілген дәнді-дақылдардың пайыздық мөлшері
+            дөңгелек диаграммада көрсетілген. Неше гектарына тары егілді?
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="II-9" value="A">A) 12</label>
+            <label><input type="radio" name="II-9" value="B">B) 16</label>
+            <label><input type="radio" name="II-9" value="C">C) 18</label>
+            <label><input type="radio" name="II-9" value="D">D) 15</label>
+            <label><input type="radio" name="II-9" value="E">E) 20</label>
+          </div>
+        </article>
+  
+        <!-- Q10 (суретке байланысты – placeholder жауап, қажет болса data-correct-ті ауыстырыңыз) -->
+        <article class="mathquiz-card" data-correct="B">
+          <div class="mathquiz-q-number">10</div>
+          <div class="mathquiz-question">
+            Әрбір келесі суретке тұрақты смайликтер саны қосылып отырды.
+            Отызыншы суреттегі смайликтер санын анықтаңыз.
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="II-10" value="A">A) 160</label>
+            <label><input type="radio" name="II-10" value="B">B) 152</label>
+            <label><input type="radio" name="II-10" value="C">C) 170</label>
+            <label><input type="radio" name="II-10" value="D">D) 150</label>
+            <label><input type="radio" name="II-10" value="E">E) 100</label>
+          </div>
+        </article>
+      </div>
+  
+      <button class="mathquiz-btn" data-check-quiz>Жауаптарды тексеру (II бөлім)</button>
+      <div class="mathquiz-result" aria-live="polite"></div>
+    </section>
+  
+    <!-- III. Комбинаторика -->
+    <section class="mathquiz-section" data-section="III">
+      <header class="mathquiz-section-header">
+        <div class="mathquiz-section-tag">III бөлім</div>
+        <h3>«Комбинаторика»</h3>
+      </header>
+  
+      <div class="mathquiz-grid">
+        <!-- Q1 -->
+        <article class="mathquiz-card" data-correct="C">
+          <div class="mathquiz-q-number">1</div>
+          <div class="mathquiz-question">
+            5 түрлі кітапты сөреге неше тәсілмен орналастыруға болады?
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="III-1" value="A">A) 180</label>
+            <label><input type="radio" name="III-1" value="B">B) 150</label>
+            <label><input type="radio" name="III-1" value="C">C) 120</label>
+            <label><input type="radio" name="III-1" value="D">D) 90</label>
+          </div>
+        </article>
+  
+        <!-- Q2 -->
+        <article class="mathquiz-card" data-correct="B">
+          <div class="mathquiz-q-number">2</div>
+          <div class="mathquiz-question">
+            Екі ойын сүйегі лақтырылды. Түскен сандардың қосындысы 7 болу ықтималдығы қандай?
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="III-2" value="A">A) 1/5</label>
+            <label><input type="radio" name="III-2" value="B">B) 1/6</label>
+            <label><input type="radio" name="III-2" value="C">C) 1/8</label>
+            <label><input type="radio" name="III-2" value="D">D) 2/3</label>
+          </div>
+        </article>
+  
+        <!-- Q3 -->
+        <article class="mathquiz-card" data-correct="C">
+          <div class="mathquiz-q-number">3</div>
+          <div class="mathquiz-question">
+            1-ден 20-ға дейінгі сандардан кездейсоқ таңдалған санның 3-ке бөліну
+            ықтималдығы қандай?
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="III-3" value="A">A) 1/10</label>
+            <label><input type="radio" name="III-3" value="B">B) 1/2</label>
+            <label><input type="radio" name="III-3" value="C">C) 3/10</label>
+            <label><input type="radio" name="III-3" value="D">D) 1/3</label>
+          </div>
+        </article>
+  
+        <!-- Q4 -->
+        <article class="mathquiz-card" data-correct="A">
+          <div class="mathquiz-q-number">4</div>
+          <div class="mathquiz-question">
+            Сыныпта 25 оқушы бар. Сынып жетекшісі мен орынбасарын
+            неше түрлі тәсілмен таңдауға болады?
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="III-4" value="A">A) 600</label>
+            <label><input type="radio" name="III-4" value="B">B) 500</label>
+            <label><input type="radio" name="III-4" value="C">C) 180</label>
+            <label><input type="radio" name="III-4" value="D">D) 400</label>
+          </div>
+        </article>
+  
+        <!-- Q5 -->
+        <article class="mathquiz-card" data-correct="A">
+          <div class="mathquiz-q-number">5</div>
+          <div class="mathquiz-question">
+            Сөреде 7 түрлі кітап тұр. Осы кітаптардан 3 кітапты
+            неше түрлі тәсілмен таңдауға болады?
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="III-5" value="A">A) 35</label>
+            <label><input type="radio" name="III-5" value="B">B) 50</label>
+            <label><input type="radio" name="III-5" value="C">C) 45</label>
+            <label><input type="radio" name="III-5" value="D">D) 21</label>
+          </div>
+        </article>
+  
+        <!-- Q6 -->
+        <article class="mathquiz-card" data-correct="D">
+          <div class="mathquiz-q-number">6</div>
+          <div class="mathquiz-question">
+            «АНАНАС» сөзіндегі әріптерді пайдаланып қанша әртүрлі сөз құрастыруға болады?
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="III-6" value="A">A) 40</label>
+            <label><input type="radio" name="III-6" value="B">B) 70</label>
+            <label><input type="radio" name="III-6" value="C">C) 50</label>
+            <label><input type="radio" name="III-6" value="D">D) 60</label>
+          </div>
+        </article>
+  
+        <!-- Q7 -->
+        <article class="mathquiz-card" data-correct="A">
+          <div class="mathquiz-q-number">7</div>
+          <div class="mathquiz-question">
+            Қалтада 4 қызыл, 3 көк және 2 жасыл шар бар. Кездейсоқ 3 шар алынды.
+            Олардың бәрі әртүрлі түсті болу ықтималдығы қандай?
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="III-7" value="A">A) 2/7</label>
+            <label><input type="radio" name="III-7" value="B">B) 1/5</label>
+            <label><input type="radio" name="III-7" value="C">C) 3/10</label>
+            <label><input type="radio" name="III-7" value="D">D) 1/6</label>
+          </div>
+        </article>
+  
+        <!-- Q8 -->
+        <article class="mathquiz-card" data-correct="C">
+          <div class="mathquiz-q-number">8</div>
+          <div class="mathquiz-question">
+            Дөңгелек столда 8 адамды отырғызу керек.
+            Екі белгілі адам қатар отыруы үшін оларды неше түрлі тәсілмен орналастыруға болады?
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="III-8" value="A">A) 1360</label>
+            <label><input type="radio" name="III-8" value="B">B) 1250</label>
+            <label><input type="radio" name="III-8" value="C">C) 1440</label>
+            <label><input type="radio" name="III-8" value="D">D) 1540</label>
+          </div>
+        </article>
+  
+        <!-- Q9 -->
+        <article class="mathquiz-card" data-correct="A">
+          <div class="mathquiz-q-number">9</div>
+          <div class="mathquiz-question">
+            Тиынды 5 рет лақтырғанда, дәл 3 рет «елтаңба» жағының түсу
+            ықтималдығы қандай?
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="III-9" value="A">A) 5/16</label>
+            <label><input type="radio" name="III-9" value="B">B) 3/16</label>
+            <label><input type="radio" name="III-9" value="C">C) 7/32</label>
+            <label><input type="radio" name="III-9" value="D">D) 9/32</label>
+          </div>
+        </article>
+  
+        <!-- Q10 -->
+        <article class="mathquiz-card" data-correct="A">
+          <div class="mathquiz-q-number">10</div>
+          <div class="mathquiz-question">
+            Қалтада 7 қызыл және 3 көк шар бар. Кездейсоқ 3 шар алынды.
+            Олардың екеуі қызыл, біреуі көк болу ықтималдығы қандай?
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="III-10" value="A">A) 21/40</label>
+            <label><input type="radio" name="III-10" value="B">B) 3/16</label>
+            <label><input type="radio" name="III-10" value="C">C) 7/25</label>
+            <label><input type="radio" name="III-10" value="D">D) 9/28</label>
+          </div>
+        </article>
+      </div>
+  
+      <button class="mathquiz-btn" data-check-quiz>Жауаптарды тексеру (III бөлім)</button>
+      <div class="mathquiz-result" aria-live="polite"></div>
+    </section>
+  
+    <!-- IV. Ықтималдықтар -->
+    <section class="mathquiz-section" data-section="IV">
+      <header class="mathquiz-section-header">
+        <div class="mathquiz-section-tag">IV бөлім</div>
+        <h3>«Ықтималдықтар»</h3>
+      </header>
+  
+      <div class="mathquiz-grid">
+        <!-- Q1 -->
+        <article class="mathquiz-card" data-correct="C">
+          <div class="mathquiz-q-number">1</div>
+          <div class="mathquiz-question">
+            Қалтада 4 қызыл және 6 көк шар бар. Кездейсоқ бір шар алынды.
+            Оның қызыл немесе көк болу ықтималдығы қандай?
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="IV-1" value="A">A) 3</label>
+            <label><input type="radio" name="IV-1" value="B">B) 5</label>
+            <label><input type="radio" name="IV-1" value="C">C) 1</label>
+            <label><input type="radio" name="IV-1" value="D">D) 4</label>
+          </div>
+        </article>
+  
+        <!-- Q2 -->
+        <article class="mathquiz-card" data-correct="D">
+          <div class="mathquiz-q-number">2</div>
+          <div class="mathquiz-question">
+            Тиынды бір рет және ойын сүйегін бір рет лақтырды. Тиынның «елтаңба»
+            жағымен түсуі және ойын сүйегінде жұп санның түсуі ықтималдығы қандай?
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="IV-2" value="A">A) 1/5</label>
+            <label><input type="radio" name="IV-2" value="B">B) 3/5</label>
+            <label><input type="radio" name="IV-2" value="C">C) 1/3</label>
+            <label><input type="radio" name="IV-2" value="D">D) 1/4</label>
+          </div>
+        </article>
+  
+        <!-- Q3 -->
+        <article class="mathquiz-card" data-correct="B">
+          <div class="mathquiz-q-number">3</div>
+          <div class="mathquiz-question">
+            Қорапта 10 бұйым бар, оның 2-еуі ақаулы. Кездейсоқ екі бұйым алынды
+            (қайтарылмайды). Екеуінің де ақаулы болу ықтималдығы қандай?
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="IV-3" value="A">A) 5/18</label>
+            <label><input type="radio" name="IV-3" value="B">B) 1/45</label>
+            <label><input type="radio" name="IV-3" value="C">C) 3/55</label>
+            <label><input type="radio" name="IV-3" value="D">D) 4/35</label>
+          </div>
+        </article>
+  
+        <!-- Q4 -->
+        <article class="mathquiz-card" data-correct="C">
+          <div class="mathquiz-q-number">4</div>
+          <div class="mathquiz-question">
+            Студент емтиханды тапсыру ықтималдығы 0,7. Ол екі емтихан тапсыру керек.
+            Екі емтиханды да тапсыру ықтималдығы қандай?
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="IV-4" value="A">A) 0,33</label>
+            <label><input type="radio" name="IV-4" value="B">B) 0,19</label>
+            <label><input type="radio" name="IV-4" value="C">C) 0,49</label>
+            <label><input type="radio" name="IV-4" value="D">D) 0,51</label>
+          </div>
+        </article>
+  
+        <!-- Q5 -->
+        <article class="mathquiz-card" data-correct="A">
+          <div class="mathquiz-q-number">5</div>
+          <div class="mathquiz-question">
+            Мергеннің нысанаға тигізу ықтималдығы 0,6. Ол екі рет атады.
+            Кем дегенде бір рет тигізу ықтималдығы қандай?
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="IV-5" value="A">A) 0,84</label>
+            <label><input type="radio" name="IV-5" value="B">B) 0,68</label>
+            <label><input type="radio" name="IV-5" value="C">C) 0,72</label>
+            <label><input type="radio" name="IV-5" value="D">D) 0,56</label>
+          </div>
+        </article>
+  
+        <!-- Q6 -->
+        <article class="mathquiz-card" data-correct="A">
+          <div class="mathquiz-q-number">6</div>
+          <div class="mathquiz-question">
+            Қорапта 5 қызыл және 5 көк шар бар. Екі шар алынды (қайтарылады).
+            Екі шардың да қызыл болу ықтималдығы қандай?
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="IV-6" value="A">A) 1/4</label>
+            <label><input type="radio" name="IV-6" value="B">B) 5/8</label>
+            <label><input type="radio" name="IV-6" value="C">C) 3/5</label>
+            <label><input type="radio" name="IV-6" value="D">D) 4/5</label>
+          </div>
+        </article>
+  
+        <!-- Q7 -->
+        <article class="mathquiz-card" data-correct="A">
+          <div class="mathquiz-q-number">7</div>
+          <div class="mathquiz-question">
+            Бір сандықшада 5 жәшік бар, олардың екеуінде «алтын» монеталар,
+            ал қалғандарында «күміс» монеталар бар. Екінші сандықшада 3 жәшік бар,
+            олардың барлығында «алтын» монеталар бар. Кездейсоқ сандықша таңдалды,
+            содан кейін одан кездейсоқ жәшік таңдалды. Таңдалған жәшіктегі монетаның
+            алтын болу ықтималдығы қандай?
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="IV-7" value="A">A) 7/10</label>
+            <label><input type="radio" name="IV-7" value="B">B) 5/11</label>
+            <label><input type="radio" name="IV-7" value="C">C) 3/17</label>
+            <label><input type="radio" name="IV-7" value="D">D) 4/51</label>
+          </div>
+        </article>
+  
+        <!-- Q8 -->
+        <article class="mathquiz-card" data-correct="D">
+          <div class="mathquiz-q-number">8</div>
+          <div class="mathquiz-question">
+            Саудагерде 30%-ы ақаулы болатын партиядағы бұйымдардың ішіндегі
+            ақаусыз заттардың 25%-ын сатады. Ол саудагердің ақаусыз бұйымды
+            сату ықтималдығы қандай?
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="IV-8" value="A">A) 0,185</label>
+            <label><input type="radio" name="IV-8" value="B">B) 0,225</label>
+            <label><input type="radio" name="IV-8" value="C">C) 0,75</label>
+            <label><input type="radio" name="IV-8" value="D">D) 0,175</label>
+          </div>
+        </article>
+  
+        <!-- Q9 -->
+        <article class="mathquiz-card" data-correct="B">
+          <div class="mathquiz-q-number">9</div>
+          <div class="mathquiz-question">
+            Мектептегі оқушылардың 60%-ы математикадан жақсы оқиды,
+            ал 40%-ы физикадан жақсы оқиды. Оқушылардың 25%-ы математикадан да,
+            физикадан да жақсы оқиды. Кездейсоқ таңдалған оқушының математикадан
+            немесе физикадан жақсы оқу ықтималдығы қандай?
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="IV-9" value="A">A) 0,25</label>
+            <label><input type="radio" name="IV-9" value="B">B) 0,75</label>
+            <label><input type="radio" name="IV-9" value="C">C) 0,5</label>
+            <label><input type="radio" name="IV-9" value="D">D) 0,85</label>
+          </div>
+        </article>
+  
+        <!-- Q10 -->
+        <article class="mathquiz-card" data-correct="A">
+          <div class="mathquiz-q-number">10</div>
+          <div class="mathquiz-question">
+            Қорапта 6 ақ және 4 қара шар бар. Қораптан кезекпен екі шар алынды
+            (қайтарылмайды). Екінші шардың ақ болу ықтималдығы, егер бірінші шар
+            қара болса, қандай?
+          </div>
+          <div class="mathquiz-options">
+            <label><input type="radio" name="IV-10" value="A">A) 2/3</label>
+            <label><input type="radio" name="IV-10" value="B">B) 5/11</label>
+            <label><input type="radio" name="IV-10" value="C">C) 3/7</label>
+            <label><input type="radio" name="IV-10" value="D">D) 4/5</label>
+          </div>
+        </article>
+      </div>
+  
+      <button class="mathquiz-btn" data-check-quiz>Жауаптарды тексеру (IV бөлім)</button>
+      <div class="mathquiz-result" aria-live="polite"></div>
+    </section>
+  </section>
+
     <!-- Видео-сабақтар -->
     <section class="videos-section" id="videos">
       <div class="videos-header">
@@ -999,25 +1914,13 @@ tasks: [
     question:
       "1. Мектепте 100 оқушының математикадан алған бағаларының орташа мәні 7.3 балл. Оқушылардың алған бағаларының орташа квадраттық ауытқуы 1.2 балл. Оқушылардың бағалары нормальды үлестірімге сәйкес келеді деп есептейік. Осы мектепте бір оқушы кездейсоқ таңдап алынса, оның бағасы 6.5 пен 8.0 балл арасында жату ықтималдығы қандай?",
     answer:
-      "Шешуі: Z₁ = (6.5 − 7.3) / 1.2 ≈ −0.67, Z₂ = (8.0 − 7.3) / 1.2 ≈ 0.58. P(6.5 < X < 8.0) = Φ(0.58) − Φ(−0.67) ≈ 0.72 − 0.25 ≈ 0.47, яғни шамамен 47 %."
+      "Шешуі: Нормальды үлестірім үшін стандарттау жасаймыз. Z₁ = (6.5 − 7.3) / 1.2 ≈ −0.67, Z₂ = (8.0 − 7.3) / 1.2 ≈ 0.58. P(6.5 < X < 8.0) = Φ(0.58) − Φ(−0.67) ≈ 0.72 − 0.25 ≈ 0.47, яғни шамамен 47 %."
   },
   {
     question:
       "2. Белгілі бір өнімнің өлшемі 5 бірліктен асатын ықтималдығы 0.7. Егер 10 өнім кездейсоқ таңдап алынса, 7 өнімнің өлшемі 5 бірліктен асатын ықтималдықты табыңыз.",
     answer:
-      "Бұл – биномиалдық үлестірім. P(X = 7) = C(10,7) · 0.7⁷ · 0.3³ ≈ 0.27 (шамамен 26–27 %)."
-  },
-  {
-    question:
-      "3. Қаланың екі ауданында салынған үйлердің сапасын зерттеу мақсатында әр ауданда 50 үйдің құрылыс сапасы тексерілді. Бірінші ауданда 35 үй, ал екінші ауданда 40 үйдің сапасы қанағаттанарлық екені анықталды. Осы екі ауданның құрылыс сапасын салыстыру үшін t-статистикасын есептеңіз.",
-    answer:
-      "p₁ = 35/50 = 0.70, p₂ = 40/50 = 0.80. Біріккен үлестік p = (35+40)/(50+50) = 0.75. t = (p₁ − p₂) / √[p(1−p)(1/50 + 1/50)] ≈ (−0.10) / √(0.75·0.25·0.04) ≈ −1.15. |t| ≈ 1.15."
-  },
-  {
-    question:
-      "Сабақ соңы. Кері байланыс үшін мына сұрақтарға жазбаша немесе ауызша жауап беріңіз: 1) Бүгін сабақта қандай жаңа ұғымдарды білдіңіз? 2) Қандай түсініктер сізге әлі де қиындық тудырады? 3) Қандай сұрақтар немесе түсінбеген жерлеріңіз қалды?",
-    answer:
-      "Бұл тапсырмада нақты дұрыс/бұрыс жауап жоқ. Оқушы өз түсінігін, қиындықтарын және сұрақтарын шынайы түрде жазады немесе айтады."
+      "Шешуі: Бұл – биномиалдық үлестірім. X – өлшемі 5-тен асатын өнімдер саны. P(X = 7) = C(10,7) · 0.7⁷ · 0.3³. C(10,7) = 120. Сонда P(X = 7) ≈ 120 · 0.7⁷ · 0.3³ ≈ 0.27, яғни шамамен 26–27 %."
   }
 ],
 
@@ -1053,27 +1956,21 @@ tasks: [
 tasks: [
   {
     question:
-      "1. Ойын «Табақ тарту». 20, 25, 30, 35, 40 сандарынан тұратын мәліметтер жиынынан арифметикалық ортаны табыңыз.",
+      "1. 20, 25, 30, 35, 40 сандарынан тұратын мәліметтер жиынынан арифметикалық ортаны табыңыз.",
     answer:
-      "Барлық сандарды қосамыз: 20 + 25 + 30 + 35 + 40 = 150. Сандар саны n = 5. Арифметикалық орта: x̄ = 150 / 5 = 30. Дескриптор: арифметикалық ортаны табу формуласы дұрыс қолданылған, сандар дұрыс қосылған, орташа мән 30 болып табылған."
+      "Барлық сандарды қосамыз: 20 + 25 + 30 + 35 + 40 = 150. Сандар саны n = 5. Арифметикалық орта: x̄ = 150 / 5 = 30."
   },
   {
     question:
-      "2. Әртүрлі өнімнің салмағы мынадай берілген: 120 г, 130 г, 140 г, 150 г, 160 г. Осы өнімдердің орташа салмағын есептеңіз.",
+      "2. Әртүрлі өнімнің салмағы келесідей берілген: 120 г, 130 г, 140 г, 150 г, 160 г. Осы өнімдердің орташа салмағын есептеңіз.",
     answer:
-      "Қосындысы: 120 + 130 + 140 + 150 + 160 = 700 г. Өнім саны n = 5. Орташа салмақ: x̄ = 700 / 5 = 140 г. Дескриптор: орташа мәнді табу формуласын дұрыс қолданады, сандарды қосып, орташа салмақты 140 г деп дұрыс есептейді."
+      "Қосындысы: 120 + 130 + 140 + 150 + 160 = 700 г. Өнім саны n = 5. Орташа салмақ: x̄ = 700 / 5 = 140 г."
   },
   {
     question:
       "3. Бір кластың оқушыларының бойлары: 160 см, 155 см, 165 см, 170 см, 175 см. Оқушылардың бойының арифметикалық ортасын есептеңіз.",
     answer:
-      "Барлық бойларды қосамыз: 160 + 155 + 165 + 170 + 175 = 825 см. Оқушы саны n = 5. Арифметикалық орта: x̄ = 825 / 5 = 165 см. Дескриптор: арифметикалық ортаны табу формуласы дұрыс қолданылған, сандар дұрыс қосылған, орташа бой 165 см болып табылған."
-  },
-  {
-    question:
-      "Сабақ соңы. Әр оқушы 3 есептің нәтижесі бойынша өзін-өзі 10 балдық жүйе арқылы бағалайды. «Қай есеп мен үшін ең оңай болды? Қай есепте қателестім? Арифметикалық ортаны табу қадамдарын түсіндіре аламын ба?» деген сұрақтарға қысқаша жауап жазыңыз.",
-    answer:
-      "Бұл рефлексиялық тапсырма, нақты дұрыс немесе бұрыс жауабы жоқ. Оқушы өз жұмысын 1–10 балл аралығында бағалап, қай қадамда қиналғанын және арифметикалық ортаны табу алгоритмін түсінген-түсінбегенін шынайы түрде сипаттайды."
+      "Барлық бойларды қосамыз: 160 + 155 + 165 + 170 + 175 = 825 см. Оқушы саны n = 5. Арифметикалық орта: x̄ = 825 / 5 = 165 см."
   }
 ],
 
@@ -1138,47 +2035,36 @@ tasks: [
 tasks: [
   {
     question:
-      "1. «Шынайы деректермен жұмыс» әдісі. Сыныптағы оқушылардың бойы, сабаққа келу уақыты немесе соңғы бақылау жұмысының бағалары бойынша деректер жинаңыз. Әр дерек жиыны үшін құлашты, медиананы және моданы есептеңіз.",
+      "1. Сандар жиыны берілген: 5, 8, 12, 20, 22. Осы жиынның құлашын табыңыз.",
     answer:
-      "Оқушылар топтарға бөлініп, нақты өлшенген немесе журналдан алынған деректерді кестеге жазады. Әр топ:\n- ең кіші және ең үлкен мәндерді анықтап, құлашты есептейді (құлаш = ең үлкен мән − ең кіші мән);\n- деректерді өсу ретімен орналастырып, медиананы табады (тақ сан болса – ортасындағы мән, жұп сан болса – екі ортаның арифметикалық ортасы);\n- қай мәннің ең көп кездесетінін анықтап, моданы табады.\nДескриптор: оқушы шынайы деректермен жұмыс істей алады; құлаш, медиана, мода ұғымдарын нақты өмірлік мысалға қолданады; нәтижелерін түсіндіре алады."
+      "Ең кіші сан: 5, ең үлкен сан: 22. Құлаш = 22 − 5 = 17."
   },
   {
     question:
-      "2. Сандар жиыны берілген: 5, 8, 12, 20, 22. Осы жиынның құлашын табыңыз.",
+      "2. Берілген сандар: 14, 18, 22, 20, 17, 25. Осы сандардың медианасын есептеңіз.",
     answer:
-      "Ең кіші сан: 5. Ең үлкен сан: 22. Құлаш = 22 − 5 = 17.\nДескриптор (№1): оқушы берілген сандар жиынын дұрыс қабылдайды; құлашты табу формуласын дұрыс қолданады; ең үлкен және ең кіші сандарды анықтап, құлашты 17 деп дұрыс есептейді; нәтижені түсінікті түрде түсіндіреді."
+      "Сандарды өсу ретімен жазамыз: 14, 17, 18, 20, 22, 25. Элементтер саны 6 (жұп), сондықтан медиана – ортасындағы екі санның орташа мәні. Медиана = (18 + 20) / 2 = 38 / 2 = 19."
   },
   {
     question:
-      "3. Берілген сандар: 14, 18, 22, 20, 17, 25. Осы сандардың медианасын есептеңіз.",
+      "3. Сандар жиыны: 3, 3, 6, 8, 8, 8, 10, 15. Осы жиынның модасын табыңыз.",
     answer:
-      "Алдымен сандарды өсу ретімен орналастырамыз: 14, 17, 18, 20, 22, 25. Элементтер саны 6 (жұп сан), сондықтан медиана – ортасындағы екі санның орташа мәні. Ортадағы екі сан: 18 және 20. Медиана = (18 + 20) / 2 = 38 / 2 = 19.\nДескриптор (№2): медиананы табу ережелерін біледі және дұрыс қолданады; сандарды өсу ретімен дұрыс орналастырады; медиананы 19 деп дұрыс есептейді."
+      "Жиіліктері: 3 – 2 рет, 6 – 1 рет, 8 – 3 рет, 10 – 1 рет, 15 – 1 рет. Ең көп кездесетін сан – 8, сондықтан мода = 8."
   },
   {
     question:
-      "4. Сандар жиыны: 3, 3, 6, 8, 8, 8, 10, 15. Осы жиынның модасын табыңыз.",
+      "4. 8, 12, 15, 7, 9, 10 сандарынан тұратын жиынның құлашы, медианасы және модасын есептеңіз.",
     answer:
-      "Әр санның жиілігін анықтаймыз: 3 – 2 рет, 6 – 1 рет, 8 – 3 рет, 10 – 1 рет, 15 – 1 рет. Ең көп кездесетін сан – 8, сондықтан мода = 8.\nДескриптор (№3): мода анықтамасын түсінеді; сандардың жиілігін дұрыс анықтайды; ең жиі кездесетін 8 санын мода ретінде дұрыс көрсетеді."
+      "Сандарды өсу ретімен жазамыз: 7, 8, 9, 10, 12, 15.\nҚұлаш: 15 − 7 = 8.\nЭлементтер саны 6, медиана – ортасындағы екі санның орташа мәні: (9 + 10) / 2 = 9.5.\nБарлық сандар бір рет қана кездеседі, сондықтан мода жоқ."
   },
   {
     question:
-      "5. 8, 12, 15, 7, 9, 10 сандарынан тұратын жиынның құлашын, медианасын және модасын есептеңіз.",
+      "5. Деректер жиыны: 18, 22, 22, 26, 30, 30, 30, 35, 40. Құлашы, медианасы және модасын анықтаңыз.",
     answer:
-      "1) Сандарды өсу ретімен жазамыз: 7, 8, 9, 10, 12, 15.\n2) Құлаш: ең үлкені 15, ең кішісі 7. Құлаш = 15 − 7 = 8.\n3) Элементтер саны 6, яғни жұп. Ортадағы екі сан: 9 және 10. Медиана = (9 + 10) / 2 = 19 / 2 = 9.5.\n4) Барлық сандар бір рет қана кездеседі, сондықтан мода жоқ.\nДескриптор: құлаш, медиана, мода формулаларын және ережелерін дұрыс қолданады; сандарды реттеу, құлашты, медиананы табу қадамдарын түсіндіре алады."
-  },
-  {
-    question:
-      "6. Деректер жиыны: 18, 22, 22, 26, 30, 30, 30, 35, 40. Құлашын, медианасын және модасын анықтаңыз.",
-    answer:
-      "Қатар қазірдің өзінде өсу ретімен берілген.\n1) Құлаш: ең кіші сан 18, ең үлкен сан 40. Құлаш = 40 − 18 = 22.\n2) Элементтер саны 9 (тақ сан), медиана – ортасындағы 5-ші элемент. Бұл қатарда 5-ші сан – 30, сондықтан медиана = 30.\n3) Жиілік: 18 – 1 рет, 22 – 2 рет, 26 – 1 рет, 30 – 3 рет, 35 – 1 рет, 40 – 1 рет. Ең көп кездесетін сан – 30, сондықтан мода = 30.\nДескриптор: деректердің құлашын, медианасын, модасын толық және дұрыс есептейді; нәтижелерді салыстырып, деректердің таралуы туралы қорытынды жасай алады."
-  },
-  {
-    question:
-      "Сабақ соңы. «Еркін микрофон» әдісі: «Құлаш, медиана, мода туралы не үйрендім? Қай есеп мен үшін қиын болды? Неліктен?» деген сұрақтарға қысқаша жауап жазыңыз.",
-    answer:
-      "Бұл рефлексиялық тапсырма, нақты бір дұрыс жауабы жоқ. Оқушы сабақтағы өз белсенділігін, түсінген және қиындық тудырған тұстарын сипаттайды; құлаш, медиана, мода ұғымдарын күнделікті өмірдегі мысалдармен байланыстырып жазады. Мұғалім оқушылардың жауаптары арқылы кері байланыс алады."
+      "Қатар өсу ретімен берілген.\nҚұлаш: 40 − 18 = 22.\nЭлементтер саны 9 (тақ), медиана – 5-ші элемент: медиана = 30.\nЖиіліктері: 18 – 1 рет, 22 – 2 рет, 26 – 1 рет, 30 – 3 рет, 35 – 1 рет, 40 – 1 рет. Ең көп кездесетін сан – 30, сондықтан мода = 30."
   }
-],
+]
+,
 
 
         videoId: "B1e4k2Fa980"
@@ -1287,20 +2173,26 @@ tasks: [
 
 <p><strong>Жиіліктер кестесі</strong> – вариациялық қатар, абсолюттік және салыстырмалы жиіліктерді бір кестеге жинақтап көрсету тәсілі. Бұл кесте сипаттамалық статистиканың негізгі құралы болып табылады және диаграмма, гистограмма салуға негіз болады.</p>
 `,
-  tasks: [
-    {
-      question: "1) Бір сыныптағы оқушылардың математикадан алған бағалары берілген: 5, 4, 5, 3, 4, 4, 5, 2, 3, 5. Абсолюттік жиіліктерді анықтап, жиіліктер кестесін құрыңыз.",
-      answer: "Вариациялық қатар: 2, 3, 3, 4, 4, 4, 5, 5, 5, 5. Абсолюттік жиіліктері: 2 – 1 рет, 3 – 2 рет, 4 – 3 рет, 5 – 4 рет. Барлығы N = 10. Жиіліктер кестесі: мәндері {2, 3, 4, 5}, жиіліктері {1, 2, 3, 4}."
-    },
-    {
-      question: "2) Бір ай бойы күн сайын сатылған өнімдер саны: 10, 15, 20, 10, 15, 10, 20, 15, 10, 20. Осы деректердің салыстырмалы жиіліктерін анықтап, жиіліктер кестесін құрыңыз.",
-      answer: "Абсолюттік жиіліктері: 10 – 4 рет, 15 – 3 рет, 20 – 3 рет. Барлығы N = 10. Салыстырмалы жиіліктері: 10 → 4/10 = 0.4 = 40%; 15 → 3/10 = 0.3 = 30%; 20 → 3/10 = 0.3 = 30%. Жиіліктер кестесінде әр мән үшін абсолюттік және салыстырмалы жиілік бірге көрсетіледі."
-    },
-    {
-      question: "3) Бір сыныптағы оқушылардың бойлары (см): 150, 155, 160, 165, 155, 150, 160, 155, 165, 160. Абсолюттік және салыстырмалы жиіліктерді есептеп, жиілік кестесін құрыңыз.",
-      answer: "Вариациялық қатар: 150, 150, 155, 155, 155, 160, 160, 160, 165, 165. Абсолюттік жиіліктері: 150 – 2 рет, 155 – 3 рет, 160 – 3 рет, 165 – 2 рет. Барлығы N = 10. Салыстырмалы жиіліктері: 150 → 2/10 = 0.2 = 20%; 155 → 3/10 = 0.3 = 30%; 160 → 3/10 = 0.3 = 30%; 165 → 2/10 = 0.2 = 20%. Жиіліктер кестесінде мән, абсолюттік жиілік және салыстырмалы жиілік қатар беріледі."
-    }
-  ],
+tasks: [
+  {
+    question:
+      "1) Бір сыныптағы оқушылардың математикадан алған бағалары берілген: 5, 4, 5, 3, 4, 4, 5, 2, 3, 5. Абсолюттік жиіліктерді анықтап, жиіліктер кестесін құрыңыз.",
+    answer:
+      "Вариациялық қатар: 2, 3, 3, 4, 4, 4, 5, 5, 5, 5. Абсолюттік жиіліктері: 2 – 1 рет, 3 – 2 рет, 4 – 3 рет, 5 – 4 рет. Барлығы N = 10. Жиіліктер кестесі: мәндері {2, 3, 4, 5}, жиіліктері {1, 2, 3, 4}."
+  },
+  {
+    question:
+      "2) Бір ай бойы күн сайын сатылған өнімдер саны: 10, 15, 20, 10, 15, 10, 20, 15, 10, 20. Осы деректердің салыстырмалы жиіліктерін анықтап, жиіліктер кестесін құрыңыз.",
+    answer:
+      "Абсолюттік жиіліктері: 10 – 4 рет, 15 – 3 рет, 20 – 3 рет. Барлығы N = 10. Салыстырмалы жиіліктері: 10 → 4/10 = 0.4 = 40%; 15 → 3/10 = 0.3 = 30%; 20 → 3/10 = 0.3 = 30%. Жиіліктер кестесінде әр мән үшін абсолюттік және салыстырмалы жиілік бірге көрсетіледі."
+  },
+  {
+    question:
+      "3) Бір сыныптағы оқушылардың бойлары (см): 150, 155, 160, 165, 155, 150, 160, 155, 165, 160. Абсолюттік және салыстырмалы жиіліктерді есептеп, жиілік кестесін құрыңыз.",
+    answer:
+      "Вариациялық қатар: 150, 150, 155, 155, 155, 160, 160, 160, 165, 165. Абсолюттік жиіліктері: 150 – 2 рет, 155 – 3 рет, 160 – 3 рет, 165 – 2 рет. Барлығы N = 10. Салыстырмалы жиіліктері: 150 → 2/10 = 0.2 = 20%; 155 → 3/10 = 0.3 = 30%; 160 → 3/10 = 0.3 = 30%; 165 → 2/10 = 0.2 = 20%. Жиіліктер кестесінде мән, абсолюттік жиілік және салыстырмалы жиілік қатар беріледі."
+  }
+],
 
         videoId: "zjChjteSeQ4"
       },
@@ -1386,28 +2278,26 @@ tasks: [
 </ul>
 <p>қайталаймыз. Осы ұғымдар кейін бас жиынтық пен таңдалым бойынша кесте құру, диаграмма салу, орташа, медиана сияқты сипаттамаларды табуда қолданылады.</p>
 `,
-  tasks: [
-    {
-      question: "1) Мәліметтер жиынтығы: 2, 4, 6, 8, 10. Осы жиынтықтағы сандардың жалпы қосындысын және элементтер санын (N) табыңыз.",
-      answer: "Қосынды: 2 + 4 + 6 + 8 + 10 = 30. Элементтер саны N = 5. Жиынтықтың жалпы қосындысы 30, жиынтық көлемі N = 5."
-    },
-    {
-      question: "2) A жиыны: {1, 2, 3}, B жиыны: {2, 3, 4}. Таңдалым ретінде A ∪ B және A ∩ B жиындарын табыңыз.",
-      answer: "A ∪ B – екі жиындағы барлық элементтер: {1, 2, 3, 4}. A ∩ B – екі жиынға ортақ элементтер: {2, 3}."
-    },
-    {
-      question: "3) Мәліметтер жиынтығы: {5, 10, 15, 20, 25, 30}. Осы жиынтықтың арифметикалық орташа мәнін табыңыз.",
-      answer: "Қосынды: 5 + 10 + 15 + 20 + 25 + 30 = 105. Элементтер саны 6. Орташа мән: 105 / 6 = 17.5."
-    },
-    {
-      question: "4) Мәліметтер жиынтығы: {2, 3, 7, 11}. Осы жиынтықтың медианасын табыңыз.",
-      answer: "Сандар реттелген: 2, 3, 7, 11. Элементтер саны жұп (4), медиана – ортасындағы екі санның орташа мәні: (3 + 7) / 2 = 5."
-    },
-    {
-      question: "5) A жиыны: {a, b, c}, B жиыны: {b, c, d}. A және B жиынтықтарының қосындысын (A ∪ B) және қиылысуын (A ∩ B) табыңыз.",
-      answer: "A ∪ B = {a, b, c, d} – екі жиындағы барлық элементтер. A ∩ B = {b, c} – екі жиынға ортақ элементтер."
-    }
-  ],
+tasks: [
+  {
+    question:
+      "№1. Мәлiметтер жиынтығы: 2, 4, 6, 8, 10. Жалпы жиынтықты есептеңiз.",
+    answer:
+      "Барлық сандардың қосындысын табамыз: 2 + 4 + 6 + 8 + 10 = 30.\nЭлементтер саны N = 5.\nҚорытынды: жиынтықтың жалпы қосындысы 30, жиынтық көлемі N = 5."
+  },
+  {
+    question:
+      "№2. A жиыны: {1, 2, 3}, B жиыны: {2, 3, 4}. Таңдалым ретінде A ∪ B және A ∩ B жиындарын табыңыз.",
+    answer:
+      "A ∪ B – екі жиындағы барлық элементтер: {1, 2, 3, 4}.\nA ∩ B – екі жиынға ортақ элементтер: {2, 3}."
+  },
+  {
+    question:
+      "№3. Мәліметтер жиынтығы: {5, 10, 15, 20, 25, 30}. Жиынтықтың арифметикалық орташа мәнін табыңыз.",
+    answer:
+      "Қосынды: 5 + 10 + 15 + 20 + 25 + 30 = 105.\nЭлементтер саны n = 6.\nАрифметикалық орта: x̄ = 105 / 6 = 17.5."
+  }
+],
 
         videoId: "vCErYqGkuCU"
       },
@@ -1444,71 +2334,8 @@ explanation: `
 `,
 tasks: [
   {
-    question: "1) Мәліметтер жиынтығы: 4, 8, 6, 5, 9. Орташа мәнді, дисперсияны және орташа квадраттық ауытқуды есептеңіз.",
-    answer: `
-Қадамдар:
-1) Орташа мән:
-x̄ = (4 + 8 + 6 + 5 + 9) / 5 = 32 / 5 = 6.4
-
-2) Ауытқулар және олардың квадраттары:
-(4 − 6.4)² = (−2.4)² = 5.76  
-(8 − 6.4)² = 1.6² = 2.56  
-(6 − 6.4)² = (−0.4)² = 0.16  
-(5 − 6.4)² = (−1.4)² = 1.96  
-(9 − 6.4)² = 2.6² = 6.76  
-
-Қосынды: 5.76 + 2.56 + 0.16 + 1.96 + 6.76 = 17.2
-
-3) Дисперсия:
-D = 17.2 / 5 = 3.44
-
-4) Орташа квадраттық ауытқу:
-σ = √3.44 ≈ 1.85`
-  },
-  {
-    question: "2) Мәліметтер жиынтығы: 12, 15, 20, 18, 22. Дисперсияны және орташа квадраттық ауытқуды есептеңіз.",
-    answer: `
-1) Орташа мән:
-x̄ = (12 + 15 + 20 + 18 + 22) / 5 = 87 / 5 = 17.4
-
-2) Ауытқулардың квадраттары:
-(12 − 17.4)² = (−5.4)² = 29.16  
-(15 − 17.4)² = (−2.4)² = 5.76  
-(20 − 17.4)² = 2.6² = 6.76  
-(18 − 17.4)² = 0.6² = 0.36  
-(22 − 17.4)² = 4.6² = 21.16  
-
-Қосынды: 29.16 + 5.76 + 6.76 + 0.36 + 21.16 = 63.2
-
-3) Дисперсия:
-D = 63.2 / 5 = 12.64
-
-4) Орташа квадраттық ауытқу:
-σ = √12.64 ≈ 3.55`
-  },
-  {
-    question: "3) Мәліметтер жиынтығы: 7, 7, 7, 7, 7. Дисперсия мен орташа квадраттық ауытқуды есептеңіз.",
-    answer: `
-Барлық мәндер бірдей.
-
-1) Орташа мән:
-x̄ = 7
-
-2) Әрбір ауытқу:
-(7 − 7) = 0, сондықтан барлық (xᵢ − x̄)² = 0
-
-Қосынды = 0
-
-3) Дисперсия:
-D = 0 / 5 = 0
-
-4) Орташа квадраттық ауытқу:
-σ = √0 = 0
-
-Қорытынды: деректер мүлде «шашырамайды», барлығы бір нүктеде.`
-  },
-  {
-    question: "4) Мәліметтер жиынтығы: 2, 4, 6, 8, 10. Дисперсияны және орташа квадраттық ауытқуды табыңыз.",
+    question:
+      "№1. Мәліметтер жиынтығы: {2, 4, 6, 8, 10}. Дисперсияны және орташа квадраттық ауытқуды табыңыз.",
     answer: `
 1) Орташа мән:
 x̄ = (2 + 4 + 6 + 8 + 10) / 5 = 30 / 5 = 6
@@ -1529,7 +2356,8 @@ D = 40 / 5 = 8
 σ = √8 ≈ 2.83`
   },
   {
-    question: "5) Мәліметтер жиынтығы: 3, 3, 5, 5, 7, 7. Дисперсияны және орташа квадраттық ауытқуды есептеңіз.",
+    question:
+      "№2. Мәліметтер жиынтығы: 3, 3, 5, 5, 7, 7. Дисперсияны және орташа квадраттық ауытқуды есептеңіз.",
     answer: `
 1) Орташа мән:
 x̄ = (3 + 3 + 5 + 5 + 7 + 7) / 6 = 30 / 6 = 5
@@ -1593,27 +2421,30 @@ explanation: `
 `,
 tasks: [
   {
-    question: "1) Сыйлықтарда 3 түрлі түсті және 4 түрлі көлемді зат бар. Бір түсті заттың бір көлемін таңдау керек. Таңдау мүмкіндіктерінің жалпы санын табыңыз. (Көбейтінді ережесі)",
-    answer: "Әуелі түсті таңдаймыз (3 тәсіл), содан кейін көлемді таңдаймыз (4 тәсіл). Бұл — тізбекті екі әрекет, сондықтан көбейтінді ережесі қолданылады. N = 3 · 4 = 12. Жауабы: 12 түрлі таңдау мүмкіндігі бар."
+    question:
+      "№1. Бір жәшікте 5 қызыл және 7 көк шар бар. Егер бір шарды кездейсоқ алсаңыз, қызыл шардың алыну ықтималдығын табыңыз.",
+    answer:
+      "Жәшіктегі барлық шар саны: 5 + 7 = 12.\nҚызыл шар саны: 5.\nКлассикалық ықтималдық формуласы:\nP(қызыл) = қолайлы жағдайлар саны / барлық мүмкін жағдайлар саны = 5 / 12 ≈ 0.42.\nЖауабы: P(қызыл) = 5/12."
   },
   {
-    question: "2) Бір жәшікте 5 қызыл және 7 көк шар бар. Егер бір шарды кездейсоқ алсаңыз, қызыл шарды алу ықтималдығын табыңыз.",
-    answer: "Жәшікте барлығы: 5 + 7 = 12 шар. Қызыл шар — 5 дана. Ықтималдық формуласы: P(қызыл) = қолайлы / барлық = 5 / 12 ≈ 0.42. Яғни қызыл шардың ықтималдығы 5/12."
+    question:
+      "№2. Екі оқиға A және B орын алуы мүмкін. A оқиғасының ықтималдығы 0.3, B оқиғасының ықтималдығы 0.4. Егер A және B оқиғалары тәуелсіз болса, олардың бірге орын алу ықтималдығын табыңыз.",
+    answer:
+      "Тәуелсіз екі оқиға үшін бірге орын алу ықтималдығы көбейтінді ережесімен есептеледі:\nP(A ∩ B) = P(A) · P(B).\nСонда:\nP(A ∩ B) = 0.3 · 0.4 = 0.12.\nЖауабы: 0.12."
   },
   {
-    question: "3) Екі оқиға A және B орын алуы мүмкін. A оқиғасының ықтималдығы 0.3, B оқиғасының ықтималдығы 0.4. Егер A және B оқиғалары тәуелсіз болса, олардың бірге орын алу ықтималдығын табыңыз.",
-    answer: "Тәуелсіз оқиғалар үшін бірге орын алу ықтималдығы көбейтінді ережесімен есептеледі: P(A ∩ B) = P(A) · P(B) = 0.3 · 0.4 = 0.12. Жауабы: 0.12."
+    question:
+      "№1. Сыйлықтарда 3 түрлі түсті және 4 түрлі көлемді зат бар. Бір түсті заттың бір көлемін таңдау керек. Таңдау мүмкіндіктерінің жалпы санын табыңыз.",
+    answer:
+      "Әуелі түсті таңдаймыз, бұл үшін 3 мүмкіндік бар. Әр таңдалған түс үшін 4 түрлі көлемнің бірін таңдауға болады.\nКөбейтінді ережесі бойынша жалпы таңдау саны:\nN = 3 · 4 = 12.\nЖауабы: 12 түрлі таңдау мүмкіндігі бар."
   },
   {
-    question: "4) Шарлардан біреуін алу керек, олардың 5 түрлі түрі бар. Таңдау мүмкіндіктерінің санын табыңыз. (Қосынды ережесі)",
-    answer: "Бір ғана шар таңдалады, және 5 түрлі типтің кез келген біреуі таңдалуы мүмкін. Бұл — «біреуін ғана таңдау» жағдайы. Әр тип үшін 1-ден тәсіл, барлығы: N = 1 + 1 + 1 + 1 + 1 = 5. Демек, 5 түрлі таңдау мүмкіндігі бар."
-  },
-  {
-    question: "5) Алдыңғы есептерде (1–4) қай жерде қосынды ережесі, қай жерде көбейтінді ережесі қолданылғанын көрсетіңіз.",
-    answer: "1-есеп: түс ЖӘНЕ көлем бірге таңдалады → көбейтінді ережесі. 2-есеп: жиынтық саны мен қолайлы жағдай санын санауда комбинаторика, ықтималдықта — P = m/n. 3-есеп: екі тәуелсіз оқиға бірге орын алады → көбейтінді ережесі (ықтималдықтар көбейтіледі). 4-есеп: 5 түрлі варианттың біреуін ғана таңдаймыз → қосынды ережесінің қарапайым жағдайы (5 түрлі мүмкіндік)."
+    question:
+      "№2. Шарлардан біреуін алу керек, олардың 5 түрлі түрі бар. Таңдау мүмкіндіктерінің санын табыңыз. (Қосынды ережесі)",
+    answer:
+      "Бір ғана шар таңдалады және ол 5 түрлі типтің кез келгені болуы мүмкін.\nӘр тип бойынша 1-ден мүмкіндік бар, сондықтан қосынды ережесімен:\nN = 1 + 1 + 1 + 1 + 1 = 5.\nЖауабы: 5 түрлі таңдау мүмкіндігі бар."
   }
-]
-,
+],
 
 
         videoId: "VCAY31D9J_Y"
@@ -1684,28 +2515,39 @@ tasks: [
 
 <p>Бұл формулалар орын, код, лауазым, кезек, нөмір, топ құру сияқты практикалық есептерде қолданылады.</p>
 `,
-  tasks: [
-    {
-      question: "1) 5 элементті бір қатарға орналастырудың жалпы саны қанша? P(5) = ?",
-      answer: "Бұл – пермутация. P(5) = 5! = 1·2·3·4·5 = 120."
-    },
-    {
-      question: "2) 10 элементтен 3 элементті таңдау саны: C₁₀³ = ? (комбинация санын есептеңіз.)",
-      answer: "C₁₀³ = 10! / (3!·7!) = (10·9·8) / (3·2·1) = 720 / 6 = 120."
-    },
-    {
-      question: "3) Егер n! = 720 болса, n санын табыңыз.",
-      answer: "1! = 1, 2! = 2, 3! = 6, 4! = 24, 5! = 120, 6! = 720. Демек, n = 6."
-    },
-    {
-      question: "4) Aₓ¹ = 2 теңдеуін шешіңіз (Aₙᵏ = n! / (n − k)! формуласы бойынша).",
-      answer: "Aₓ¹ = x! / (x − 1)! = x. Сондықтан Aₓ¹ = 2 ⇒ x = 2."
-    },
-    {
-      question: "5) 4, 7, 3, 8 цифрларынан әр цифры қайталанбайтын неше төрт таңбалы сан құруға болады?",
-      answer: "4 цифрдың барлығы қолданылады, реттілік маңызды. Бұл – пермутация: P₄ = 4! = 1·2·3·4 = 24."
-    }
-  ],
+tasks: [
+  {
+    question:
+      "№1. 5 элементті бір қатарға орналастырудың жалпы саны: P(5) = ? Орналастыру санын есептеңіз.",
+    answer:
+      "Бұл – барлық 5 элементтің орындарын ауыстырып орналастыру, яғни толық алмастыру (пермутация).\nP(5) = 5! = 1 · 2 · 3 · 4 · 5 = 120.\nЖауабы: 120 түрлі орналастыру бар."
+  },
+  {
+    question:
+      "№2. 10 элементтен 3 элементті таңдау саны: C(10, 3) = ? Комбинация санын есептеңіз.",
+    answer:
+      "Бұл – 10 элементтің ішінен 3 элементті реттілікті есепке алмай таңдау.\nC(10, 3) = 10! / (3! · 7!) = (10 · 9 · 8) / (3 · 2 · 1) = 720 / 6 = 120.\nЖауабы: C(10, 3) = 120."
+  },
+  {
+    question:
+      "№1. Егер n! = 720 болса, n санын табыңыз.",
+    answer:
+      "Кіші факториалдарды қараймыз:\n1! = 1,\n2! = 2,\n3! = 6,\n4! = 24,\n5! = 120,\n6! = 720.\nДемек, n! = 720 ⇒ n = 6."
+  },
+  {
+    question:
+      "№2. Aₓ¹ = 2 теңдеуін шешіңіз (Aₙᵏ = n! / (n − k)! формуласы бойынша).",
+    answer:
+      "Aₓ¹ = x! / (x − 1)! формуласы бойынша.\nx! / (x − 1)! = x, сондықтан Aₓ¹ = x.\nAₓ¹ = 2 ⇒ x = 2.\nЖауабы: x = 2."
+  },
+  {
+    question:
+      "№3. 4, 7, 3, 8 цифрларынан тұратын, әр цифры қайталанбайтын неше төрт таңбалы сан бар?",
+    answer:
+      "Барлық 4 цифр да қолданылады және реті маңызды, қайталану жоқ.\nБұл – 4 элементтің толық алмастыруы (пермутациясы):\nP(4) = 4! = 1 · 2 · 3 · 4 = 24.\nЖауабы: 24 түрлі төрт таңбалы сан құруға болады."
+  }
+]
+,
 
         videoId: "jZAqm7xwWFk"
       },
@@ -1741,28 +2583,39 @@ tasks: [
 
 <p>Сабақта «Іздеу миссиясы» ойыны арқылы оқушылар нақты өмірге жақын жағдайларға (кітап таңдау, студенттерді, қалаларды, әріптерді, адамдарды іріктеу) байланысты қайталанбайтын терулерді есептеп үйренеді.</p>
 `,
-  tasks: [
-    {
-      question: "1) 10 кiтаптан 3 кiтапты таңдау жолдарының санын есептеңіз.",
-      answer: "Бұл – теру. n = 10, k = 3. C₁₀³ = 10! / (3!·7!) = (10·9·8) / (3·2·1) = 720 / 6 = 120. Жауабы: 120 түрлі таңдау."
-    },
-    {
-      question: "2) 8 студенттiң iшiнен 4 студенттi таңдау мүмкіндіктерінің санын табыңыз.",
-      answer: "n = 8, k = 4. C₈⁴ = 8! / (4!·4!) = (8·7·6·5) / (4·3·2·1) = 1680 / 24 = 70. Жауабы: 70 түрлі таңдау."
-    },
-    {
-      question: "3) 12 қала арасынан 5 қаланы таңдау жолдарының санын анықтаңыз.",
-      answer: "n = 12, k = 5. C₁₂⁵ = 12! / (5!·7!) = (12·11·10·9·8) / (5·4·3·2·1) = 95040 / 120 = 792. Жауабы: 792 түрлі таңдау."
-    },
-    {
-      question: "4) 7 әріптен тұратын алфавиттік жиыннан 3 әріпті таңдау мүмкіндіктерін есептеңіз.",
-      answer: "n = 7, k = 3. C₇³ = 7! / (3!·4!) = (7·6·5) / (3·2·1) = 210 / 6 = 35. Жауабы: 35 түрлі таңдау."
-    },
-    {
-      question: "5) 15 адамнан 6 адамды таңдау жолдарының санын табыңыз.",
-      answer: "n = 15, k = 6. C₁₅⁶ = 15! / (6!·9!) = 5005. Жауабы: 5005 түрлі таңдау."
-    }
-  ],
+tasks: [
+  {
+    question:
+      "№1. 10 кiтаптан 3 кiтапты таңдау жолдарының санын есептеңіз.",
+    answer:
+      "Бұл – қайталанбайтын теру.\n\nn = 10, k = 3.\nC₁₀³ = 10! / (3!·7!) = (10·9·8) / (3·2·1) = 720 / 6 = 120.\nЖауабы: 120 түрлі таңдау."
+  },
+  {
+    question:
+      "№2. 8 студенттiң iшiнен 4 студенттi таңдау мүмкіндіктерінің санын табыңыз.",
+    answer:
+      "Бұл да қайталанбайтын теру.\n\nn = 8, k = 4.\nC₈⁴ = 8! / (4!·4!) = (8·7·6·5) / (4·3·2·1) = 1680 / 24 = 70.\nЖауабы: 70 түрлі таңдау."
+  },
+  {
+    question:
+      "№3. 12 қала арасынан 5 қаланы таңдау жолдарының санын анықтаңыз.",
+    answer:
+      "n = 12, k = 5.\nC₁₂⁵ = 12! / (5!·7!) = (12·11·10·9·8) / (5·4·3·2·1) = 95040 / 120 = 792.\nЖауабы: 792 түрлі таңдау."
+  },
+  {
+    question:
+      "№4. 7 әріптен тұратын алфавиттік жиыннан 3 әріпті таңдау мүмкіндіктерін есептеңіз.",
+    answer:
+      "n = 7, k = 3.\nC₇³ = 7! / (3!·4!) = (7·6·5) / (3·2·1) = 210 / 6 = 35.\nЖауабы: 35 түрлі таңдау."
+  },
+  {
+    question:
+      "№5. 15 адамнан 6 адамды таңдау жолдарының санын табыңыз.",
+    answer:
+      "n = 15, k = 6.\nC₁₅⁶ = 15! / (6!·9!) = 5005.\nЖауабы: 5005 түрлі таңдау."
+  }
+]
+,
 
         videoId: "F_73fJ-EX9A"
       },
@@ -1803,20 +2656,44 @@ tasks: [
 3 типтік есеп арқылы оларды <strong>дұрыс таңдауды</strong> үйренеді:
 теру (C), орналастыру (A) және цифрлары қайталанатын/қайталанбайтын жағдайлар.</p>
 `,
-  tasks: [
-    {
-      question: "1) 6 элементтен 2 элемент таңдау жолдарының санын есептеңіз.",
-      answer: "Бұл – реті маңызды ЕМЕС таңдау, сондықтан теру формуласы қолданылады. n = 6, k = 2.\nC₆² = 6! / (2!·4!) = (6·5) / (2·1) = 30 / 2 = 15. Жауабы: 15 түрлі таңдау."
-    },
-    {
-      question: "2) 10 элементтің ішінен 4 элементті орналастырудың (ретін ескеріп) мүмкіндіктерінің санын табыңыз.",
-      answer: "Рет маңызды және тек 4 элемент алынады, сондықтан орналастыру қолданылады.\nA₁₀⁴ = 10! / 6! = 10·9·8·7 = 5040. Жауабы: 5040 түрлі орналастыру."
-    },
-    {
-      question: "3) Цифрлары 0–9 арасынан таңдалатын төрт таңбалы сандарды қарастырайық.\n1) Цифрлары қайталануы МҮМКІН; \n2) Цифрлары қайталанбайтындай етіп, неше төрт таңбалы сан құрастыруға болады?",
-      answer: "Төрт таңбалы санның бірінші цифры 0 бола алмайды.\n1) Қайталану МҮМКІН: 1-цифр: 1–9 → 9 нұсқа; қалған 3 цифр: 0–9 → әрқайсысы 10 нұсқа.\nЖалпы: 9·10·10·10 = 9000 төрт таңбалы сан.\n2) Қайталану ЖОҚ: 1-цифр: 1–9 → 9 нұсқа; 2-цифр: қалған 9 цифр; 3-цифр: 8; 4-цифр: 7.\nЖалпы: 9·9·8·7 = 4536 төрт таңбалы сан."
-    }
-  ],
+tasks: [
+  {
+    question: "№1. 6 элементтен 2 элемент таңдау жолдарының санын есептеңіз.",
+    answer:
+      "Бұл – реті маңызды ЕМЕС таңдау, сондықтан теру формуласы қолданылады.\n\nn = 6, k = 2.\nC₆² = 6! / (2!·4!) = (6·5) / (2·1) = 30 / 2 = 15.\nЖауабы: 15 түрлі таңдау."
+  },
+  {
+    question: "№2. 10 элементтің ішінен 4 элементті орналастырудың (ретін ескеріп) мүмкіндіктерінің санын табыңыз.",
+    answer:
+      "Рет маңызды және тек 4 элемент алынады, сондықтан орналастыру қолданылады.\n\nA₁₀⁴ = 10! / 6! = 10·9·8·7 = 5040.\nЖауабы: 5040 түрлі орналастыру."
+  },
+  {
+    question:
+      "№3. Цифрлары 0–9 арасынан таңдалатын төрт таңбалы сандарды қарастырайық.\n1) Цифрлары қайталануы МҮМКІН;\n2) Цифрлары қайталанбайтындай етіп, неше төрт таңбалы сан құрастыруға болады?",
+    answer:
+      "Төрт таңбалы санның алғашқы цифры 0 бола алмайды.\n\n1) Қайталану МҮМКІН:\n1-цифр: 1–9 → 9 нұсқа;\n2,3,4-цифрлар: 0–9 → әрқайсысы 10 нұсқа.\nЖалпы сан: 9·10·10·10 = 9000 төрт таңбалы сан.\n\n2) Қайталану ЖОҚ:\n1-цифр: 1–9 → 9 нұсқа;\n2-цифр: қалған 9 цифр;\n3-цифр: 8 нұсқа;\n4-цифр: 7 нұсқа.\nЖалпы сан: 9·9·8·7 = 4536 төрт таңбалы сан."
+  },
+
+  // 18-сабақ тапсырмалары
+  {
+    question:
+      "№4. Ән айту үйірмесіне 5 адам қатысады. 3 әншіні таңдаудың неше тәсілі бар?",
+    answer:
+      "Бұл – қайталанбайтын теру (рет маңызды емес).\n\nn = 5, k = 3.\nC₅³ = 5! / (3!·2!) = (5·4·3) / (3·2·1) = 60 / 6 = 10.\nЖауабы: 3 әншіні таңдаудың 10 түрлі тәсілі бар."
+  },
+  {
+    question:
+      "№5. Ән айту үйірмесіне 5 адам қатысады. Осы 5 әншінің есімдерін бір қатарға жазудың неше тәсілі бар?",
+    answer:
+      "Барлық 5 адам ретімен орналастырылады, реттілік МАҢЫЗДЫ. Бұл – алмастыру (пермутация).\n\nP₅ = 5! = 1·2·3·4·5 = 120.\nЖауабы: 5 әншінің есімін жазудың 120 түрлі тәсілі бар."
+  },
+  {
+    question:
+      "№6. Жоғарғы оқу орнына 120 адам құжат тапсырды. Абитуриенттер 3 пәннен емтихан тапсырды: математика, информатика, қазақ тілі.\nМына деректер белгілі:\n– математикадан – 60 адам;\n– информатикадан – 40 адам;\n– математика мен информатиканы – 30 адам;\n– математика мен қазақ тілін – 30 адам;\n– информатика мен қазақ тілін – 25 адам;\n– барлық үш пәнді де – 20 адам сәтті тапсырды;\n– 50 адам бірде-бір емтиханды тапсыра алмады.\nНеше абитуриент қазақ тілін тапсырды?",
+    answer:
+      "Белгілейік: M – математика, I – информатика, Q – қазақ тілі.\n\nБерілгені:\n|U| = 120 (барлық абитуриент),\nемтиханның біреуін де тапсырмағандар – 50.\nСондықтан кемінде бір пәнді тапсырғандар саны:\n|M ∪ I ∪ Q| = 120 − 50 = 70.\n\n|M| = 60,\n|I| = 40,\n|M ∩ I| = 30,\n|M ∩ Q| = 30,\n|I ∩ Q| = 25,\n|M ∩ I ∩ Q| = 20,\n|Q| = ?\n\nҚосу–алу (қамту–жабу) формуласы:\n|M ∪ I ∪ Q| = |M| + |I| + |Q| − |M ∩ I| − |M ∩ Q| − |I ∩ Q| + |M ∩ I ∩ Q|.\n\nСандарды қоямыз:\n70 = 60 + 40 + |Q| − 30 − 30 − 25 + 20.\nАлдымен тұрақтыларды есептейік:\n60 + 40 = 100,\n100 − 30 = 70,\n70 − 30 = 40,\n40 − 25 = 15,\n15 + 20 = 35.\nСонда:\n70 = 35 + |Q| ⇒ |Q| = 70 − 35 = 35.\n\nЖауабы: қазақ тілін 35 абитуриент тапсырған."
+  }
+],
 
         videoId: "hfZH-PzE_Wk"
       },
@@ -1858,27 +2735,72 @@ C_n^k · a^{n−k} · b^k, &nbsp; k = 0, 1, 2, ..., n.
 <p><strong>Ньютон биномының негізгі «фишкасы»:</strong> бүкіл көпмүшені қолмен ұзақ көбейтпей-ақ, биномиал коэффициенттерді қолданып, барлық мүшелерді немесе керекті мүшені жүйелі түрде табу.</p>
   `,
   tasks: [
-    {
-      question: "(x + y)^4 көпмүшелігін Ньютон биномы бойынша ашыңыз.",
-      answer: "(x + y)^4 = C_4^0 x^4 + C_4^1 x^3y + C_4^2 x^2y^2 + C_4^3 xy^3 + C_4^4 y^4 = x^4 + 4x^3y + 6x^2y^2 + 4xy^3 + y^4."
-    },
-    {
-      question: "(2x − 3y)^3 көпмүшелігін Ньютон биномы формуласы арқылы кеңейтіңіз.",
-      answer: "(2x − 3y)^3 = C_3^0 (2x)^3 + C_3^1 (2x)^2(−3y) + C_3^2 (2x)(−3y)^2 + C_3^3(−3y)^3 = 8x^3 − 36x^2y + 54xy^2 − 27y^3."
-    },
-    {
-      question: "(x + 2)^5 көпмүшелігін Ньютон биномы бойынша кеңейтіңіз.",
-      answer: "(x + 2)^5 = C_5^0x^5 + C_5^1x^4·2 + C_5^2x^3·2^2 + C_5^3x^2·2^3 + C_5^4x·2^4 + C_5^5·2^5 = x^5 + 10x^4 + 40x^3 + 80x^2 + 80x + 32."
-    },
-    {
-      question: "(3x − 4)^2 көпмүшелігін Ньютон биномын қолданып ашыңыз.",
-      answer: "(3x − 4)^2 = C_2^0(3x)^2 + C_2^1(3x)(−4) + C_2^2(−4)^2 = 9x^2 − 24x + 16."
-    },
-    {
-      question: "(x − 5)^3 көпмүшелігін Ньютон биномы бойынша кеңейтіңіз.",
-      answer: "(x − 5)^3 = C_3^0x^3 + C_3^1x^2(−5) + C_3^2x(−5)^2 + C_3^3(−5)^3 = x^3 − 15x^2 + 75x − 125."
-    }
-  ],
+  // 19-сабақ. Ньютон биномы және қасиеттері
+
+  {
+    question: "№1. (x + y)^4 көпмүшелігін Ньютон биномы бойынша кеңейтіңіз.",
+    answer:
+      "(x + y)^4 = C_4^0 x^4 + C_4^1 x^3y + C_4^2 x^2y^2 + C_4^3 xy^3 + C_4^4 y^4\n" +
+      "= 1·x^4 + 4·x^3y + 6·x^2y^2 + 4·xy^3 + 1·y^4\n" +
+      "= x^4 + 4x^3y + 6x^2y^2 + 4xy^3 + y^4."
+  },
+
+  {
+    question: "№2. (2x − 3y)^3 көпмүшелігін Ньютон биномы формуласы арқылы кеңейтіңіз.",
+    answer:
+      "(2x − 3y)^3 = C_3^0(2x)^3 + C_3^1(2x)^2(−3y) + C_3^2(2x)(−3y)^2 + C_3^3(−3y)^3\n" +
+      "= 1·8x^3 + 3·4x^2(−3y) + 3·2x·9y^2 + 1·(−27y^3)\n" +
+      "= 8x^3 − 36x^2y + 54xy^2 − 27y^3."
+  },
+
+  {
+    question: "№3. (x + 2)^5 көпмүшелігін Ньютон биномы бойынша кеңейтіңіз.",
+    answer:
+      "(x + 2)^5 = C_5^0x^5 + C_5^1x^4·2 + C_5^2x^3·2^2 + C_5^3x^2·2^3 + C_5^4x·2^4 + C_5^5·2^5\n" +
+      "= 1·x^5 + 5·x^4·2 + 10·x^3·4 + 10·x^2·8 + 5·x·16 + 1·32\n" +
+      "= x^5 + 10x^4 + 40x^3 + 80x^2 + 80x + 32."
+  },
+
+  {
+    question: "№4. (3x − 4)^7 көпмүшелігін Ньютон биномы бойынша кеңейтіңіз.",
+    answer:
+      "(3x − 4)^7 = \\sum_{k=0}^7 C_7^k (3x)^{7−k}(−4)^k\n" +
+      "= 2187x^7 − 20412x^6 + 81648x^5 − 181440x^4 + 241920x^3 − 193536x^2 + 86016x − 16384."
+  },
+
+  {
+    question: "№5. (x − 5)^5 көпмүшелігін Ньютон биномы бойынша кеңейтіңіз.",
+    answer:
+      "(x − 5)^5 = C_5^0x^5 + C_5^1x^4(−5) + C_5^2x^3(−5)^2 + C_5^3x^2(−5)^3 + C_5^4x(−5)^4 + C_5^5(−5)^5\n" +
+      "= x^5 − 25x^4 + 250x^3 − 1250x^2 + 3125x − 3125."
+  },
+
+  // 20-сабақ. Ньютон биномы және қасиеттеріне есептер шығару
+
+  {
+    question:
+      "№6. (x + a)^7 бином жіктеуіндегі басынан және соңынан санағандағы төртінші мүшелерін табыңыз.",
+    answer:
+      "(x + a)^7 = C_7^0x^7 + C_7^1x^6a + C_7^2x^5a^2 + C_7^3x^4a^3 + C_7^4x^3a^4 + C_7^5x^2a^5 + C_7^6xa^6 + C_7^7a^7.\n" +
+      "Басынан 4-ші мүше: T₄ = C_7^3 x^4 a^3 = 35x^4a^3.\n" +
+      "Соңынан 4-ші мүше – бұл C_7^4x^3a^4: T₅ = 35x^3a^4.\n" +
+      "Жауабы: басынан 4-ші мүше 35x^4a^3, соңынан 4-ші мүше 35x^3a^4."
+  },
+
+  {
+    question: "№7. (x² − 2y)^5 көпмүшелігін Ньютон биномы бойынша кеңейтіңіз.",
+    answer:
+      "(x² − 2y)^5 = C_5^0x^{10} + C_5^1x^8(−2y) + C_5^2x^6(−2y)^2 + C_5^3x^4(−2y)^3 + C_5^4x^2(−2y)^4 + C_5^5(−2y)^5\n" +
+      "= x^{10} − 10x^8y + 40x^6y^2 − 80x^4y^3 + 80x^2y^4 − 32y^5."
+  },
+
+  {
+    question: "№8. (2a − 1/2)^5 көпмүшелігін Ньютон биномы бойынша кеңейтіңіз.",
+    answer:
+      "(2a − 1/2)^5 = C_5^0(2a)^5 + C_5^1(2a)^4(−1/2) + C_5^2(2a)^3(−1/2)^2 + C_5^3(2a)^2(−1/2)^3 + C_5^4(2a)(−1/2)^4 + C_5^5(−1/2)^5\n" +
+      "= 32a^5 − 40a^4 + 20a^3 − 5a^2 + (5/8)a − 1/32."
+  }
+],
 
         videoId: "Hg6U_vJZ3ME"
       },
@@ -1947,28 +2869,56 @@ C_n^k · a^{n−k} · b^k, &nbsp; k = 0, 1, 2, ..., n.
 
 <p><strong>Маңыздысы:</strong> егер таңдаманы дұрыс ұйымдастырмасақ (кездейсоқ емес, бір жаққа ғана ығысқан болса), онда барлық орташа, үлес, тіпті кестелер мен диаграммалар да бас жиынтықты дұрыс сипаттамайды.</p>
 `,
-  tasks: [
-    {
-      question: "1) 7 адам бас жиынтықты құрайды. Осы адамдардың ішінен 3 адамнан тұратын таңдама құрудың неше түрлі жолы бар?",
-      answer: "Бұл – бас жиынтықтан k = 3 элементті реті маңызды емес етіп таңдау. Қайталанбайтын теру формуласы қолданылады: C₇³ = 7! / (3! · 4!) = (7 · 6 · 5) / (3 · 2 · 1) = 35. Жауабы: 35 түрлі таңдама."
-    },
-    {
-      question: "2) Кітапханадағы 10 түрлі кітап – бас жиынтық. Осы кітаптардан 4 кітаптан тұратын таңдама алудың неше түрлі мүмкін нұсқасы бар?",
-      answer: "Теру формуласы: C₁₀⁴ = 10! / (4! · 6!) = (10 · 9 · 8 · 7) / (4 · 3 · 2 · 1) = 210. Демек, 4 кітаптан тұратын 210 түрлі таңдама алуға болады."
-    },
-    {
-      question: "3) Топта 12 студент бар. Зерттеу жүргізу үшін 5 студенттен тұратын таңдама құру керек. Осындай таңдама неше түрлі болуы мүмкін?",
-      answer: "Бұл да қайталанбайтын теру: C₁₂⁵ = 12! / (5! · 7!) = 792. Яғни 5 студенттен тұратын таңдама 792 түрлі нұсқамен құрылады."
-    },
-    {
-      question: "4) 15 қала бас жиынтықты құрайды. Туристік зерттеу үшін 6 қаланы таңдау қажет. Қалаларды таңдаудың неше түрлі вариациясы бар?",
-      answer: "Теру формуласы: C₁₅⁶ = 15! / (6! · 9!) = 5005. Демек, 6 қаладан тұратын таңдама 5005 түрлі жолмен таңдала алады."
-    },
-    {
-      question: "5) 8 әріптен тұратын жиыннан 3 әріпті таңдау керек. Таңдалған әріптердің реті маңызды емес. Неше түрлі таңдама алуға болады?",
-      answer: "Бұл – қайталанбайтын теру: C₈³ = 8! / (3! · 5!) = (8 · 7 · 6) / (3 · 2 · 1) = 56. Жауабы: 56 түрлі теру."
-    }
-  ],
+tasks: [
+  // 21-сабақ. Бас жиынтық және таңдама
+
+  {
+    question: "№1. 7 адамнан 3 адамды таңдау жолдарының санын есептеңіз.",
+    answer:
+      "Бұл – 7 элементтен 3 элементті реті маңызды ЕМЕС етіп таңдау.\n" +
+      "Қайталанбайтын теру формуласы қолданылады:\n" +
+      "C₇³ = 7! / (3! · 4!) = (7 · 6 · 5) / (3 · 2 · 1) = 210 / 6 = 35.\n" +
+      "Жауабы: 35 түрлі таңдау."
+  },
+
+  {
+    question: "№2. 10 түрлі кітаптан 4 кітапты таңдау жолдарының санын табыңыз.",
+    answer:
+      "Бұл да – қайталанбайтын теру.\n" +
+      "n = 10, k = 4.\n" +
+      "C₁₀⁴ = 10! / (4! · 6!) = (10 · 9 · 8 · 7) / (4 · 3 · 2 · 1)\n" +
+      "= 5040 / 24 = 210.\n" +
+      "Жауабы: 4 кітаптан тұратын 210 түрлі таңдама бар."
+  },
+
+  {
+    question: "№3. 12 студенттің ішінен 5 студентті таңдау мүмкіндіктерінің санын анықтаңыз.",
+    answer:
+      "Қайталанбайтын теру: n = 12, k = 5.\n" +
+      "C₁₂⁵ = 12! / (5! · 7!) = (12 · 11 · 10 · 9 · 8) / (5 · 4 · 3 · 2 · 1)\n" +
+      "= 95040 / 120 = 792.\n" +
+      "Жауабы: 5 студенттен тұратын 792 түрлі таңдама құруға болады."
+  },
+
+  // 22-сабақ. Бас жиынтық және таңдама тақырыбына есептер шығару
+
+  {
+    question: "№4. 15 қала арасынан 6 қала таңдау жолдарының санын есептеңіз.",
+    answer:
+      "Теру формуласы қолданылады: n = 15, k = 6.\n" +
+      "C₁₅⁶ = 15! / (6! · 9!) = 5005.\n" +
+      "Жауабы: 6 қаладан тұратын 5005 түрлі таңдама бар."
+  },
+
+  {
+    question: "№5. 8 әріптен 3 әріпті таңдау жолдарының санын табыңыз.",
+    answer:
+      "Бұл – қайталанбайтын теру: n = 8, k = 3.\n" +
+      "C₈³ = 8! / (3! · 5!) = (8 · 7 · 6) / (3 · 2 · 1)\n" +
+      "= 336 / 6 = 56.\n" +
+      "Жауабы: 56 түрлі теру."
+  }
+],
 
         videoId: "fABlrQzjLxo"
       },
@@ -2018,28 +2968,106 @@ C_n^k · a^{n−k} · b^k, &nbsp; k = 0, 1, 2, ..., n.
 
 <p><strong>Қорытынды:</strong> вариациялық қатарлар арқылы деректердің таралуын, жиілік құрылымын, қай мәндер (немесе интервалдар) басым екенін, әрі қарай орташа мен шашырауды талдауға болады.</p>
 `,
-  tasks: [
-    {
-      question: "1) Төмендегі деректер жиынтығы үшін дискретті вариациялық қатарды құрыңыз: 5, 7, 8, 5, 6, 7, 9, 5. Мәндерді өсу ретімен жазыңыз және әр мәннің жиілігін көрсетіңіз.",
-      answer: "Мәндер өсу ретімен: 5, 6, 7, 8, 9. Жиіліктер: 5 – 3 рет, 6 – 1 рет, 7 – 2 рет, 8 – 1 рет, 9 – 1 рет. Дискретті вариациялық қатар: x: 5, 6, 7, 8, 9; n: 3, 1, 2, 1, 1."
-    },
-    {
-      question: "2) 20 студенттің математикалық балдары 0–10 аралығында. Деректер келесі интервалдарға бөлінген: 0–3 – 4 студент, 4–6 – 8 студент, 7–10 – 8 студент. Интервалдық вариациялық қатарды жазыңыз.",
-      answer: "Интервалдық вариациялық қатар: 0–3: 4 студент, 4–6: 8 студент, 7–10: 8 студент. Барлығы N = 20."
-    },
-    {
-      question: "3) Адамдардың жас мөлшерлері: 22, 25, 30, 23, 26, 29, 31, 28, 24, 27. Интервалдарды 20–25, 26–30, 31–35 деп алып, интервалдық вариациялық қатар құрыңыз.",
-      answer: "20–25: 22, 23, 24, 25 → 4 адам; 26–30: 26, 27, 28, 29, 30 → 5 адам; 31–35: 31 → 1 адам. Интервалдық вариациялық қатар: 20–25: 4; 26–30: 5; 31–35: 1."
-    },
-    {
-      question: "4) 15 адамнан тұратын топтың дене салмақтары (кг) келесі интервалдарға бөлінген: 50–60 – 5 адам, 61–70 – 7 адам, 71–80 – 3 адам. Интервалдық вариациялық қатарды жазыңыз және жалпы N мәнін көрсетіңіз.",
-      answer: "Интервалдық вариациялық қатар: 50–60: 5 адам, 61–70: 7 адам, 71–80: 3 адам. Барлығы N = 5 + 7 + 3 = 15 адам."
-    },
-    {
-      question: "5) Қай жағдайда дискретті вариациялық қатарды, ал қай жағдайда интервалдық вариациялық қатарды қолданған тиімді? Мысалмен түсіндіріңіз.",
-      answer: "Дискретті қатар – мүмкін мәндер аз және нақты болғанда (мысалы, баға: 2,3,4,5; отбасыдағы балалар саны). Интервалдық қатар – деректер көп және үздіксіз өлшемдер болғанда (мысалы, бой, салмақ, уақыт, жылдамдық), өйткені мәндерді аралықтарға біріктіру деректерді талдауды жеңілдетеді."
-    }
-  ],
+tasks: [
+  // 23-сабақ. Дискретті және интервалды вариациялық қатарлар
+
+  {
+    question:
+      "№1. Төмендегі деректер жиынтығы үшін дискретті вариациялық қатарды жасаңыз: (5, 7, 8, 5, 6, 7, 9, 5).",
+    answer:
+      "Алдымен мәндерді өсу ретімен жазамыз:\n" +
+      "5, 5, 5, 6, 7, 7, 8, 9.\n\n" +
+      "Жеке мәндер (x) және олардың абсолюттік жиіліктері (n):\n" +
+      "5 – 3 рет,\n" +
+      "6 – 1 рет,\n" +
+      "7 – 2 рет,\n" +
+      "8 – 1 рет,\n" +
+      "9 – 1 рет.\n\n" +
+      "Дискретті вариациялық қатарды кесте түрінде жазсақ:\n" +
+      "x:  5   6   7   8   9\n" +
+      "n:  3   1   2   1   1\n" +
+      "Барлығы N = 8."
+  },
+
+  {
+    question:
+      "№2. 20 студенттің математикадан алған бағалары (0–10) төмендегі интервалдарға бөлінуі тиіс: (0–3) – 4 студент; (4–6) – 8 студент; (7–10) – 8 студент. Интервалдық вариациялық қатарды жазыңыз.",
+    answer:
+      "Берілген интервалдық вариациялық қатар:\n" +
+      "0–3: 4 студент,\n" +
+      "4–6: 8 студент,\n" +
+      "7–10: 8 студент.\n\n" +
+      "Жалпы бақылаулар саны: N = 4 + 8 + 8 = 20."
+  },
+
+  {
+    question:
+      "№3. Жас мөлшерлерін топтастырыңыз: 22, 25, 30, 23, 26, 29, 31, 28, 24, 27. Интервалдар: (20–25), (26–30), (31–35).",
+    answer:
+      "Берілген мәндер: 22, 25, 30, 23, 26, 29, 31, 28, 24, 27.\n\n" +
+      "Интервалдар бойынша топтастыру:\n" +
+      "20–25: 22, 23, 24, 25 → 4 адам,\n" +
+      "26–30: 26, 27, 28, 29, 30 → 5 адам,\n" +
+      "31–35: 31 → 1 адам.\n\n" +
+      "Интервалдық вариациялық қатар:\n" +
+      "20–25: 4;\n" +
+      "26–30: 5;\n" +
+      "31–35: 1.\n" +
+      "Барлығы N = 10."
+  },
+
+  // 24-сабақ. Дискретті және интервалды вариациялық қатарлар
+
+  {
+    question:
+      "№4. Дискретті вариациялық қатарды құрыңыз, егер деректер жиынтығы: (2, 3, 3, 5, 5, 5, 7).",
+    answer:
+      "Мәндер өсу ретімен: 2, 3, 3, 5, 5, 5, 7.\n\n" +
+      "Жеке мәндер және жиіліктері:\n" +
+      "2 – 1 рет,\n" +
+      "3 – 2 рет,\n" +
+      "5 – 3 рет,\n" +
+      "7 – 1 рет.\n\n" +
+      "Дискретті вариациялық қатар:\n" +
+      "x:  2   3   5   7\n" +
+      "n:  1   2   3   1\n" +
+      "Барлығы N = 7."
+  },
+
+  {
+    question:
+      "№5. 15 адамнан тұратын топтың дене салмағы (кг) төмендегі интервалдарға бөлінеді: (50–60) – 5 адам; (61–70) – 7 адам; (71–80) – 3 адам. Интервалдық вариациялық қатарды жазыңыз.",
+    answer:
+      "Интервалдық вариациялық қатар:\n" +
+      "50–60: 5 адам,\n" +
+      "61–70: 7 адам,\n" +
+      "71–80: 3 адам.\n\n" +
+      "Жалпы бақылаулар саны: N = 5 + 7 + 3 = 15."
+  },
+
+  {
+    question:
+      "№6. Банкте 10 салымшының салым мөлшері туралы деректер берілген: 300, 380, 480, 350, 450, 560, 250, 400, 500, 200 (мың тг). Салым көлемін тең аралықты 3 топқа бөліп, салымшыларды бөлудің интервалды вариациялық қатарын құрыңыз.",
+    answer:
+      "1) Алдымен ең кіші және ең үлкен мәнді табамыз:\n" +
+      "x_min = 200, x_max = 560.\n" +
+      "Құлаш: R = 560 − 200 = 360.\n\n" +
+      "2) Тең аралықты 3 интервал керек → интервал ұзындығы:\n" +
+      "h = R / 3 = 360 / 3 = 120.\n\n" +
+      "Интервалдарды, мысалы, былай аламыз (жартылай жабық түрінде):\n" +
+      "[200; 320), [320; 440), [440; 560].\n\n" +
+      "3) Деректерді интервалдарға бөлеміз:\n" +
+      "Берілген мәндер (реттелген): 200, 250, 300, 350, 380, 400, 450, 480, 500, 560.\n\n" +
+      "1-интервал [200; 320): 200, 250, 300 → 3 салымшы;\n" +
+      "2-интервал [320; 440): 350, 380, 400 → 3 салымшы;\n" +
+      "3-интервал [440; 560]: 450, 480, 500, 560 → 4 салымшы.\n\n" +
+      "Интервалдық вариациялық қатар:\n" +
+      "200–320: 3 салымшы,\n" +
+      "320–440: 3 салымшы,\n" +
+      "440–560: 4 салымшы.\n\n" +
+      "Барлығы N = 10."
+  }
+],
 
         videoId: "jNEj51h7E_k"
       },
@@ -2109,35 +3137,117 @@ C_n^k · a^{n−k} · b^k, &nbsp; k = 0, 1, 2, ..., n.
 <p><strong>Маңызды идея:</strong> Практикада бас жиынтықты түгел өлшеу мүмкін емес, сондықтан орташа, мода, медиана, дисперсия сияқты сипаттамалар <strong>таңдама арқылы есептеліп, бас жиынтық параметрлерін бағалау</strong> үшін қолданылады. Таңдама неғұрлым дұрыс әрі өкілді болса, алынған бағалар да соғұрлым шынайы болады.</p>
   `,
   tasks: [
-    {
-      question: "Таңдама деректері: 10, 12, 13, 15, 20. Орташа, құлаш, медиана және моданы табыңыз.",
-      answer: "Орташа: x̄ = (10+12+13+15+20)/5 = 70/5 = 14. Құлаш: R = 20 − 10 = 10. Медиана: реттелген қатар (10,12,13,15,20), ортасы – 13. Мода: жоқ (барлық мәндер бір рет кездеседі)."
-    },
-    {
-      question: "Осы 10, 12, 13, 15, 20 деректері үшін таңдамалық дисперсия мен стандартты ауытқуды есептеңіз.",
-      answer: "Орташа: x̄ = 14. Ауытқулар: −4, −2, −1, 1, 6. Квадраттары: 16, 4, 1, 1, 36. Қосындысы: 58. Таңдамалық дисперсия: s² = 58 / (5 − 1) = 58 / 4 = 14.5. Стандартты ауытқу: s = √14.5 ≈ 3.81."
-    },
-    {
-      question: "Деректер: 5, 7, 7, 9, 12, 20. Таңдамалық орташа, медиана және моданы табыңыз.",
-      answer: "Орташа: x̄ = (5+7+7+9+12+20)/6 = 60/6 = 10. Медиана: реттелген қатар (5,7,7,9,12,20), ортасындағы екі мән – 7 және 9, медиана = (7+9)/2 = 8. Мода: 7 (ең жиі кездесетін мән)."
-    },
-    {
-      question: "10 оқушының тест балдары: 8, 9, 10, 10, 11, 12, 12, 12, 13, 20. Орташа мен медиананы салыстырыңыз.",
-      answer: "Орташа: x̄ = (8+9+10+10+11+12+12+12+13+20)/10 = 117/10 = 11.7. Медиана: ортасындағы екі мән – 11 және 12, медиана = (11+12)/2 = 11.5. Орташа медианадан сәл үлкен, себебі 20 деген үлкен шеткі мән орташаға қатты әсер етті."
-    },
-    {
-      question: "Қай жағдайда медиана орташаға қарағанда сенімді көрсеткіш болады? Өмірден бір мысал келтіріңіз.",
-      answer: "Егер деректерде өте үлкен немесе өте кіші шеткі мәндер көп болса, медиана сенімдірек болады. Мысалы, жалақыны сипаттағанда бірнеше адамның өте жоғары табысы орташа мәнді «үлкейтіп жібереді», ал медиана көпшіліктің шынайы табысын жақсырақ көрсетеді."
-    },
-    {
-      question: "Екі таңдамада орташа бірдей, бірақ біріншісінде s = 1.2, екіншісінде s = 4.5. Қай таңдамада деректер тұрақтырақ және неге?",
-      answer: "Стандартты ауытқу неғұрлым кіші болса, деректер орташаға соғұрлым жақын шоғырланады. Сондықтан s = 1.2 болған таңдамада деректер тұрақтырақ, шашырауы аз."
-    },
-    {
-      question: "Кездейсоқ шаманың сандық сипаттамаларын (орташа, медиана, мода, дисперсия, стандартты ауытқу) қандай мақсатта қолданамыз?",
-      answer: "Бұл сипаттамалар деректерді қысқаша сипаттау, әр түрлі таңдама немесе топтарды салыстыру, тұрақтылық пен өзгергіштікті бағалау және бас жиынтық туралы қорытынды жасау үшін қолданылады."
-    }
-  ],
+  {
+    question:
+      "1) Берiлген сaндaр жиыны: (5, 7, 8, 6, 9). Орташа мән, дисперсия және стандартты ауытқуды есептеңіз.",
+    answer: `
+1) Орташа мән:
+x̄ = (5 + 7 + 8 + 6 + 9) / 5 = 35 / 5 = 7.
+
+2) Ауытқулар және олардың квадраттары:
+(5 − 7)²  = (−2)² = 4  
+(7 − 7)²  = 0²    = 0  
+(8 − 7)²  = 1²    = 1  
+(6 − 7)²  = (−1)² = 1  
+(9 − 7)²  = 2²    = 4  
+
+Қосынды: 4 + 0 + 1 + 1 + 4 = 10.
+
+3) Таңдамалық дисперсия (n − 1-ге бөлеміз):
+s² = 10 / (5 − 1) = 10 / 4 = 2.5.
+
+4) Орташа квадраттық ауытқу:
+s = √2.5 ≈ 1.58.`
+  },
+  {
+    question:
+      "2) Берiлген сaндaр жиыны: (12, 15, 14, 17, 16). Орташа мән, дисперсия және стандартты ауытқуды есептеңіз.",
+    answer: `
+1) Орташа мән:
+x̄ = (12 + 15 + 14 + 17 + 16) / 5 = 74 / 5 = 14.8.
+
+2) Ауытқулар және олардың квадраттары:
+(12 − 14.8)² = (−2.8)² = 7.84  
+(15 − 14.8)² = 0.2²    = 0.04  
+(14 − 14.8)² = (−0.8)² = 0.64  
+(17 − 14.8)² = 2.2²    = 4.84  
+(16 − 14.8)² = 1.2²    = 1.44  
+
+Қосынды: 7.84 + 0.04 + 0.64 + 4.84 + 1.44 = 14.8.
+
+3) Таңдамалық дисперсия:
+s² = 14.8 / (5 − 1) = 14.8 / 4 = 3.7.
+
+4) Орташа квадраттық ауытқу:
+s = √3.7 ≈ 1.92.`
+  },
+  {
+    question:
+      "3) Берiлген сaндaр жиыны: (22, 24, 27, 30, 29). Орташа мән, дисперсия және стандартты ауытқуды есептеңіз.",
+    answer: `
+1) Орташа мән:
+x̄ = (22 + 24 + 27 + 30 + 29) / 5 = 132 / 5 = 26.4.
+
+2) Ауытқулар және олардың квадраттары:
+(22 − 26.4)² = (−4.4)² = 19.36  
+(24 − 26.4)² = (−2.4)² = 5.76  
+(27 − 26.4)² = 0.6²    = 0.36  
+(30 − 26.4)² = 3.6²    = 12.96  
+(29 − 26.4)² = 2.6²    = 6.76  
+
+Қосынды: 19.36 + 5.76 + 0.36 + 12.96 + 6.76 = 45.2.
+
+3) Таңдамалық дисперсия:
+s² = 45.2 / (5 − 1) = 45.2 / 4 = 11.3.
+
+4) Орташа квадраттық ауытқу:
+s = √11.3 ≈ 3.36.`
+  },
+  {
+    question:
+      "4) Берiлген сaндaр жиыны: 40, 45, 43, 48, 50. Орташа мән, дисперсия және стандартты ауытқуды есептеңіз.",
+    answer: `
+1) Орташа мән:
+x̄ = (40 + 45 + 43 + 48 + 50) / 5 = 226 / 5 = 45.2.
+
+2) Ауытқулар және олардың квадраттары:
+(40 − 45.2)² = (−5.2)² = 27.04  
+(45 − 45.2)² = (−0.2)² = 0.04  
+(43 − 45.2)² = (−2.2)² = 4.84  
+(48 − 45.2)² = 2.8²    = 7.84  
+(50 − 45.2)² = 4.8²    = 23.04  
+
+Қосынды: 27.04 + 0.04 + 4.84 + 7.84 + 23.04 = 62.8.
+
+3) Таңдамалық дисперсия:
+s² = 62.8 / (5 − 1) = 62.8 / 4 = 15.7.
+
+4) Орташа квадраттық ауытқу:
+s = √15.7 ≈ 3.96.`
+  },
+  {
+    question:
+      "5) Берiлген сaндaр жиыны: 18, 22, 25, 20, 24. Орташа мән, дисперсия және стандартты ауытқуды есептеңіз.",
+    answer: `
+1) Орташа мән:
+x̄ = (18 + 22 + 25 + 20 + 24) / 5 = 109 / 5 = 21.8.
+
+2) Ауытқулар және олардың квадраттары:
+(18 − 21.8)² = (−3.8)² = 14.44  
+(22 − 21.8)² = 0.2²     = 0.04  
+(25 − 21.8)² = 3.2²     = 10.24  
+(20 − 21.8)² = (−1.8)²  = 3.24  
+(24 − 21.8)² = 2.2²     = 4.84  
+
+Қосынды: 14.44 + 0.04 + 10.24 + 3.24 + 4.84 = 32.8.
+
+3) Таңдамалық дисперсия:
+s² = 32.8 / (5 − 1) = 32.8 / 4 = 8.2.
+
+4) Орташа квадраттық ауытқу:
+s = √8.2 ≈ 2.86.`
+  }
+],
 
         videoId: "5AQ548rRhls"
       },
@@ -2197,40 +3307,70 @@ C_n^k · a^{n−k} · b^k, &nbsp; k = 0, 1, 2, ..., n.
 
 <p><strong>ҰБТ-дағы басты тұзақ:</strong> Оқушылар көбіне «пароль» сөзін көргенде автоматты түрде орналастыру формуласына жүгінеді, бірақ егер қайталану рұқсат етілсе – міндетті түрде <strong>n<sup>k</sup></strong> формуласы қолданылады.</p>
 `,
-  tasks: [
-    {
-      question: "0–9 цифрларынан ұзындығы 3 болатын код құрылады, цифрлардың қайталануына рұқсат етіледі. Неше түрлі код жасауға болады?",
-      answer: "Әр орынға 10 цифрдан таңдау бар, 3 орын: 10³ = 1000 код."
-    },
-    {
-      question: "0–9 цифрларынан ұзындығы 3 болатын код құрылады, бірақ цифрлар қайталанбайды. Неше түрлі код бар?",
-      answer: "Бұл жағдайда қайталанбайды, әрі реттік маңызды → орналастыру: A₁₀³ = 10·9·8 = 720."
-    },
-    {
-      question: "A, B, C әріптерінен ұзындығы 4 болатын сөз тіркестері құрылады, әріптердің қайталануына рұқсат етіледі. Қанша тіркес бар?",
-      answer: "Әр орынға 3 әріп, 4 орын: 3⁴ = 81."
-    },
-    {
-      question: "A, B, C, D, E әріптерінен 3 әріптен тұратын сөз құрылады, әріптер қайталанбайды. Неше түрлі сөз бар?",
-      answer: "Қайталанбайды және рет маңызды → A₅³ = 5·4·3 = 60."
-    },
-    {
-      question: "4 түрлі түстен ұзындығы 5 болатын тізбек құрылады, түстер қайталануы мүмкін. Неше түрлі тізбек бар?",
-      answer: "Қайталану бар → 4⁵ = 1024."
-    },
-    {
-      question: "6 адамды бір қатарға отырғызу есептеледі. Бұл қай формуламен анықталады?",
-      answer: "Барлығы қатысады, қайталанбайды, рет маңызды → алмастыру: P₆ = 6! = 720."
-    },
-    {
-      question: "Пароль есептерінде неге көбінесе nᵏ формуласы қолданылады?",
-      answer: "Себебі пароль символдары көбіне бірнеше рет қайталануы мүмкін және әр орын тәуелсіз түрде толтырылады, сондықтан барлық тізбек саны nᵏ болады."
-    },
-    {
-      question: "Қай кезде қайталанбайтын орналастыру, қай кезде қайталанатын орналастыру қолданылатынын бір сөйлеммен қорытындылаңыз.",
-      answer: "Егер бір элементті бірнеше рет қолдануға рұқсат етілмесе – Aₙᵏ, ал рұқсат етілсе – nᵏ формуласы қолданылады."
-    }
-  ],
+tasks: [
+  // 27-сабақ. Қайталанатын және қайталанбайтын орналастырулар, алмастырулар мен терулер
+
+  {
+    question:
+      "1) 5 кiтапты 2 орынға орналастырудың (реті маңызды, қайталанбайтын) жолдарының санын табыңыз.",
+    answer:
+      "Бұл – қайталанбайтын орналастыру: A₅².\n\n1-орынға 5 кітаптың кез келгені, 2-орынға қалған 4 кітаптың біреуі қойылады.\nA₅² = 5 · 4 = 20.\nЖауабы: 20 түрлі орналастыру."
+  },
+  {
+    question:
+      "2) 4 әріптен тұратын алфавиттен ұзындығы 2 болатын қайталанатын алмастырулар саны қанша?",
+    answer:
+      "Қайталанатын орналастыру (алмастыру): әр позицияға 4 ықтимал әріптің кез келгені қойыла береді.\n\nҰзындығы 2 сөздер саны: 4² = 16.\nЖауабы: 16 түрлі екіәріпті тіркес."
+  },
+  {
+    question:
+      "3) 8 адамнан 3 адамды (орын тәртібі маңызды ЕМЕС, қайталанбайтын) таңдау жолдарының санын табыңыз.",
+    answer:
+      "Бұл – қайталанбайтын теру: C₈³.\nC₈³ = 8! / (3!·5!) = (8·7·6)/(3·2·1) = 336/6 = 56.\nЖауабы: 56 түрлі таңдау."
+  },
+
+  // 28-сабақ. Қайталанатын және қайталанбайтын орналастырулар, алмастырулар мен терулер
+
+  {
+    question:
+      "4) 5 әріптен 3 әріпті қайталанатын терулердің санын есептеңіз.",
+    answer:
+      "Қайталанатын теру формуласы: n элементтен k элементті қайталанумен таңдау саны\nC̄(n, k) = C_{n + k − 1}^k.\nМұнда n = 5, k = 3.\n\nC̄(5, 3) = C_{5+3−1}^3 = C₇³ = 7! / (3!·4!) = (7·6·5)/(3·2·1) = 210/6 = 35.\nЖауабы: 35 түрлі қайталанатын теру."
+  },
+  {
+    question:
+      "5) 6 элементтен 4 элементті орналастыру жолдарының санын табыңыз (реті маңызды, қайталанбайтын).",
+    answer:
+      "Бұл – қайталанбайтын орналастыру: A₆⁴.\nA₆⁴ = 6! / (6−4)! = 6! / 2! = (6·5·4·3·2·1)/(2·1) = 720/2 = 360.\nЖауабы: 360 түрлі орналастыру."
+  },
+  {
+    question:
+      "6) Бес қаламның екеуін және үш қарындаштың екеуін таңдау тәсілінің санын табыңыз.",
+    answer:
+      "Қаламдарды таңдау: 5-тен 2 → C₅².\nҚарындаштарды таңдау: 3-тен 2 → C₃².\nБұл екі таңдау бір-біріне тәуелсіз, сондықтан көбейтеміз:\n\nC₅² = 5! / (2!·3!) = (5·4)/(2·1) = 10.\nC₃² = 3! / (2!·1!) = (3·2)/(2·1) = 3.\nЖалпы тәсіл саны: 10 · 3 = 30.\nЖауабы: 30 түрлі таңдау."
+  },
+
+  // 29-сабақ. Қайталанатын және қайталанбайтын орналастырулар, алмастырулар мен терулер (теңдіктерді дәлелдеу)
+
+  {
+    question:
+      "7) Жалпы теңдікті дәлелдеңіз: C_(n−1)^(k−1) + C_(n−1)^k = C_n^k. Сонымен қатар нақты мысал ретінде C_8^3 + C_8^4 = C_9^4 теңдігін тексеріңіз.",
+    answer:
+      "1) Жалпы теңдік (Паскаль теңдеуі):\nC_(n−1)^(k−1) + C_(n−1)^k = C_n^k.\nАрифметикалық дәлел:\nC_(n−1)^(k−1) = (n−1)! / ((k−1)!(n−k)!),\nC_(n−1)^k = (n−1)! / (k!(n−1−k)!) = (n−1)! / (k!(n−k−1)!).\nОртақ бөлімге келтіргенде есептеу арқылы C_n^k шықатыны алгебралық түрде дәлелденеді.\n\nКомбинаторлық түсіндіру:\nC_n^k – n адамның ішінен k адамды таңдаудың саны.\nБерілген n адамның біреуін (мысалы, А адамын) қарастырайық. k адамдық топтар екіге бөлінеді:\n• құрамында А бар топтар саны: C_(n−1)^(k−1) (қалған n−1 адамның ішінен k−1 таңдаймыз);\n• құрамында А жоқ топтар саны: C_(n−1)^k (қалған n−1 адамның ішінен бірден k таңдаймыз).\nЕкі түрі бірге барлық k адамдық топтарды береді, сондықтан\nC_n^k = C_(n−1)^(k−1) + C_(n−1)^k.\n\n2) Нақты мысал: C_8^3 + C_8^4 = C_9^4.\nC_8^3 = 8! / (3!·5!) = (8·7·6)/(3·2·1) = 336/6 = 56.\nC_8^4 = 8! / (4!·4!) = (8·7·6·5)/(4·3·2·1) = 1680/24 = 70.\nСонда C_8^3 + C_8^4 = 56 + 70 = 126.\n\nC_9^4 = 9! / (4!·5!) = (9·8·7·6)/(4·3·2·1) = 3024/24 = 126.\nДемек, C_8^3 + C_8^4 = 126 = C_9^4, теңдік орындалады."
+  },
+  {
+    question:
+      "8) Тепе-теңдікті дәлелдеңіз: C_8^3 + C_8^4 = C_9^5.",
+    answer:
+      "Жоғарыда есептегендей:\nC_8^3 + C_8^4 = 56 + 70 = 126.\n\nC_9^5 = 9! / (5!·4!) = (9·8·7·6·5)/(5·4·3·2·1) = 15120/120 = 126.\nСондықтан C_8^3 + C_8^4 = 126 = C_9^5.\n\nБұл сонымен қатар биномиалдық коэффициенттердің симметрия қасиетіне сүйенеді:\nC_n^k = C_n^{n−k}.\nМұнда C_9^4 = C_9^5, екеуі де 126-ға тең."
+  },
+  {
+    question:
+      "9) Неге C_9^4 = C_9^5 екендігін түсіндіріңіз және осыдан C_8^3 + C_8^4 = C_9^4 = C_9^5 деген қорытындыны жасаңыз.",
+    answer:
+      "Биномиалдық коэффициенттердің симметрия қасиеті:\nC_n^k = C_n^{n−k}.\n\nМұнда n = 9, k = 4 болғанда:\nC_9^4 = C_9^{9−4} = C_9^5.\nЯғни C_9^4 және C_9^5 бірдей сан.\n\nАл бұрын есептегеніміздей:\nC_8^3 + C_8^4 = 126,\nC_9^4 = 126,\nC_9^5 = 126.\nСонда C_8^3 + C_8^4 = C_9^4 = C_9^5.\nБұл Паскаль үшбұрышының қатарындағы көршілес элементтердің қосындысы келесі қатардың элементін беретінін және симметриясын жақсы көрсетеді."
+  }
+],
 
         videoId: "6KLH7aSBbDs"
       },
@@ -2294,40 +3434,112 @@ C_n^k · a^{n−k} · b^k, &nbsp; k = 0, 1, 2, ..., n.
 
 <p><strong>ҰБТ-дағы маңызды сәт:</strong> шартты ықтималдық, тәуелді/тәуелсіз оқиғаларды және қосу/көбейту ережелерін шатастырмау қажет.</p>
 `,
-  tasks: [
-    {
-      question: "Қарапайым ойын тасы (1–6) лақтырылады. Жұп сан түсу ықтималдығын табыңыз.",
-      answer: "Жұп сандар: 2, 4, 6 → 3 нәтиже. Барлық нәтиже: 6. Сондықтан P(жұп) = 3/6 = 1/2."
-    },
-    {
-      question: "52 карталық колодадан бір карта алынады. Қызыл масть (червa немесе бубна) түсу ықтималдығын табыңыз.",
-      answer: "Қызыл карталар саны – 26, барлығы – 52. Сондықтан P(қызыл) = 26/52 = 1/2."
-    },
-    {
-      question: "Екі рет әділ монета лақтырылады. 1) Екі рет те герб түсу ықтималдығы. 2) Кемінде бір рет герб түсу ықтималдығы.",
-      answer: "Барлық нәтижелер: {ГГ, ГЖ, ЖГ, ЖЖ} – 4 нәтиже. 1) P(ГГ) = 1/4. 2) Кемінде бір герб: {ГГ, ГЖ, ЖГ} – 3 нәтиже, P = 3/4."
-    },
-    {
-      question: "Қорапта 5 ақ және 3 қара шар бар. Бір шар алынды. Оның ақ болуының ықтималдығын табыңыз.",
-      answer: "Барлығы 8 шар, оның 5-еуі ақ. Сондықтан P(ақ) = 5/8."
-    },
-    {
-      question: "Сол қораптан шар орнына салынбай тағы бір шар алынады. Екі рет те ақ шар түсу ықтималдығын табыңыз.",
-      answer: "1-рет ақ: 5/8. Одан кейін қорапта 4 ақ, 3 қара, барлығы 7 шар қалады, 2-рет ақ: 4/7. Тәуелді оқиғалар, көбейту ережесі: P = (5/8)·(4/7) = 20/56 = 5/14."
-    },
-    {
-      question: "Қорапта 4 қызыл, 6 көк шар бар. Бір шар кездейсоқ алынды. Ол қызыл екені белгілі. Екінші рет алынған шардың көк болуының шартты ықтималдығын табыңыз.",
-      answer: "1-қадам: біріншіде қызыл алынған → қорапта 3 қызыл, 6 көк, барлығы 9 шар қалады. Сондықтан P(көк | біріншіде қызыл) = 6/9 = 2/3."
-    },
-    {
-      question: "Екі тәуелсіз оқиға деп нені айтамыз?",
-      answer: "Егер бір оқиғаның болуы немесе болмауы екінші оқиғаның ықтималдығын өзгертпесе, онда бұл екі оқиға тәуелсіз оқиғалар деп аталады."
-    },
-    {
-      question: "Қай кезде шартты ықтималдық қолданылады?",
-      answer: "Егер бір оқиғаның (B) болғаны белгілі болып, екіншісінің (A) ықтималдығы соған байланысты есептелсе, яғни «A оқиғасының B жағдайындағы ықтималдығы» қарастырылса, шартты ықтималдық қолданылады: P(A | B)."
-    }
-  ],
+tasks: [
+  // 30-сабақ. Оқиғаның ықтималдығы және оның қасиеттері
+
+  {
+    question:
+      "1) Қорапта 3 қызыл және 2 көк доп бар. Қызыл доптың таңдалу ықтималдығын есептеңіз.",
+    answer:
+      "Барлық доп саны: 3 + 2 = 5.\nҚолайлы жағдайлар саны (қызыл доп): 3.\nЫқтималдық: P(қызыл) = 3/5 = 0.6 (60%)."
+  },
+  {
+    question:
+      "2) Егер оқушының тесттен дұрыс жауап беру ықтималдығы 0.7 болса, екі сұрақтан тұратын тесттің екеуіне де дұрыс жауап алу ықтималдығын есептеңіз.",
+    answer:
+      "Әр сұраққа дұрыс жауап беру ықтималдығы – 0.7, сұрақтар тәуелсіз деп аламыз.\nP(2 дұрыс жауап) = 0.7 · 0.7 = 0.49.\nЖауабы: 0.49 (49%)."
+  },
+  {
+    question:
+      "3) Достардың 4-і жазықтықта тұр. Олардың екеуінің дұрыс жауап беру ықтималдығы 0.8 болса, екі адам да дұрыс жауап беру ықтималдығын табыңыз (нақты екі адам үшін).",
+    answer:
+      "Берілген екі адамның әрқайсысы дұрыс жауап береді деген ықтималдық – 0.8.\nЕкі оқиға тәуелсіз:\nP(екеуі де дұрыс) = 0.8 · 0.8 = 0.64.\nЖауабы: 0.64 (64%)."
+  },
+
+  // 31-сабақ. Оқиғаның ықтималдығы және оның қасиеттері
+
+  {
+    question:
+      "4) Мүмкін болатын барлық оқиғалар саны 10 болса, қолайлы жағдайлар саны 3 болғандағы оқиғаның ықтималдығын есептеңіз.",
+    answer:
+      "Формула: P(A) = m/n.\nМұнда m = 3 (қолайлы), n = 10 (барлық).\nP(A) = 3/10 = 0.3 (30%)."
+  },
+  {
+    question:
+      "5) Достардың 4-і жазықтықта тұр. Олардың екеуінің дұрыс жауап беру ықтималдығы 0.8 болса, екі адам да дұрыс жауап беру ықтималдығын табыңыз (нақты екі адам үшін).",
+    answer:
+      "Әр адам үшін: P(дұрыс) = 0.8.\nТәуелсіз оқиғалар үшін бірге орын алу ықтималдығы:\nP(екеуі де дұрыс) = 0.8 · 0.8 = 0.64.\nЖауабы: 0.64."
+  },
+  {
+    question:
+      "6) Бір күнгі жауын-шашынның болуы ықтималдығы 0.4. Жауын-шашын болмайтын ықтималдықты есептеңіз.",
+    answer:
+      "Қосымша оқиға: \"жауын-шашын болмайды\".\nP(жоқ) = 1 − P(бар) = 1 − 0.4 = 0.6.\nЖауабы: 0.6 (60%)."
+  },
+
+  // 32-сабақ. Шартты ықтималдық. Ықтималдықты қосу және көбейту ережелері
+
+  {
+    question:
+      "7) Қорапта 4 қызыл және 6 көк доп бар. 1) Бір доп алынғанда қызыл доптың алыну ықтималдығын табыңыз. 2) Доптар қайтарылмай екі рет алынады. Егер екінші рет алынған доп қызыл болса, алғашқыда алынған доптың қызыл болу ықтималдығы қандай?",
+    answer:
+      "1) Барлығы 10 доп, қызыл – 4.\nP(біріншіде қызыл) = 4/10 = 0.4.\n\n2) Доптар қайтарылмай алынады. P(1-доп қызыл | 2-доп қызыл):\nАлдымен біріккен ықтималдықтарды табамыз:\nP(1-қызыл, 2-қызыл) = (4/10) · (3/9) = 12/90.\nP(2-қызыл) = 4/10 (симметрия бойынша, әр орын үшін қызыл болу ықтималдығы бірдей).\nСонда:\nP(1-қызыл | 2-қызыл) = P(1-қызыл, 2-қызыл) / P(2-қызыл)\n= (12/90) / (4/10) = (12/90) · (10/4) = 12/36 = 1/3 ≈ 0.33.\nЖауабы: P(1-де қызыл | 2-де қызыл) = 1/3."
+  },
+  {
+    question:
+      "8) Бір күннің жауын-шашын болуы ықтималдығы 0.3. Егер жауын болмаса, температураның жоғары болуы ықтималдығы 0.6, ал жауын болса, температураның жоғары болуы ықтималдығы 0.5. Температураның жоғары болуының толық ықтималдығын есептеңіз.",
+    answer:
+      "P(Ж) = 0.3, P(ЖЖ) – «жауын жоқ» = 0.7.\nP(Т|Ж) = 0.5, P(Т|ЖЖ) = 0.6.\nТолық ықтималдық формуласы:\nP(Т) = P(Т|Ж)·P(Ж) + P(Т|ЖЖ)·P(ЖЖ)\n= 0.5·0.3 + 0.6·0.7\n= 0.15 + 0.42 = 0.57.\nЖауабы: P(температура жоғары) = 0.57 (57%)."
+  },
+  {
+    question:
+      "9) Сыныпта 25 оқушы бар. Олардың 15-і математика үйірмесіне, 10-ы физика үйірмесіне қатысады, 5 оқушы екі үйірмеге де қатысады. Кездейсоқ таңдалған оқушының математика немесе физика үйірмесіне қатысу ықтималдығы қандай?",
+    answer:
+      "Математика: |M| = 15, физика: |F| = 10, екі үйірме: |M∩F| = 5.\nКемінде біреуіне қатысатындар саны:\n|M ∪ F| = |M| + |F| − |M∩F| = 15 + 10 − 5 = 20.\nБарлығы 25 оқушы.\nP(M ∪ F) = 20/25 = 4/5 = 0.8.\nЖауабы: 0.8 (80%)."
+  },
+
+  // 33-сабақ. Шартты ықтималдық. Ықтималдықты қосу және көбейту ережелері
+
+  {
+    question:
+      "10) Әрқайсысының ықтималдығы 0.3 және 0.5 болатын екі оқиғаның тәуелсіз екенін қалай тексеруге болады?",
+    answer:
+      "Екі оқиға A және B тәуелсіз болуы үшін қажетті және жеткілікті шарт:\nP(A ∩ B) = P(A) · P(B).\nБерілгенде P(A) = 0.3, P(B) = 0.5, сондықтан тәуелсіз болса, P(A ∩ B) = 0.3·0.5 = 0.15 болуы тиіс.\nЕгер нақты берілген қиылысу ықтималдығы 0.15-ке тең болса – оқиғалар тәуелсіз, ал егер айырмашылық болса – тәуелді."
+  },
+  {
+    question:
+      "11) 2 тәуелсіз оқиға A және B үшін P(A) = 0.7 және P(B) = 0.4. Олардың қиылысуының ықтималдығын табыңыз.",
+    answer:
+      "Тәуелсіз оқиғалар үшін:\nP(A ∩ B) = P(A) · P(B) = 0.7 · 0.4 = 0.28.\nЖауабы: 0.28."
+  },
+  {
+    question:
+      "12) Тиынды екі рет лақтырды. Бірінші лақтыруда «елтаңба» жағы түскені белгілі. Екінші лақтыруда «елтаңба» жағы түсу ықтималдығы қандай?",
+    answer:
+      "Тиынның әр лақтыруы тәуелсіз.\nӘр лақтыруда «елтаңба» түсу ықтималдығы 1/2.\nБірінші нәтиженің екіншісіне әсері жоқ, сондықтан:\nP(2-де елтаңба | 1-де елтаңба) = 1/2."
+  },
+
+  // 34-сабақ. Шартты ықтималдық. Ықтималдықты қосу және көбейту ережелері
+
+  {
+    question:
+      "13) Ауа райының болжамы бойынша ертең жаңбыр жауу ықтималдығы 0.4. Егер жаңбыр жауса, футбол матчының өткізілу ықтималдығы 0.2. Жаңбыр жаумаса, матч міндетті түрде өтеді деп есептейік. Футбол матчының өткізілмеу ықтималдығы қандай?",
+    answer:
+      "P(Ж) = 0.4, P(ЖЖ) – «жаңбыр жоқ» = 0.6.\nP(Матч|Ж) = 0.2, P(Матч|ЖЖ) = 1 (жаңбыр болмаса, матч өткізіледі деп алдық).\nАлдымен матчтың өту ықтималдығы:\nP(Матч) = P(Матч|Ж)·P(Ж) + P(Матч|ЖЖ)·P(ЖЖ)\n= 0.2·0.4 + 1·0.6 = 0.08 + 0.6 = 0.68.\nСонда өткізілмеу ықтималдығы:\nP(өткізілмейді) = 1 − 0.68 = 0.32.\nЖауабы: 0.32 (32%)."
+  },
+  {
+    question:
+      "14) Мергеннің нысанаға тигізу ықтималдығы 0.7. Егер ол екі рет атса, кем дегенде бір рет тигізу ықтималдығы қандай?",
+    answer:
+      "Әдетте екі ату тәуелсіз деп алынады.\nАлдымен екеуінде де тимеу ықтималдығын табамыз:\nP(тимеу) = 1 − 0.7 = 0.3.\nP(екеуінде де тимеу) = 0.3 · 0.3 = 0.09.\nКем дегенде бір рет тию – қарсы оқиға:\nP(кем дегенде бір рет тию) = 1 − 0.09 = 0.91.\nЖауабы: 0.91 (91%)."
+  },
+  {
+    question:
+      "15) Қорапта 7 қызыл және 3 көк шар бар. Кездейсоқ екі шар алынды (қайтарылмай). Екі шардың да қызыл болу ықтималдығын табыңыз.",
+    answer:
+      "Барлығы 10 шар: 7 қызыл, 3 көк.\n1-ші шардың қызыл болуы: P₁ = 7/10.\n1-ші қызылдан кейін қорапта 6 қызыл, 3 көк қалады (барлығы 9).\n2-ші шардың қызыл болуы: P₂ = 6/9 = 2/3.\nЕкі оқиға тізбекті және тәуелді, сондықтан көбейтеміз:\nP(екеуі де қызыл) = P₁ · P₂ = (7/10) · (6/9) = 42/90 = 7/15 ≈ 0.47.\nЖауабы: 7/15 шамамен 46.7%."
+  }
+],
         videoId: "jr3K7oz97eQ"
       }
     ];
@@ -2503,6 +3715,88 @@ C_n^k · a^{n−k} · b^k, &nbsp; k = 0, 1, 2, ..., n.
       });
     }
 
+    (function () {
+    function resetCardState(card) {
+      card.classList.remove("is-correct", "is-wrong", "is-unanswered");
+      const info = card.querySelector(".mathquiz-correct-answer");
+      if (info) info.remove();
+    }
+
+    function addCorrectInfo(card, correctLetter) {
+      let info = card.querySelector(".mathquiz-correct-answer");
+      if (!info) {
+        info = document.createElement("div");
+        info.className = "mathquiz-correct-answer";
+        card.appendChild(info);
+      }
+      info.textContent = "Дұрыс жауап: " + correctLetter;
+    }
+
+    function checkSection(sectionEl) {
+      const cards = sectionEl.querySelectorAll(".mathquiz-card");
+      let correctCount = 0;
+      let answeredCount = 0;
+
+      cards.forEach((card) => {
+        resetCardState(card);
+
+        const correctLetter = card.dataset.correct;
+        const name =
+          (card.querySelector("input[type='radio']") || {}).name || "";
+        const checked = name
+          ? sectionEl.querySelector("input[name='" + name + "']:checked")
+          : null;
+
+        if (!checked) {
+          card.classList.add("is-unanswered");
+          addCorrectInfo(card, correctLetter);
+          return;
+        }
+
+        answeredCount += 1;
+        if (checked.value === correctLetter) {
+          correctCount += 1;
+          card.classList.add("is-correct");
+        } else {
+          card.classList.add("is-wrong");
+          addCorrectInfo(card, correctLetter);
+        }
+      });
+
+      const resultBox = sectionEl.querySelector(".mathquiz-result");
+      if (!resultBox) return;
+
+      const total = cards.length;
+      const sectionName = sectionEl.dataset.section || "";
+      let msg =
+        sectionName +
+        " бөлім: " +
+        correctCount +
+        " / " +
+        total +
+        " дұрыс жауап.";
+
+      if (answeredCount < total) {
+        msg +=
+          " (" +
+          (total - answeredCount) +
+          " сұраққа жауап берілмеген, олар сұр штрихты рамкамен белгіленген.)";
+      }
+
+      resultBox.textContent = msg;
+    }
+
+    
+    document.querySelectorAll("[data-check-quiz]").forEach((btn) => {
+      btn.addEventListener("click", function () {
+        const section = this.closest(".mathquiz-section");
+        if (section) {
+          checkSection(section);
+          section.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    });
+  })();
     // Бастапқы рендер
     renderCards();
   </script>
